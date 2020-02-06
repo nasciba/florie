@@ -5,10 +5,7 @@ function App() {
   return (
     <div className="App">
       
-        <p>
-         Teste
-        </p>
-        
+       <img src="/images/logo_sem_texto.png"></img>
 
     </div>
   );
