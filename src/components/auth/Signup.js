@@ -41,7 +41,7 @@ class Signup extends Component {
           cpf: "",
 
         });
-        // this.props.getUser(response)
+        this.props.getUser(response)
       })
       .catch(error => console.log(error))
   }
@@ -77,14 +77,14 @@ class Signup extends Component {
           <input type="number" name="phoneNumber" value={this.state.phoneNumber} onChange={e => this.handleChange(e)} />
           <label>CPF:</label>
           <input name="cpf" type="number" value={this.state.cpf} onChange={e => this.handleChange(e)} />
-          <label>Password:</label>
+          <label>Senha:</label>
           <input name="password" type="password" value={this.state.password} onChange={e => this.handleChange(e)} />
 
           <input type="submit" value="Signup" />
         </form>
 
-        <p>Already have account?
-            <Link to={"/"}> Login</Link>
+        <p>Já tem uma conta?
+            <Link to={"/login"}>Login</Link>
         </p>
 
       </div>
