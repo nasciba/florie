@@ -9,7 +9,6 @@ class Signup extends Component {
     this.service = new AuthService();
   }
 
-  // handleChange() and handleSubmit() will be added here
   handleFormSubmit = (event) => {
     event.preventDefault();
     const username = this.state.username;
