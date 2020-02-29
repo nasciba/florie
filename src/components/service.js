@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const service = axios.create({
   baseURL: 'http://localhost:5000/api',
-  withCredentials: true 
+  withCredentials: true
 });
 
 const errorHandler = err => {
@@ -13,16 +13,23 @@ const errorHandler = err => {
 export default {
   service,
 
-  handleUpload (imageUrl) {
+  handleUpload(imageUrl) {
     console.log('file in service: ', imageUrl)
     return service.post('/upload', imageUrl)
       .then(res => res.data)
       .catch(errorHandler);
   },
 
-  saveNewImage (productWithImage) {
-    console.log('new thing is: ', productWithImage)
+  saveNewProduct(productWithImage) {
+    console.log('product with image is: ', productWithImage)
     return service.post('/products', productWithImage)
+      .then(res => res.data)
+      .catch(errorHandler);
+  },
+
+  updateProduct(updatedProduct) {
+    console.log('product with image is: ', updatedProduct)
+    return service.put(`/products/${updatedProduct._id}`, updatedProduct)
       .then(res => res.data)
       .catch(errorHandler);
   }

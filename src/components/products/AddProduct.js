@@ -10,7 +10,6 @@ class AddProduct extends Component {
             description: "",
             name: "",
             price: "",
-            size: "",
             stock: "",
             type: "",
             imageUrl: ""
@@ -40,7 +39,7 @@ class AddProduct extends Component {
     handleSubmit = e => {
         e.preventDefault();
 
-        service.saveNewImage(this.state)
+        service.saveNewProduct(this.state)
             .then(res => {
                 console.log('added: ', res);
                 this.props.history.push('/products-list-admin');
@@ -64,10 +63,10 @@ class AddProduct extends Component {
                     <input type="number" name="price" value={this.state.price} onChange={e => this.handleChange(e)} />
                     <label>Estoque:</label>
                     <input type="number" name="stock" value={this.state.stock} onChange={e => this.handleChange(e)} />
-                    <label>Tamanho embalagem:</label>
-                    <input type="number" name="size" value={this.state.size} onChange={e => this.handleChange(e)} />
+                    <label>Tipo:</label>
+                    <input type="text" name="type" value={this.state.type} onChange={e => this.handleChange(e)} />
                     <input
-                        type="file" name="imageUrl"
+                        type="file" name="imageUrl" 
                         onChange={(e) => this.handleFileUpload(e)} />
                     <input type="submit" value="Salvar" />
                 </form>

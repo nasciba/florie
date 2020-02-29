@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import EditProduct from './EditProduct'
 import axios from 'axios';
 
 class ProductDetails extends Component {
@@ -25,22 +24,15 @@ class ProductDetails extends Component {
             })
     }
 
-    renderEditProduct = () => {
-        if(!this.state.name){
-            this.getSingleProduct();
-            
-        } else {
-            return <EditProduct theProduct={this.state} getTheProduct={this.getSingleProduct} {...this.props} />
-        }
-    }
+   
     render() {
         return (
             <div>
             <h1>{this.state.name} - {this.state.brand}</h1>
-            <img src={this.state.image} alt={this.state.name && this.state.brand}></img>
+            <img src={this.state.imageUrl} alt={this.state.name && this.state.brand}></img>
             <p>R${this.state.price}</p>
             <p>{this.state.description}</p>
-            <div>{this.renderEditProduct()} </div> 
+            
             <Link to={'/products'}>Lista de produtos</Link>
             {}
         </div>

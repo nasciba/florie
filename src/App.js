@@ -58,6 +58,8 @@ class App extends Component {
             <Route exact path='/products-list-admin/:id' component={ProductDetails} />
             <Route exact path='/add-product' component={AddProduct} />
             <Route exact path='/edit-product/:id' component={EditProduct} />
+            <Route exact path='/products/:id' component={ProductDetails} />
+
 
 
           </Switch>
