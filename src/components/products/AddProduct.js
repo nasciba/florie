@@ -42,7 +42,7 @@ class AddProduct extends Component {
         service.saveNewProduct(this.state)
             .then(res => {
                 console.log('added: ', res);
-                this.props.history.push('/products-list-admin');
+                this.props.history.push('/list-admin');
             })
             .catch(err => {
                 console.log("Error while adding the image: ", err);

@@ -57,7 +57,7 @@ class EditProduct extends Component {
         service.updateProduct(this.state)
             .then(res => {
                 console.log('added: ', res);
-                this.props.history.push('/products-list-admin');
+                this.props.history.push('/list-admin');
             })
             .catch(err => {
                 console.log("Error while adding the image: ", err);

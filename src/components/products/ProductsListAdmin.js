@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 export default class ProductsList extends Component {
@@ -8,7 +8,6 @@ export default class ProductsList extends Component {
         super();
         this.state = {
             listOfProducts: [],
-            
         };
 
     }
@@ -26,23 +25,23 @@ export default class ProductsList extends Component {
         this.getAllProducts();
     }
 
-    
+
     deleteProduct = (productId) => {
         axios.delete(`http://localhost:5000/api/products/${productId}`)
             .then(responseFromApi => {
                 console.log(responseFromApi);
-                if(responseFromApi.status === 200) {
-                for(let i = 0; i < this.state.listOfProducts.length; i += 1){
-                    if(this.state.listOfProducts[i]._id === productId) {
-                        console.log("entrou")
-                        this.state.listOfProducts.splice(i, 1);
-                    }
-                };
-                this.props.history.push('/products-list-admin');
-            }
-            else {
-                alert("Erro: O produto não foi deletado")
-            }
+                if (responseFromApi.status === 200) {
+                    for (let i = 0; i < this.state.listOfProducts.length; i += 1) {
+                        if (this.state.listOfProducts[i]._id === productId) {
+                            console.log("entrou")
+                            this.state.listOfProducts.splice(i, 1);
+                        }
+                    };
+                    this.props.history.push('/products-list-admin');
+                }
+                else {
+                    alert("Erro: O produto não foi deletado")
+                }
             })
 
             .catch((err) => {

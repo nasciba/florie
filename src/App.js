@@ -3,10 +3,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AuthService from './components/auth/auth-service';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
-import Home from './components/Home';
-import Navbar from './components/Navbar';
+import Home from './components/home/Home';
+import Navbar from './components/navbar/Navbar';
 import ProductsList from './components/products/ProductsListAdmin';
-import ProductDetails from './components/products/ProductDetails';
+import ProductDetails from './components/product-details/ProductDetails';
 import AddProduct from './components/products/AddProduct';
 import EditProduct from './components/products/EditProduct';
 import './App.css';
@@ -49,20 +49,20 @@ class App extends Component {
       return (
         <div className="App">
           <BrowserRouter>
-          <Navbar userInSession={this.state.loggedInUser} />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
-            <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
-            <Route exact path='/products-list-admin' component={ProductsList} />
-            <Route exact path='/products-list-admin/:id' component={ProductDetails} />
-            <Route exact path='/add-product' component={AddProduct} />
-            <Route exact path='/edit-product/:id' component={EditProduct} />
-            <Route exact path='/products/:id' component={ProductDetails} />
+            <Navbar userInSession={this.state.loggedInUser} />
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
+              <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
+              <Route exact path='/list-admin' component={ProductsList} />
+              <Route exact path='/products-list-admin/:id' component={ProductDetails} />
+              <Route exact path='/add-product' component={AddProduct} />
+              <Route exact path='/edit-product/:id' component={EditProduct} />
+              <Route exact path='/products/:id' component={ProductDetails} />
 
 
 
-          </Switch>
+            </Switch>
           </BrowserRouter>
         </div>
       );
@@ -73,8 +73,10 @@ class App extends Component {
           <BrowserRouter>
             <Navbar userInSession={this.state.loggedInUser} />
             <Route exact path='/' component={Home} />
+            <Route exact path='/products/:id' component={ProductDetails} />
             <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
             <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
+
           </BrowserRouter>
         </div>
       )
