@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 function Button(props) {
     return (
-        <button> {props.name} </button>
+        <button onClick={props.action}> {props.name} </button>
     )
 }
 

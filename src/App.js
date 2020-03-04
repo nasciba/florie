@@ -9,13 +9,18 @@ import ProductsList from './components/products/ProductsListAdmin';
 import ProductDetails from './components/product-details/ProductDetails';
 import AddProduct from './components/products/AddProduct';
 import EditProduct from './components/products/EditProduct';
+import ShoppingBag from './components/shopping-bag/ShoppingBag'
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { loggedInUser: null };
+    this.state = { 
+      loggedInUser: null,
+      cart: [] 
+    };
     this.service = new AuthService();
+
   }
 
   fetchUser() {
@@ -42,6 +47,9 @@ class App extends Component {
     })
   }
 
+  addToCart = (id) => {
+    this.setState({cart: [id] })
+  }
   render() {
 
     this.fetchUser()
@@ -76,6 +84,7 @@ class App extends Component {
             <Route exact path='/products/:id' component={ProductDetails} />
             <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
             <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
+            <Route exact path='/cart' render={() => <Login getUser={this.getTheUser} />} />
 
           </BrowserRouter>
         </div>

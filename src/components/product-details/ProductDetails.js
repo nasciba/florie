@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { StyledImgProduct, StyledProdDetailsText } from './styles'
-import { StyledDisplay } from '../styles'
+import { StyledDisplay, StyledImgProduct, StyledProdDetailsText } from './styles'
+import { StyledGreenButton } from '../green-button/styles';
 
 class ProductDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+        
     }
     componentDidMount() {
         this.getSingleProduct();
@@ -31,16 +32,16 @@ class ProductDetails extends Component {
         return (
             <StyledDisplay>
                 <StyledImgProduct>
-                <img src={this.state.imageUrl} alt={this.state.name && this.state.brand}></img>
+                    <img src={this.state.imageUrl} alt={this.state.name && this.state.brand}></img>
                 </StyledImgProduct>
                 <StyledProdDetailsText>
-                    <p style={{textTransform: "uppercase", fontWeight: "bold"}}>{this.state.name}</p>
-                    <p style={{color: "#808080"}}>{this.state.brand}</p>
+                    <p style={{ textTransform: "uppercase", fontWeight: "bold" }}>{this.state.name}</p>
+                    <p style={{ color: "#808080" }}>{this.state.brand}</p>
                     <p>{this.state.description}</p>
                     <h1>R${this.state.price}</h1>
-                <Link to={'/products'}>Lista de produtos</Link>
+                    <StyledGreenButton>ADICIONAR AO CARRINHO</StyledGreenButton>
+                    {/* <Link to={'/products'}>Lista de produtos</Link> */}
                 </StyledProdDetailsText>
-           
             </StyledDisplay>
         )
     }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
+import { StyledDisplay, StyledTextAccount, StyledInputLogin } from './style';
+import { StyledGreenButton } from '../green-button/styles'
 
 class Login extends Component {
     constructor(props) {
@@ -28,17 +30,22 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleFormSubmit}>
-                    <label>E-mail:</label>
-                    <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-                    <label>Senha:</label>
-                    <input name="password" type="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-                    <input type="submit" value="Login" />
-                </form>
-                <p>Não tem uma conta? <Link to={"/signup"}>Cadastre-se agora</Link>
-                </p>
-            </div>
+            <StyledDisplay>
+                <StyledInputLogin>
+                    <form onSubmit={this.handleFormSubmit}>
+                        <input type="text" name="username" placeholder="Seu e-mail" value={this.state.username} onChange={e => this.handleChange(e)} />
+                        <br></br>          
+                        <input name="password" placeholder="Sua senha" type="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+                        <br></br>
+                        <StyledGreenButton type="submit">LOGIN</StyledGreenButton>
+                    </form>
+                    <StyledTextAccount>
+                        Não tem uma conta?
+                    <br></br>
+                        Cadastre-se <Link to={"/signup"} style={{ color: "black" }}>aqui</Link>
+                    </StyledTextAccount>
+                </StyledInputLogin>
+            </StyledDisplay >
         )
     }
 }

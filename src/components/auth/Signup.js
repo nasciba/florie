@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
+import { StyledDisplay, StyledTextAccount } from './style';
+import { StyledGreenButton} from '../green-button/styles'
 
 class Signup extends Component {
   constructor(props) {
@@ -53,24 +55,38 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
+      <StyledDisplay>
         <form onSubmit={this.handleFormSubmit}>
           <label>Nome completo:</label>
+          <br></br>
           <input type="text" name="fullName" value={this.state.fullName} onChange={e => this.handleChange(e)} />
-          <h3>Endereço</h3>
+          <br></br>
+          <br></br>
           <label>Rua/Avenida:</label>
+          <br></br>
           <input type="text" name="street" value={this.state.address} onChange={e => this.handleChange(e)} />
+          <br></br>
           <label>Número:</label>
+          <br></br>
           <input type="number" name="number" value={this.state.address} onChange={e => this.handleChange(e)} />
+          <br></br>
           <label>Complemento:</label>
+          <br></br>
           <input type="text" name="complement" value={this.state.address} onChange={e => this.handleChange(e)} />
+          <br></br>
           <label>Cidade:</label>
+          <br></br>
           <input type="text" name="city" value={this.state.address} onChange={e => this.handleChange(e)} />
+          <br></br>
           <label>Estado:</label>
+          <br></br>
           <input type="text" name="state" value={this.state.address} onChange={e => this.handleChange(e)} />
+          <br></br>
           <label>CEP:</label>
+          <br></br>
           <input type="number" name="zipcode" value={this.state.address} onChange={e => this.handleChange(e)} />
-          <label>E-mail:</label>
+          <br></br>
+                    <label>E-mail:</label>
           <input type="email" name="username" value={this.state.username} onChange={e => this.handleChange(e)} placeholder="Insira seu e-mail" />
           <label>Telefone:</label>
           <input type="number" name="phoneNumber" value={this.state.phoneNumber} onChange={e => this.handleChange(e)} />
@@ -86,7 +102,7 @@ class Signup extends Component {
             <Link to={"/login"}>Login</Link>
         </p>
 
-      </div>
+        </StyledDisplay>
     )
   }
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 const Nav = styled.nav`
@@ -20,9 +21,7 @@ const Nav = styled.nav`
         flex-direction: row;
         list-style: none;
         justify-content: space-between;
-        width: 240px;
-        // border: solid black 1px
-         
+        width: 240px;         
     };
     img {
         max-height: 70px;
@@ -43,8 +42,9 @@ const ImagesLogo = styled.div`
     margin:15px;    
 `
 
+
 export {
     Nav,
     Burger,
-    ImagesLogo
+    ImagesLogo,
 }

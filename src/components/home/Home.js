@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { StyledCardProduct, StyledTextTitle, StyledTextProduct } from './styles'
-import { StyledDisplay } from '../styles'
+import {
+    StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand,
+    StyledPrice, StyledMessage
+} from './styles'
+// import { Button } from '../green-button/Button';
+import { StyledGreenButton } from '../green-button/styles';
 
 class Home extends Component {
     constructor() {
@@ -35,14 +39,15 @@ class Home extends Component {
                                 <img src={product.imageUrl} alt={product.title && product.brand}></img>
                             </Link>
                             <StyledTextTitle>{product.name}</StyledTextTitle>
-                            <StyledTextProduct>
+                            <StyledTextBrand>
                                 {product.brand}
-                                <br></br>
+                            </StyledTextBrand>
+                            <StyledPrice>
                                 R${product.price}
-                                <br></br>
-                                {product.stock <= 5 && product.stock >= 2 ? <h6> Últimas {product.stock} unidades </h6> : null}
-                                {product.stock === 1 ? <p> Última unidade! </p> : null}
-                            </StyledTextProduct>
+                            </StyledPrice>
+                            <StyledGreenButton>ADICIONAR AO CARRINHO</StyledGreenButton>
+                            {product.stock <= 5 && product.stock >= 2 ? <StyledMessage> Últimas {product.stock} unidades   </StyledMessage> : null}
+                            {product.stock === 1 ? <StyledMessage> Última unidade!   </StyledMessage> : null}
                         </ StyledCardProduct>
 
                     )

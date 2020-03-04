@@ -41,19 +41,26 @@ class Navbar extends Component {
                 <Nav>
                     {/* <Link to='/signup'>Cadastre-se</Link> */}
                     <Burger>
-                        <div class="line1"></div>
-                        <div class="line2"></div>
-                        <div class="line3"></div>
+                        <div className="line1"></div>
+                        <div className="line2"></div>
+                        <div className="line3"></div>
                     </Burger>
-                    <ImagesLogo>
-                        <img src='/images/logo_transparent.png' alt="logo florie store"></img>
-                        <img src='/images/logoTransparent.png' alt="logo florie store"></img>
-                    </ImagesLogo>
+                    <Link to='/'>
+                        <ImagesLogo>
+                            <img src='/images/logo_transparent.png' alt="logo florie store"></img>
+                            <img src='/images/logoTransparent.png' alt="logo florie store"></img>
+                        </ImagesLogo>
+                    </Link>
                     <ul>
                         <li><i className="fa fa-search"></i></li>
                         <li><i className="fa fa-user"></i></li>
-                        <li><i className="fa fa-shopping-bag"></i></li>
-
+                        <li>
+                           
+                                <Link to="/cart">
+                                    <i style= {{ color: "black"}}className="fa fa-shopping-bag"></i>
+                                    </Link>
+                     
+                        </li>
                     </ul>
                 </Nav >
                 // </nav>
