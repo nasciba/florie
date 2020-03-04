@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
-import { StyledDisplay, StyledTextAccount, StyledInputLogin } from './style';
+import { StyledDisplay, StyledInputAuth, StyledTextAccount } from './style';
 import { StyledGreenButton } from '../green-button/styles'
 
 class Login extends Component {
@@ -31,7 +31,8 @@ class Login extends Component {
     render() {
         return (
             <StyledDisplay>
-                <StyledInputLogin>
+                <StyledInputAuth>
+                <StyledTextAccount>Acesse sua conta aqui ;)</StyledTextAccount>
                     <form onSubmit={this.handleFormSubmit}>
                         <input type="text" name="username" placeholder="Seu e-mail" value={this.state.username} onChange={e => this.handleChange(e)} />
                         <br></br>          
@@ -39,12 +40,12 @@ class Login extends Component {
                         <br></br>
                         <StyledGreenButton type="submit">LOGIN</StyledGreenButton>
                     </form>
-                    <StyledTextAccount>
+                    <p>
                         Não tem uma conta?
                     <br></br>
                         Cadastre-se <Link to={"/signup"} style={{ color: "black" }}>aqui</Link>
-                    </StyledTextAccount>
-                </StyledInputLogin>
+                    </p>
+                </StyledInputAuth>
             </StyledDisplay >
         )
     }

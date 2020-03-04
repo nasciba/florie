@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
-import { StyledDisplay, StyledTextAccount } from './style';
-import { StyledGreenButton} from '../green-button/styles'
+import { StyledDisplay, StyledInputAuth, StyledTextAccount } from './style';
+import { StyledGreenButton } from '../green-button/styles'
 
 class Signup extends Component {
   constructor(props) {
@@ -56,53 +56,62 @@ class Signup extends Component {
   render() {
     return (
       <StyledDisplay>
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Nome completo:</label>
-          <br></br>
-          <input type="text" name="fullName" value={this.state.fullName} onChange={e => this.handleChange(e)} />
-          <br></br>
-          <br></br>
-          <label>Rua/Avenida:</label>
-          <br></br>
-          <input type="text" name="street" value={this.state.address} onChange={e => this.handleChange(e)} />
-          <br></br>
-          <label>Número:</label>
-          <br></br>
-          <input type="number" name="number" value={this.state.address} onChange={e => this.handleChange(e)} />
-          <br></br>
-          <label>Complemento:</label>
-          <br></br>
-          <input type="text" name="complement" value={this.state.address} onChange={e => this.handleChange(e)} />
-          <br></br>
-          <label>Cidade:</label>
-          <br></br>
-          <input type="text" name="city" value={this.state.address} onChange={e => this.handleChange(e)} />
-          <br></br>
-          <label>Estado:</label>
-          <br></br>
-          <input type="text" name="state" value={this.state.address} onChange={e => this.handleChange(e)} />
-          <br></br>
-          <label>CEP:</label>
-          <br></br>
-          <input type="number" name="zipcode" value={this.state.address} onChange={e => this.handleChange(e)} />
-          <br></br>
-                    <label>E-mail:</label>
-          <input type="email" name="username" value={this.state.username} onChange={e => this.handleChange(e)} placeholder="Insira seu e-mail" />
-          <label>Telefone:</label>
-          <input type="number" name="phoneNumber" value={this.state.phoneNumber} onChange={e => this.handleChange(e)} />
-          <label>CPF:</label>
-          <input name="cpf" type="number" value={this.state.cpf} onChange={e => this.handleChange(e)} />
-          <label>Senha:</label>
-          <input name="password" type="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+        <StyledInputAuth>
+          <StyledTextAccount>Faça aqui seu cadastro ;)</StyledTextAccount>
+          <form onSubmit={this.handleFormSubmit}>
+            <label>E-mail:</label>
+            <br></br>
+            <input type="email" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <label>Nome completo:</label>
+            <br></br>
+            <input type="text" name="fullName" value={this.state.fullName} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <label>Telefone:</label>
+            <br></br>
+            <input type="number" name="phoneNumber" value={this.state.phoneNumber} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <label>CPF:</label>
+            <br></br>
+            <input name="cpf" type="number" value={this.state.cpf} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <label>Rua/Avenida:</label>
+            <br></br>
+            <input type="text" name="street" value={this.state.address} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <label>Número:</label>
+            <br></br>
+            <input type="number" name="number" value={this.state.address} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <label>Complemento (apto, bloco, etc.):</label>
+            <br></br>
+            <input type="text" name="complement" value={this.state.address} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <label>Cidade:</label>
+            <br></br>
+            <input type="text" name="city" value={this.state.address} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <label>Estado:</label>
+            <br></br>
+            <input type="text" name="state" value={this.state.address} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <label>CEP:</label>
+            <br></br>
+            <input type="number" name="zipcode" value={this.state.address} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <label>Senha:</label>
+            <br></br>
+            <input name="password" type="password" placeholder="pelo menos 7 caracteres :D" value={this.state.password} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <StyledGreenButton type="submit">CRIAR CONTA</StyledGreenButton>
+          </form>
 
-          <input type="submit" value="Signup" />
-        </form>
-
-        <p>Já tem uma conta?
-            <Link to={"/login"}>Login</Link>
-        </p>
-
-        </StyledDisplay>
+          <p>Já tem uma conta?
+            <br></br>
+            <Link to={"/login"} style={{color: "black"}}>Login</Link>
+          </p>
+        </StyledInputAuth>
+      </StyledDisplay>
     )
   }
 }
