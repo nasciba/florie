@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
 import { StyledDisplay, StyledInputAuth, StyledTextAccount } from './style';
-import { StyledGreenButton } from '../green-button/styles'
+import { StyledGreenButton } from '../buttons/styles'
 
 class Signup extends Component {
   constructor(props) {

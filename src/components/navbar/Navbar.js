@@ -14,6 +14,7 @@ class Navbar extends Component {
         this.service.logout()
             .then(() => {
                 this.setState({ loggedInUser: null });
+                // this.props.history.push('/');
                 // this.props.getUser(null);
             })
     }
@@ -22,12 +23,37 @@ class Navbar extends Component {
         if (this.props.userInSession) {
             return (
 
+                // <Nav>
+                //     {/* <Link to='/signup'>Cadastre-se</Link> */}
+                //     <Burger>
+                //         <div className="line1"></div>
+                //         <div className="line2"></div>
+                //         <div className="line3"></div>
+                //     </Burger>
+                //     <Link to='/'>
+                //         <ImagesLogo>
+                //             <img src='/images/logo_transparent.png' alt="logo florie store"></img>
+                //             <img src='/images/logoTransparent.png' alt="logo florie store"></img>
+                //         </ImagesLogo>
+                //     </Link>
+                //     <ul>
+                //         <li><i className="fa fa-search"></i></li>
+                //         <li><i className="fa fa-user"></i></li>
+                //         <li>
+
+                //                 <Link to="/cart">
+                //                     <i style= {{ color: "black"}}className="fa fa-shopping-bag"></i>
+                //                     </Link>
+
+                //         </li>
+                //     </ul>
+                // </Nav >
                 <nav className="nav-style" >
 
                     <ul style={{ textDecoration: 'none' }}>
-                        {/* <li>Olá, {this.props.userInSession.username}!</li> */}
+                        <li>Olá, {this.props.userInSession.username}!</li>
                         <li>Products</li>
-                        {/* {this.props.userInSession.admin ? <li><Link to="/list-admin">Lista de produtos</Link></li> : null} */}
+                        {this.props.userInSession.admin ? <li><Link to="/list-admin">Lista de produtos</Link></li> : null}
 
                     </ul>
                     <Link to='/'>
@@ -41,9 +67,9 @@ class Navbar extends Component {
                 <Nav>
                     {/* <Link to='/signup'>Cadastre-se</Link> */}
                     <Burger>
-                        <div className="line1"></div>
-                        <div className="line2"></div>
-                        <div className="line3"></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
                     </Burger>
                     <Link to='/'>
                         <ImagesLogo>
@@ -52,14 +78,19 @@ class Navbar extends Component {
                         </ImagesLogo>
                     </Link>
                     <ul>
-                        <li><i className="fa fa-search"></i></li>
-                        <li><i className="fa fa-user"></i></li>
                         <li>
-                           
-                                <Link to="/cart">
-                                    <i style= {{ color: "black"}}className="fa fa-shopping-bag"></i>
-                                    </Link>
-                     
+                            <i className="fa fa-search"></i>
+                        </li>
+                        <li>
+                            <Link to="/login">
+                                <i style={{ color: "black" }} className="fa fa-user"></i>
+                            </Link></li>
+                        <li>
+
+                            <Link to="/cart">
+                                <i style={{ color: "black" }} className="fa fa-shopping-bag"></i>
+                            </Link>
+
                         </li>
                     </ul>
                 </Nav >

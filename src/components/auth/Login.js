@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
 import { StyledDisplay, StyledInputAuth, StyledTextAccount } from './style';
-import { StyledGreenButton } from '../green-button/styles'
+import { StyledGreenButton } from '../buttons/styles'
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = { username: '', password: '' };
         this.service = new AuthService();
+        console.log('aqui estão as props', props)
     }
 
     handleFormSubmit = (event) => {
@@ -18,7 +19,8 @@ class Login extends Component {
         this.service.login(username, password)
             .then(response => {
                 this.setState({ username: "", password: "" });
-                this.props.getUser(response)
+                this.props.getUser(response);
+                this.props.history.push('/');
             })
             .catch(error => console.log(error))
     }

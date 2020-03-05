@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import service from '../service';
 import axios from 'axios';
-
+import { StyledDisplay, StyledInputAuth, StyledTextAccount } from '../auth/style';
+import { StyledGreenButton } from '../buttons/styles'
 
 class EditProduct extends Component {
     constructor(props) {
         super(props);
-        this.state = { name: '', description: '', brand: '', price:'', stock:'', image: ''}
+        this.state = { name: '', description: '', brand: '', price: '', stock: '', image: '' }
     }
 
     componentDidMount() {
@@ -68,27 +69,38 @@ class EditProduct extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Editar produto</h3>
+            <StyledDisplay>
+                <StyledInputAuth>
+                <StyledTextAccount>EDITAR PRODUTO</StyledTextAccount>
                 <form onSubmit={this.handleSubmit}>
                     <label>Produto:</label>
+                    <br></br>
                     <input type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} />
+                    <br></br>
                     <label>Descrição:</label>
-                    <textarea name="description" value={this.state.description} onChange={e => this.handleChange(e)} />
+                    <br></br>
+                    <input name="description" value={this.state.description} onChange={e => this.handleChange(e)} />
+                    <br></br>
                     <label>Marca:</label>
+                    <br></br>
                     <input type="text" name="brand" value={this.state.brand} onChange={e => this.handleChange(e)} />
+                    <br></br>
                     <label>Preço:</label>
+                    <br></br>
                     <input type="number" name="price" value={this.state.price} onChange={e => this.handleChange(e)} />
+                    <br></br>
                     <label>Estoque:</label>
+                    <br></br>
                     <input type="number" name="stock" value={this.state.stock} onChange={e => this.handleChange(e)} />
+                    <br></br>
                     <input
                         type="file" name="imageUrl"
                         onChange={(e) => this.handleFileUpload(e)} />
-                    <input type="submit" value="Salvar" />
+                        <br></br>
+                        <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
                 </form>
-
-            </div>
-        )
+                </StyledInputAuth>
+            </StyledDisplay>)
     }
 }
 

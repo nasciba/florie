@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { StyledDisplay, StyledImgProduct, StyledProdDetailsText } from './styles'
-import { StyledGreenButton } from '../green-button/styles';
+import { StyledDisplay, StyledTitle, StyledImgProduct, StyledProdDetailsDescrip, StyledDetailsText } from './styles'
+import { StyledGreenButton } from '../buttons/styles';
 
 class ProductDetails extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            // cart: {},
+        };
         
     }
     componentDidMount() {
+        console.log("aqui as props", this.props);
         this.getSingleProduct();
     }
 
@@ -26,7 +29,14 @@ class ProductDetails extends Component {
                 console.log(err)
             })
     }
-
+    // addToCart = (e) => {
+    //     const { params } = this.props.match;
+    //     let cart = this.state.cart
+    //     cart[params.id] = cart[params.id] !== undefined ? cart[params.id]+1 : 1;
+    //     console.log("aqui", cart)
+    //     this.setState({ cart: cart })
+    //     console.log(this.state);
+    // }
 
     render() {
         return (
@@ -34,15 +44,19 @@ class ProductDetails extends Component {
                 <StyledImgProduct>
                     <img src={this.state.imageUrl} alt={this.state.name && this.state.brand}></img>
                 </StyledImgProduct>
-                <StyledProdDetailsText>
+                <StyledProdDetailsDescrip>
                     <p style={{ textTransform: "uppercase", fontWeight: "bold" }}>{this.state.name}</p>
                     <p style={{ color: "#808080" }}>{this.state.brand}</p>
-                    <p>{this.state.description}</p>
+
                     <h1>R${this.state.price}</h1>
-                    <StyledGreenButton>ADICIONAR AO CARRINHO</StyledGreenButton>
-                    {/* <Link to={'/products'}>Lista de produtos</Link> */}
-                </StyledProdDetailsText>
-            </StyledDisplay>
+                    <StyledGreenButton onClick={this.props.addItemToCart}>ADICIONAR AO CARRINHO</StyledGreenButton>
+                </StyledProdDetailsDescrip>
+               
+                <StyledDetailsText>
+                <StyledTitle>Descrição do Produto</StyledTitle>
+                    {this.state.description}
+                </StyledDetailsText>
+            </StyledDisplay >
         )
     }
 }

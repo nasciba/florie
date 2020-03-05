@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {
-    StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand,
-    StyledPrice, StyledMessage
+import { StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand,StyledPrice, StyledMessage
 } from './styles'
-// import { Button } from '../green-button/Button';
-import { StyledGreenButton } from '../green-button/styles';
+import { StyledGreenButton } from '../buttons/styles';
 
 class Home extends Component {
     constructor() {
