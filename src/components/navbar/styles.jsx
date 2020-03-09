@@ -39,7 +39,7 @@ const Burger = styled.div`
 const ImagesLogo = styled.div`
     display:flex;
     justify-content: center;
-    margin:15px;    
+    margin: 10px 0px 0px 40px;    
 `
 
 

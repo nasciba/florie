@@ -7,13 +7,10 @@ import { StyledGreenButton } from '../buttons/styles';
 class ProductDetails extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            // cart: {},
-        };
-        
+        this.state = {};
+
     }
     componentDidMount() {
-        console.log("aqui as props", this.props);
         this.getSingleProduct();
     }
 
@@ -29,14 +26,7 @@ class ProductDetails extends Component {
                 console.log(err)
             })
     }
-    // addToCart = (e) => {
-    //     const { params } = this.props.match;
-    //     let cart = this.state.cart
-    //     cart[params.id] = cart[params.id] !== undefined ? cart[params.id]+1 : 1;
-    //     console.log("aqui", cart)
-    //     this.setState({ cart: cart })
-    //     console.log(this.state);
-    // }
+    
 
     render() {
         return (
@@ -49,11 +39,10 @@ class ProductDetails extends Component {
                     <p style={{ color: "#808080" }}>{this.state.brand}</p>
 
                     <h1>R${this.state.price}</h1>
-                    <StyledGreenButton onClick={this.props.addItemToCart}>ADICIONAR AO CARRINHO</StyledGreenButton>
+                    <StyledGreenButton onClick={() => {this.props.addItemToCart(this.state._id)}}>ADICIONAR AO CARRINHO</StyledGreenButton>
                 </StyledProdDetailsDescrip>
-               
-                <StyledDetailsText>
-                <StyledTitle>Descrição do Produto</StyledTitle>
+                <StyledDetailsText> 
+                    <StyledTitle>Descrição do Produto</StyledTitle>
                     {this.state.description}
                 </StyledDetailsText>
             </StyledDisplay >

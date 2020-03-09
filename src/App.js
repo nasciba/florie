@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
 import AuthService from './components/auth/auth-service';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
@@ -47,14 +48,13 @@ class App extends Component {
     })
   }
 
-  addToCart = (e) => {
-    const { params } = this.props.match;
+
+  addToCart = (id) => {
     let cart = this.state.cart
-    cart[params.id] = cart[params.id] !== undefined ? cart[params.id] + 1 : 1;
-    console.log("aqui", cart)
+    cart[id] = cart[id] !== undefined ? cart[id] + 1 : 1;
     this.setState({ cart: cart })
-    console.log(this.state);
   }
+
   render() {
 
     this.fetchUser()
@@ -66,14 +66,9 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/list-admin' render={() => <ProductsList getUser={this.getTheUser} />} />
-              <Route exact path='/products-list-admin/:id' component={ProductDetails} />
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
 
-              {/* <Route
-  path='/products/:id'
-  component={() => <ProductDetails teste='testestetetsd' addItemToCart={this.addToCart} />}
-/> */}
 
             </Switch>
           </BrowserRouter>
@@ -88,8 +83,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart}  />} />
             <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
-            <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />            
-            <Route exact path='/cart' render={(props) => <Cart {...props} getUser={this.getTheUser} />} />
+            <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
           </BrowserRouter>
         </div>
       )

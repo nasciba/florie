@@ -66,11 +66,11 @@ class Navbar extends Component {
                 // <nav className="nav-style">
                 <Nav>
                     {/* <Link to='/signup'>Cadastre-se</Link> */}
-                    <Burger>
+                    {/* <Burger>
                         <div></div>
                         <div></div>
                         <div></div>
-                    </Burger>
+                    </Burger> */}
                     <Link to='/'>
                         <ImagesLogo>
                             <img src='/images/logo_transparent.png' alt="logo florie store"></img>
