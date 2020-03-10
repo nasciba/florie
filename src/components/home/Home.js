@@ -6,8 +6,8 @@ import { StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand,Styl
 import { StyledGreenButton } from '../buttons/styles';
 
 class Home extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             listOfProducts: [],
         }
@@ -42,7 +42,7 @@ class Home extends Component {
                             <StyledPrice>
                                 R${product.price}
                             </StyledPrice>
-                            <StyledGreenButton>ADICIONAR AO CARRINHO</StyledGreenButton>
+                            <StyledGreenButton onClick={() => {this.props.addItemToCart(product._id)}}>ADICIONAR AO CARRINHO</StyledGreenButton>
                             {product.stock <= 5 && product.stock >= 2 ? <StyledMessage> Últimas {product.stock} unidades   </StyledMessage> : null}
                             {product.stock === 1 ? <StyledMessage> Última unidade!   </StyledMessage> : null}
                         </ StyledCardProduct>

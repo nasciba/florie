@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { StyledDisplay, StyledTitle, StyledImgProduct, StyledProdDetailsDescrip, StyledDetailsText } from './styles'
 import { StyledGreenButton } from '../buttons/styles';

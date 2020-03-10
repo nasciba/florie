@@ -18,8 +18,10 @@ class App extends Component {
     super(props)
     this.state = {
       loggedInUser: null,
-      cart: {},
+      cart: []
+
     };
+
     this.service = new AuthService();
 
   }
@@ -49,12 +51,18 @@ class App extends Component {
   }
 
 
+
   addToCart = (id) => {
     let cart = this.state.cart
-    cart[id] = cart[id] !== undefined ? cart[id] + 1 : 1;
-    this.setState({ cart: cart })
+    if (cart.includes(id)) {
+      return null
+    }
+    else {
+      cart.push(id)
+      this.setState({ cart: cart })
+      console.log(cart)
+    }
   }
-
   render() {
 
     this.fetchUser()
@@ -64,10 +72,11 @@ class App extends Component {
           <BrowserRouter>
             <Navbar userInSession={this.state.loggedInUser} />
             <Switch>
-              <Route exact path='/' component={Home} />
+              <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/list-admin' render={() => <ProductsList getUser={this.getTheUser} />} />
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
+              <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
 
 
             </Switch>
@@ -80,10 +89,13 @@ class App extends Component {
         <div>
           <BrowserRouter>
             <Navbar userInSession={this.state.loggedInUser} />
-            <Route exact path='/' component={Home} />
-            <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart}  />} />
-            <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
-            <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
+            <Switch>
+              <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
+              <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
+              <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
+              <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
+              <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} />} />
+            </Switch>
           </BrowserRouter>
         </div>
       )
