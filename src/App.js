@@ -60,8 +60,25 @@ class App extends Component {
     else {
       cart.push(id)
       this.setState({ cart: cart })
+      localStorage.setItem('cart', cart)
       console.log(cart)
     }
+  }
+
+  removeFromCart = (id) => {
+    let indexOfArray = this.state.cart.indexOf(id)
+    let cart = this.state.cart
+    cart.splice(indexOfArray, 1)
+    this.setState({ cart: cart })
+  }
+
+  componentDidMount() {
+    const storageCart = localStorage.cart;
+    if(storageCart.length) {
+      let arrayStorageCart = storageCart.split(',');
+      this.setState({ cart: arrayStorageCart})
+    }
+
   }
   render() {
 
@@ -76,7 +93,7 @@ class App extends Component {
               <Route exact path='/list-admin' render={() => <ProductsList getUser={this.getTheUser} />} />
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
-              <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
+              <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} deleteItem={this.removeFromCart}/>} />
 
 
             </Switch>
@@ -88,13 +105,13 @@ class App extends Component {
       return (
         <div>
           <BrowserRouter>
-            <Navbar userInSession={this.state.loggedInUser} />
+            <Navbar userInSession={this.state.loggedInUser} cartCount={this.state.cart.length}  />
             <Switch>
               <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
               <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
-              <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} />} />
+              <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart}/>} />
             </Switch>
           </BrowserRouter>
         </div>

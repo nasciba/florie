@@ -4,6 +4,8 @@ import axios from 'axios';
 import {
     StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand, StyledPrice, StyledMessage
 } from '../home/styles'
+import { StyledGreenButton } from '../buttons/styles';
+
 
 class Cart extends Component {
     constructor(props) {
@@ -11,8 +13,8 @@ class Cart extends Component {
         console.log(props)
         this.state = {
             listOfProducts: [],
+            cart: this.props.itemsInTheCart,
             totalPrice: 0,
-
         };
     }
 
@@ -22,7 +24,6 @@ class Cart extends Component {
                 this.setState({
                     listOfProducts: responseFromApi.data
                 }, () => this.getTotalPrice());
-                console.log(this.state.listOfProducts);
             })
     }
 
@@ -30,18 +31,20 @@ class Cart extends Component {
         let prices = this.state.listOfProducts.filter(productInDB => this.props.itemsInTheCart.includes(productInDB._id)).reduce((acc, productInDB) => {
             return acc + productInDB.price
         }, 0)
-        console.log(prices);
         this.setState({ totalPrice: prices})
 
     }
 
+    
     componentDidMount() {
         this.getAllProducts()
         console.log(this.props.itemsInTheCart)
 
     }
 
+
     render() {
+        
         return (
             <div style={{display: 'flex', flexDirection:'column', alignItems: 'center'}}>
             <StyledDisplay>
@@ -62,7 +65,7 @@ class Cart extends Component {
                                         <StyledPrice>
                                             R${product.price}
                                         </StyledPrice>
-
+                                        <StyledGreenButton onClick={() => {this.props.deleteItem(product._id); this.getTotalPrice()}}>REMOVER</StyledGreenButton>
                                     </ StyledCardProduct>
 
                                 )

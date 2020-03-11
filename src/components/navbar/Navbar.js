@@ -88,7 +88,7 @@ class Navbar extends Component {
                         <li>
 
                             <Link to="/cart">
-                                <i style={{ color: "black" }} className="fa fa-shopping-bag"></i>
+                                <span className='count'>{this.props.cartCount}</span><i style={{ color: "black" }} className="fa fa-shopping-bag"></i>
                             </Link>
 
                         </li>
