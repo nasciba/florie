@@ -74,7 +74,8 @@ class Cart extends Component {
                 }
 
             </StyledDisplay>
-                <h3>PREÇO TOTAL: R${this.state.totalPrice}</h3>
+            {this.state.cart.length ? <h3>PREÇO TOTAL: R${this.state.totalPrice}</h3> : null}
+                
                 </div>
         )
     }
