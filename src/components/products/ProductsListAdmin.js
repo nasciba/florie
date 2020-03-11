@@ -61,7 +61,7 @@ export default class ProductsList extends Component {
                             <h6>Produto: {product.name}</h6>
                             <p>Descrição: {product.description}</p>
                             <h6>Marca:{product.brand}</h6>
-                            <h6>Preço: R${product.price}</h6>
+                            <h6>Preço: R${(product.price).toFixed(2)}</h6>
                             <h6>Estoque: {product.stock}</h6>
                             <Link to={`/edit-product/${product._id}`}>
                                 Editar Produto

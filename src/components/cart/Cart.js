@@ -63,7 +63,7 @@ class Cart extends Component {
                                             {product.brand}
                                         </StyledTextBrand>
                                         <StyledPrice>
-                                            R${product.price}
+                                            R${(product.price).toFixed(2)}
                                         </StyledPrice>
                                         <StyledGreenButton onClick={() => {this.props.deleteItem(product._id); this.getTotalPrice()}}>REMOVER</StyledGreenButton>
                                     </ StyledCardProduct>
@@ -74,7 +74,7 @@ class Cart extends Component {
                 }
 
             </StyledDisplay>
-            {this.state.cart.length ? <h3>PREÇO TOTAL: R${this.state.totalPrice}</h3> : null}
+            {this.state.cart.length ? <h3> PREÇO TOTAL: R${(this.state.totalPrice).toFixed(2)} </h3> : null}
                 
                 </div>
         )

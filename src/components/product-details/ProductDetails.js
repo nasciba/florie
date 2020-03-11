@@ -37,7 +37,7 @@ class ProductDetails extends Component {
                     <p style={{ textTransform: "uppercase", fontWeight: "bold" }}>{this.state.name}</p>
                     <p style={{ color: "#808080" }}>{this.state.brand}</p>
 
-                    <h1>R${this.state.price}</h1>
+                    <h1>R${(this.state.price).toFixed}</h1>
                     <StyledGreenButton onClick={() => {this.props.addItemToCart(this.state._id)}}>ADICIONAR AO CARRINHO</StyledGreenButton>
                 </StyledProdDetailsDescrip>
                 <StyledDetailsText> 
