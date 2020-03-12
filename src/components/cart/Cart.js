@@ -15,27 +15,52 @@ class Cart extends Component {
             listOfProducts: [],
             cart: this.props.itemsInTheCart,
             totalPrice: 0,
+            value: ''
         };
     }
 
     getAllProducts = () => {
+        console.log('oi Amanda ihullll turupom pom?')
         axios.get('http://localhost:5000/api/products')
             .then(responseFromApi => {
+                let response = responseFromApi.data.filter(productInDB => {
+                    if (this.props.itemsInTheCart.find(element => {
+                        return element.id === productInDB._id
+                    }) !== undefined) {
+                        return true;
+                    }
+                    return false;
+                }
+                );
                 this.setState({
-                    listOfProducts: responseFromApi.data
-                }, () => this.getTotalPrice());
+                    listOfProducts: response
+                });
+                this.getTotalPrice()
             })
     }
 
+
+
     getTotalPrice = () => {
-        let prices = this.state.listOfProducts.filter(productInDB => this.props.itemsInTheCart.includes(productInDB._id)).reduce((acc, productInDB) => {
-            return acc + productInDB.price
-        }, 0)
-        this.setState({ totalPrice: prices})
+        console.log(this.state.listOfProducts, 'listofproducts')
+        let prices = this.state.listOfProducts.reduce((acc, productInDB) => {
+            let product = this.props.itemsInTheCart.filter(element => {
+                return element.id === productInDB._id
+            });
+                console.log('aqui o productindb', typeof(productInDB.price));
+                console.log('aqui o product', (product.quantity));    
+            return acc = acc + (productInDB.price * parseInt(product.quantity))
+            
+            }, 0)
+            console.log('eppaaaaaaaapapapapapappa', prices);
+        this.setState({ totalPrice: prices })
 
     }
 
-    
+    handleChange = (event) => {
+        console.log(event.target.value)
+    }
+
     componentDidMount() {
         this.getAllProducts()
         console.log(this.props.itemsInTheCart)
@@ -44,14 +69,13 @@ class Cart extends Component {
 
 
     render() {
-        
+
         return (
-            <div style={{display: 'flex', flexDirection:'column', alignItems: 'center'}}>
-            <StyledDisplay>
-                {this.props.itemsInTheCart.length === 0 ? <h1>O seu carrinho está vazio!</h1> :
-                    this.state.listOfProducts.length !== 0 ?
-                        this.state.listOfProducts.filter(productInDB => this.props.itemsInTheCart.includes(productInDB._id))
-                            .map(product => {
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <StyledDisplay>
+                    {this.props.itemsInTheCart.length === 0 ? <h1>O seu carrinho está vazio!</h1> :
+                        this.state.listOfProducts.length !== 0 ?
+                            this.state.listOfProducts.map((product, index) => {
                                 return (
 
                                     <StyledCardProduct key={product._id}>
@@ -62,21 +86,23 @@ class Cart extends Component {
                                         <StyledTextBrand>
                                             {product.brand}
                                         </StyledTextBrand>
+
                                         <StyledPrice>
                                             R${(product.price).toFixed(2)}
                                         </StyledPrice>
-                                        <StyledGreenButton onClick={() => {this.props.deleteItem(product._id); this.getTotalPrice()}}>REMOVER</StyledGreenButton>
+                                        <button onClick={() => { this.props.addItem(product._id) }}>add item</button>
+                                        <StyledGreenButton onClick={() => { this.props.deleteItem(product._id); this.getAllProducts() }}>REMOVER</StyledGreenButton>
                                     </ StyledCardProduct>
 
                                 )
                             })
-                        : <h1>olarrrr</h1>
-                }
+                            : <h1>olarrrr</h1>
+                    }
 
-            </StyledDisplay>
-            {this.state.cart.length ? <h3> PREÇO TOTAL: R${(this.state.totalPrice).toFixed(2)} </h3> : null}
-                
-                </div>
+                </StyledDisplay>
+                {this.props.itemsInTheCart.length ? <h3> PREÇO TOTAL: R${(this.state.totalPrice).toFixed(2)} </h3> : null}
+
+            </div>
         )
     }
 }
