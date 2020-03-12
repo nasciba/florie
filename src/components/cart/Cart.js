@@ -42,17 +42,13 @@ class Cart extends Component {
 
 
     getTotalPrice = () => {
-        console.log(this.state.listOfProducts, 'listofproducts')
         let prices = this.state.listOfProducts.reduce((acc, productInDB) => {
-            let product = this.props.itemsInTheCart.filter(element => {
+            let index = this.props.itemsInTheCart.findIndex(element => {
                 return element.id === productInDB._id
             });
-                console.log('aqui o productindb', typeof(productInDB.price));
-                console.log('aqui o product', (product.quantity));    
-            return acc = acc + (productInDB.price * parseInt(product.quantity))
-            
-            }, 0)
-            console.log('eppaaaaaaaapapapapapappa', prices);
+            return acc = acc + (productInDB.price * this.props.itemsInTheCart[index].quantity)
+
+        }, 0)
         this.setState({ totalPrice: prices })
 
     }
