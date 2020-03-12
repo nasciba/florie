@@ -131,7 +131,7 @@ class App extends Component {
               <Route exact path='/list-admin' render={() => <ProductsList getUser={this.getTheUser} />} />
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
-              <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} deleteItem={this.removeFromCart} />} />
+              <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart}  />} />
               <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} />} />
               <Route exact path='/profile/:id' render={() => <Profile getUser={this.getTheUser} />} />
 
