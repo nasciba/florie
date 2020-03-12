@@ -72,6 +72,7 @@ class Cart extends Component {
                     {this.props.itemsInTheCart.length === 0 ? <h1>O seu carrinho está vazio!</h1> :
                         this.state.listOfProducts.length !== 0 ?
                             this.state.listOfProducts.map((product, index) => {
+                                let indexInCart = this.props.itemsInTheCart.findIndex(item => item.id === product._id); 
                                 return (
 
                                     <StyledCardProduct key={product._id}>
@@ -86,7 +87,10 @@ class Cart extends Component {
                                         <StyledPrice>
                                             R${(product.price).toFixed(2)}
                                         </StyledPrice>
-                                        <button onClick={() => { this.props.addItem(product._id) }}>add item</button>
+                                        <button onClick={() => { this.props.addItem(product._id) }}>+</button>
+                                        <label>{this.props.itemsInTheCart[indexInCart].quantity}</label>
+                                        <button onClick={() => { this.props.removeItem(product._id) }}>-</button>
+
                                         <StyledGreenButton onClick={() => { this.props.deleteItem(product._id); this.getAllProducts() }}>REMOVER</StyledGreenButton>
                                     </ StyledCardProduct>
 

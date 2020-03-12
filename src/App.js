@@ -76,14 +76,28 @@ class App extends Component {
     console.log(productId)
     let cart = [...this.state.cart]
     let item = cart.find(element => {
-        return element.id === productId
-      })
-      item.quantity += 1;
-      this.setState({ cart: cart })
+      return element.id === productId
+    })
+    if (item.quantity === 15) {
+      return item.quantity, console.log(item.quantity)     
+    }
+    else { 
+      return item.quantity += 1, this.setState({ cart: cart }), console.log(item.quantity);
+    }
   }
 
-  removeItem = () => {
-
+  removeItem = (productId) => {
+    let cart = [...this.state.cart]
+    let item = cart.find(element => {
+      return element.id === productId
+    })
+    if(item.quantity === 1) {
+      return item.quantity
+    }
+    else {
+    item.quantity -= 1;
+    this.setState({ cart: cart })
+    }
   }
   removeFromCart = (productId) => {
     let cart = [...this.state.cart]
@@ -92,7 +106,7 @@ class App extends Component {
     })
     cart.splice(item, 1);
     this.setState({ cart: cart })
-   
+
   }
 
   componentDidMount() {
@@ -118,7 +132,7 @@ class App extends Component {
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} deleteItem={this.removeFromCart} />} />
-              <Route exact path='/cart' render={(props) => <Cart {...props} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} />} />
+              <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} />} />
               <Route exact path='/profile/:id' render={() => <Profile getUser={this.getTheUser} />} />
 
 
@@ -137,7 +151,7 @@ class App extends Component {
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
               <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
-              <Route exact path='/cart' render={(props) => <Cart {...props}  addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} />} />
+              <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} />} />
             </Switch>
           </BrowserRouter>
         </div>
