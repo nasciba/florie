@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AuthService from './components/auth/auth-service';
+import ProtectedRoute from './components/auth/protected-route';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import Home from './components/home/Home';
@@ -10,7 +11,8 @@ import ProductDetails from './components/product-details/ProductDetails';
 import AddProduct from './components/products/AddProduct';
 import EditProduct from './components/products/EditProduct';
 import Cart from './components/cart/Cart';
-import Profile from './components/profile/Profile'
+import Profile from './components/profile/Profile';
+import Order from './components/order/Order'
 import './App.css';
 
 class App extends Component {
@@ -79,10 +81,12 @@ class App extends Component {
       return element.id === productId
     })
     if (item.quantity === 15) {
-      return item.quantity, console.log(item.quantity)     
+      return item.quantity
     }
-    else { 
-      return item.quantity += 1, this.setState({ cart: cart }), console.log(item.quantity);
+    else {
+      return (item.quantity += 1,
+        this.setState({ cart: cart })
+      )
     }
   }
 
@@ -91,12 +95,12 @@ class App extends Component {
     let item = cart.find(element => {
       return element.id === productId
     })
-    if(item.quantity === 1) {
+    if (item.quantity === 1) {
       return item.quantity
     }
     else {
-    item.quantity -= 1;
-    this.setState({ cart: cart })
+      item.quantity -= 1;
+      this.setState({ cart: cart })
     }
   }
   removeFromCart = (productId) => {
@@ -127,13 +131,16 @@ class App extends Component {
           <BrowserRouter>
             <Navbar userInSession={this.state.loggedInUser} />
             <Switch>
+              <ProtectedRoute component={Order}  path='/order' userInSession={this.state.loggedInUser}  />
+              <ProtectedRoute userInSession={this.state.loggedInUser} path='/list-admin' component={ProductsList} />
+              <ProtectedRoute  component={Profile}   path='/profile' userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
+
               <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
-              <Route exact path='/list-admin' render={() => <ProductsList getUser={this.getTheUser} />} />
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
-              <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart}  />} />
+              <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} />} />
-              <Route exact path='/profile/:id' render={() => <Profile getUser={this.getTheUser} />} />
+
 
 
             </Switch>
@@ -147,11 +154,15 @@ class App extends Component {
           <BrowserRouter>
             <Navbar userInSession={this.state.loggedInUser} cartCount={this.state.cart.length} />
             <Switch>
+            <ProtectedRoute userInSession={this.state.loggedInUser} path='/list-admin' component={ProductsList} />
               <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
               <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
               <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} />} />
+              <ProtectedRoute userInSession={this.state.loggedInUser} exact path='/order' component={Order} />
+              <ProtectedRoute userInSession={this.state.loggedInUser}  exact path='/profile'  component={Profile} getUser={this.getTheUser} />
+
             </Switch>
           </BrowserRouter>
         </div>

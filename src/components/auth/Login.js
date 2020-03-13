@@ -9,7 +9,7 @@ class Login extends Component {
         super(props);
         this.state = { username: '', password: '' };
         this.service = new AuthService();
-        console.log('aqui estão as props', props)
+        console.log(props)
     }
 
     handleFormSubmit = (event) => {
@@ -20,7 +20,7 @@ class Login extends Component {
             .then(response => {
                 this.setState({ username: "", password: "" });
                 this.props.getUser(response);
-                this.props.history.push('/');
+                this.props.history.push(`${this.props.location.state.from.pathname}`);
             })
             .catch(error => console.log(error))
     }

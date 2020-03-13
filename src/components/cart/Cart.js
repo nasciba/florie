@@ -2,25 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {
-    StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand, StyledPrice, StyledMessage
-} from '../home/styles'
+    StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand, StyledPrice } from '../home/styles'
 import { StyledGreenButton } from '../buttons/styles';
 
 
 class Cart extends Component {
     constructor(props) {
         super(props);
-        console.log(props)
         this.state = {
             listOfProducts: [],
             cart: this.props.itemsInTheCart,
             totalPrice: 0,
-            value: ''
         };
     }
 
     getAllProducts = () => {
-        console.log('oi Amanda ihullll turupom pom?')
         axios.get('http://localhost:5000/api/products')
             .then(responseFromApi => {
                 let response = responseFromApi.data.filter(productInDB => {
@@ -69,9 +65,11 @@ class Cart extends Component {
         return (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <StyledDisplay>
+                {this.props.itemsInTheCart.length ? <h1>Carrinho</h1> : null}
+                    
                     {this.props.itemsInTheCart.length === 0 ? <h1>O seu carrinho está vazio!</h1> :
                         this.state.listOfProducts.length !== 0 ?
-                            this.state.listOfProducts.map((product, index) => {
+                            this.state.listOfProducts.map((product) => {
                                 let indexInCart = this.props.itemsInTheCart.findIndex(item => item.id === product._id);
                                 return (
 
@@ -93,6 +91,7 @@ class Cart extends Component {
 
                                         <StyledGreenButton onClick={() => { this.props.deleteItem(product._id); this.getAllProducts() }}>REMOVER</StyledGreenButton>
                                     </ StyledCardProduct>
+                                    
 
                                 )
                             })
@@ -101,6 +100,8 @@ class Cart extends Component {
 
                 </StyledDisplay>
                 {this.props.itemsInTheCart.length ? <h3> PREÇO TOTAL: R${(this.state.totalPrice).toFixed(2)} </h3> : null}
+                {this.props.itemsInTheCart.length ? <StyledGreenButton> <Link to='/order' style={{textDecoration: 'none'}}>FECHAR PEDIDO</Link></StyledGreenButton> : null}
+                
 
             </div>
         )
