@@ -16,7 +16,7 @@ class ProductDetails extends Component {
     getSingleProduct = () => {
         const { params } = this.props.match;
 
-        axios.get(`http://localhost:5000/api/products/${params.id}`, { withCredentials: true })
+        axios.get(`https://server-florie.herokuapp.com/api/products/${params.id}`, { withCredentials: true })
             .then(apiResponse => {
                 const singleProduct = apiResponse.data;
                 this.setState(singleProduct);

@@ -17,7 +17,7 @@ class Cart extends Component {
     }
 
     getAllProducts = () => {
-        axios.get('http://localhost:5000/api/products')
+        axios.get('https://server-florie.herokuapp.com/api/products')
             .then(responseFromApi => {
                 let response = responseFromApi.data.filter(productInDB => {
                     if (this.props.itemsInTheCart.find(element => {

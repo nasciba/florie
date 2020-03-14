@@ -14,7 +14,7 @@ class Home extends Component {
     }
 
     getAllProducts = () => {
-        axios.get('http://localhost:5000/api/products')
+        axios.get('https://server-florie.herokuapp.com/api/products')
             .then(responseFromApi => {
                 this.setState({
                     listOfProducts: responseFromApi.data
