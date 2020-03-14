@@ -13,7 +13,7 @@ export default class ProductsList extends Component {
     }
 
     getAllProducts = () => {
-        axios.get('https://server-florie.herokuapp.com/api/products')
+        axios.get('http://localhost:5000/api/products')
             .then(responseFromApi => {
                 this.setState({
                     listOfProducts: responseFromApi.data
@@ -27,7 +27,7 @@ export default class ProductsList extends Component {
 
 
     deleteProduct = (productId) => {
-        axios.delete(`https://server-florie.herokuapp.com/api/products/${productId}`)
+        axios.delete(`http://localhost:5000/api/products/${productId}`)
             .then(responseFromApi => {
                 console.log(responseFromApi);
                 if (responseFromApi.status === 200) {
@@ -52,6 +52,7 @@ export default class ProductsList extends Component {
     render() {
         return (
             <div>
+                <Link to='/add-product'>Adicionar novo produto</Link>
                 {this.state.listOfProducts.map(product => {
                     return (
                         <div key={product._id}>

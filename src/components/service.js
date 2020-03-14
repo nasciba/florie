@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const service = axios.create({
-  baseURL: 'https://server-florie.herokuapp.com/api',
+  baseURL: 'http://localhost:5000/api',
   withCredentials: true
 });
 

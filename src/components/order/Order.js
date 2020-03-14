@@ -10,7 +10,7 @@ export default class Order extends Component {
 
     render() {
         return (
-            <h1>teste</h1>
+            <h1></h1>
         )
     }
 }

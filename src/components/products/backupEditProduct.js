@@ -15,7 +15,7 @@ class EditProduct extends Component {
 
     getSingleProduct = () => {
         const { params } = this.props.match;
-        axios.get(`https://server-florie.herokuapp.com/api/products/${params.id}`, { withCredentials: true })
+        axios.get(`http://localhost:5000/api/products/${params.id}`, { withCredentials: true })
             .then(apiResponse => {
                 const singleProduct = apiResponse.data;
                 this.setState(singleProduct);
@@ -37,7 +37,7 @@ class EditProduct extends Component {
 
         event.preventDefault();
 
-        axios.put(`https://server-florie.herokuapp.com/api/products/${this.state._id}`, { name, price, brand, type, stock, description, size }, { withCredentials: true })
+        axios.put(`http://localhost:5000/api/products/${this.state._id}`, { name, price, brand, type, stock, description, size }, { withCredentials: true })
             .then(() => {
                 service.saveNewImage(this.state)
                     .then(res => {

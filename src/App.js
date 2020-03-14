@@ -19,9 +19,9 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loggedInUser: null,
-      cart: []
-
+      loggedUser: null,
+      isLoading: true,
+      cart: [],
     };
 
     this.service = new AuthService();
@@ -29,18 +29,18 @@ class App extends Component {
   }
 
   fetchUser() {
-    if (this.state.loggedInUser === null) {
+    if (this.state.loggedUser === null) {
       this.service.loggedin()
         .then(response => {
-          console.log(response);
           this.setState({
-            loggedInUser: response
-
+            loggedUser: response,
+            isLoading: false
           })
         })
         .catch(err => {
           this.setState({
-            loggedInUser: false
+            loggedUser: false,
+            isLoading: false
           })
         })
     }
@@ -48,7 +48,7 @@ class App extends Component {
 
   getTheUser = (userObj) => {
     this.setState({
-      loggedInUser: userObj
+      loggedUser: userObj
     })
   }
 
@@ -119,27 +119,28 @@ class App extends Component {
       let arrayStorageCart = storageCart.split(',');
       this.setState({ cart: arrayStorageCart })
     }
-
+    this.fetchUser()
 
   }
-  render() {
 
-    this.fetchUser()
-    if (this.state.loggedInUser) {
+  render() {
+    if (this.state.loggedUser) {
+      console.log('entrou logged')
       return (
         <div className="App">
           <BrowserRouter>
-            <Navbar userInSession={this.state.loggedInUser} />
+          <Navbar cartCount={this.state.cart.length}/>
             <Switch>
-              <ProtectedRoute component={Order}  path='/order' userInSession={this.state.loggedInUser}  />
-              <ProtectedRoute userInSession={this.state.loggedInUser} path='/list-admin' component={ProductsList} />
-              <ProtectedRoute  component={Profile}   path='/profile' userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
+              <ProtectedRoute userInSession={this.state.loggedUser} path='/list-admin' component={ProductsList} />
+              <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
+              <ProtectedRoute component={AddProduct} path='/add-product' userInSession={this.state.loggedUser} getUser={this.getTheUser} />
+              <ProtectedRoute userInSession={this.state.loggedUser} path='/order' cart={this.state.cart} component={Order} />
 
               <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
-              <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} />} />
+              <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} totalPrice={this.state.totalPrice}/>} />
 
 
 
@@ -148,25 +149,34 @@ class App extends Component {
         </div>
       );
     }
-    else {
+    else if(this.state.isLoading) {
+      console.log('entrou')
       return (
         <div>
-          <BrowserRouter>
-            <Navbar userInSession={this.state.loggedInUser} cartCount={this.state.cart.length} />
-            <Switch>
-            <ProtectedRoute userInSession={this.state.loggedInUser} path='/list-admin' component={ProductsList} />
-              <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
-              <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
-              <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
-              <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
-              <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} />} />
-              <ProtectedRoute userInSession={this.state.loggedInUser} exact path='/order' component={Order} />
-              <ProtectedRoute userInSession={this.state.loggedInUser}  exact path='/profile'  component={Profile} getUser={this.getTheUser} />
-
-            </Switch>
-          </BrowserRouter>
+          Carregando
         </div>
       )
+    } else {
+      console.log('entrou nao logado')
+      return (
+        <BrowserRouter>
+          <Navbar cartCount={this.state.cart.length} />
+          <Switch>
+            <ProtectedRoute userInSession={this.state.loggedUser} path='/list-admin' component={ProductsList} />
+            <ProtectedRoute component={AddProduct} path='/add-product' userInSession={this.state.loggedUser} getUser={this.getTheUser} />
+            <ProtectedRoute userInSession={this.state.loggedUser} path='/order' component={Order} />
+            <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
+
+            <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
+            <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
+            <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
+            <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
+            <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} totalPrice={this.state.totalPrice}/>} />
+
+          </Switch>
+        </BrowserRouter>
+      )
+      
     }
 
   }

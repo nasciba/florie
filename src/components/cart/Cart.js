@@ -17,7 +17,7 @@ class Cart extends Component {
     }
 
     getAllProducts = () => {
-        axios.get('https://server-florie.herokuapp.com/api/products')
+        axios.get('http://localhost:5000/api/products')
             .then(responseFromApi => {
                 let response = responseFromApi.data.filter(productInDB => {
                     if (this.props.itemsInTheCart.find(element => {
@@ -35,8 +35,6 @@ class Cart extends Component {
             })
     }
 
-
-
     getTotalPrice = () => {
         let prices = this.state.listOfProducts.reduce((acc, productInDB) => {
             let index = this.props.itemsInTheCart.findIndex(element => {
@@ -47,10 +45,6 @@ class Cart extends Component {
         }, 0)
         this.setState({ totalPrice: prices })
 
-    }
-
-    handleChange = (event) => {
-        console.log(event.target.value)
     }
 
     componentDidMount() {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 const ProtectedRoute  = ({component: Component, userInSession, ...rest}) => {
-    console.log( 'aqui protected route:', {component: Component, userInSession, ...rest})
+  console.log('aqui component', userInSession)
     console.log('aqui userinsession', userInSession)
     console.log('aqui rest', rest)
       return (
