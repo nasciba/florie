@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import service from '../service';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 import { StyledDisplay, StyledInputAuth, StyledTextAccount } from '../auth/style';
 import { StyledGreenButton } from '../buttons/styles'
 
@@ -93,11 +94,11 @@ class EditProduct extends Component {
                     <br></br>
                     <input type="number" name="stock" value={this.state.stock} onChange={e => this.handleChange(e)} />
                     <br></br>
-                    <input
-                        type="file" name="imageUrl"
-                        onChange={(e) => this.handleFileUpload(e)} />
-                        <br></br>
-                        <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
+                    <input type="file" name="imageUrl" onChange={(e) => this.handleFileUpload(e)} />
+                    <br></br>
+                    <StyledGreenButton> <Link to='/list-admin' style={{ textDecoration: 'none', color: ' #26acb5' }}>CANCELAR</Link></StyledGreenButton>
+                    <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
+                    {/* <br></br> */}
                 </form>
                 </StyledInputAuth>
             </StyledDisplay>)

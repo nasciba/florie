@@ -40,7 +40,7 @@ class Home extends Component {
                                 {product.brand}
                             </StyledTextBrand>
                             <StyledPrice>
-                                R${(product.price).toFixed(2)}
+                                R${parseFloat(product.price).toFixed(2).replace('.', ',')}
                             </StyledPrice>
                             <StyledGreenButton onClick={() => {this.props.addItemToCart(product._id)}}>ADICIONAR AO CARRINHO</StyledGreenButton>
                             {product.stock <= 5 && product.stock >= 2 ? <StyledMessage> Últimas {product.stock} unidades   </StyledMessage> : null}

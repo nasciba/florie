@@ -14,6 +14,8 @@ import Cart from './components/cart/Cart';
 import Profile from './components/profile/Profile';
 import Order from './components/order/Order'
 import './App.css';
+import Footer from './components/footer/Footer'
+import { StyledPageContainer, StyledContentWrap } from './App-Styled'
 
 class App extends Component {
   constructor(props) {
@@ -59,7 +61,7 @@ class App extends Component {
     if ((cart.find(element => {
       return element.id === productId
     })) !== undefined) {
-      return null
+      return alert('Você já adicionou este item ao carrinho :)')
     }
     else {
       cart.push(
@@ -127,9 +129,9 @@ class App extends Component {
     if (this.state.loggedUser) {
       console.log('entrou logged')
       return (
-        <div className="App">
+        <StyledPageContainer>
           <BrowserRouter>
-          <Navbar cartCount={this.state.cart.length}/>
+            <Navbar cartCount={this.state.cart.length} />
             <Switch>
               <ProtectedRoute userInSession={this.state.loggedUser} path='/list-admin' component={ProductsList} />
               <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
@@ -140,43 +142,46 @@ class App extends Component {
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
-              <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} totalPrice={this.state.totalPrice}/>} />
+              <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} totalPrice={this.state.totalPrice} />} />
 
 
 
             </Switch>
+            {/* <Footer></Footer> */}
           </BrowserRouter>
-        </div>
+        </StyledPageContainer>
       );
     }
-    else if(this.state.isLoading) {
-      console.log('entrou')
+    else if (this.state.isLoading) {
       return (
         <div>
           Carregando
         </div>
       )
     } else {
-      console.log('entrou nao logado')
       return (
-        <BrowserRouter>
-          <Navbar cartCount={this.state.cart.length} />
-          <Switch>
-            <ProtectedRoute userInSession={this.state.loggedUser} path='/list-admin' component={ProductsList} />
-            <ProtectedRoute component={AddProduct} path='/add-product' userInSession={this.state.loggedUser} getUser={this.getTheUser} />
-            <ProtectedRoute userInSession={this.state.loggedUser} path='/order' component={Order} />
-            <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
+        <StyledPageContainer>
+          <BrowserRouter>
+            <Navbar cartCount={this.state.cart.length} />
+            <Switch>
+              <StyledContentWrap>
+                <ProtectedRoute userInSession={this.state.loggedUser} path='/list-admin' component={ProductsList} />
+                <ProtectedRoute component={AddProduct} path='/add-product' userInSession={this.state.loggedUser} getUser={this.getTheUser} />
+                <ProtectedRoute userInSession={this.state.loggedUser} path='/order' component={Order} />
+                <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
 
-            <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
-            <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
-            <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
-            <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
-            <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} totalPrice={this.state.totalPrice}/>} />
-
-          </Switch>
-        </BrowserRouter>
+                <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
+                <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
+                <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
+                <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
+                <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} totalPrice={this.state.totalPrice} />} />
+              </StyledContentWrap>
+            </Switch>
+            {/* <Footer></Footer> */}
+          </BrowserRouter>
+        </StyledPageContainer>
       )
-      
+
     }
 
   }

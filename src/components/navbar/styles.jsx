@@ -1,17 +1,13 @@
 import styled from 'styled-components'
 
 const Nav = styled.nav`
-    
-    margin-top: 0;
     display: flex;
     position:fixed;
     top: 0;
     left: 0;
-
     height: 100px;
     width: 100vw;
     background-color: white;
-
     margin-top: 0;
     padding-top: 0
     flex-direction: row;
@@ -48,15 +44,7 @@ const Nav = styled.nav`
         max-height: 70px;
     }
 `
-const Burger = styled.div`
-    margin-left: 30px; 
-    div {         
-        width: 30px;
-        height: 4px;
-        margin: 6px;
-        background-color: black;
-}
-`
+
 const ImagesLogo = styled.div`
     display:flex;
     justify-content: center;
@@ -66,6 +54,5 @@ const ImagesLogo = styled.div`
 
 export {
     Nav,
-    Burger,
     ImagesLogo,
 }

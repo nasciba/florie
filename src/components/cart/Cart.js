@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {
-    StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand, StyledPrice } from '../home/styles'
+import { StyledDisplayCart, StyledBoxCard, StyledCardCart, StyledTextBox, StyledProductQtyBtn, StyledImgCart } from './styles'
+// import { StyledDisplay } from '../home/styles'
 import { StyledGreenButton } from '../buttons/styles';
 
 
@@ -57,45 +57,47 @@ class Cart extends Component {
     render() {
 
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <StyledDisplay>
-                {this.props.itemsInTheCart.length ? <h1>Carrinho</h1> : null}
-                    
+            <div >
+                <StyledDisplayCart>
+                    {this.props.itemsInTheCart.length ? <h1>CARRINHO</h1> : null}
+
                     {this.props.itemsInTheCart.length === 0 ? <h1>O seu carrinho está vazio!</h1> :
                         this.state.listOfProducts.length !== 0 ?
                             this.state.listOfProducts.map((product) => {
                                 let indexInCart = this.props.itemsInTheCart.findIndex(item => item.id === product._id);
                                 return (
+                                    <StyledBoxCard>
+                                        <StyledCardCart key={product._id}>
+                                            <StyledImgCart>
+                                                <Link to={`/products/${product._id}`}>
+                                                    <img src={product.imageUrl} alt={product.title && product.brand}></img>
+                                                </Link>
+                                            </StyledImgCart>
+                                            <StyledTextBox>
+                                                <h3>{product.name}</h3>
+                                                <h3 style={{color:'gray'}}>{product.brand}</h3>
 
-                                    <StyledCardProduct key={product._id}>
-                                        <Link to={`/products/${product._id}`}>
-                                            <img src={product.imageUrl} alt={product.title && product.brand}></img>
-                                        </Link>
-                                        <StyledTextTitle>{product.name}</StyledTextTitle>
-                                        <StyledTextBrand>
-                                            {product.brand}
-                                        </StyledTextBrand>
-
-                                        <StyledPrice>
-                                            R${(product.price).toFixed(2)}
-                                        </StyledPrice>
-                                        <button onClick={() => { this.props.addItem(product._id); this.getTotalPrice() }}>+</button>
-                                        {this.props.itemsInTheCart[indexInCart] ? <label>{this.props.itemsInTheCart[indexInCart].quantity}  </label> : null}
-                                        <button onClick={() => { this.props.removeItem(product._id); this.getTotalPrice() }}>-</button>
-
-                                        <StyledGreenButton onClick={() => { this.props.deleteItem(product._id); this.getAllProducts() }}>REMOVER</StyledGreenButton>
-                                    </ StyledCardProduct>
-                                    
+                                            <h3>R${parseFloat(product.price).toFixed(2).replace('.', ',')}</h3>
+                                                <StyledProductQtyBtn>
+                                                    <i className="fa fa-minus-square" onClick={() => { this.props.removeItem(product._id); this.getTotalPrice() }}></i>
+                                                    {this.props.itemsInTheCart[indexInCart] ? <label>{this.props.itemsInTheCart[indexInCart].quantity}  </label> : null}
+                                                    <i className="fa fa-plus-square" onClick={() => { this.props.addItem(product._id); this.getTotalPrice() }}></i>
+                                                </StyledProductQtyBtn>
+                                                <StyledGreenButton onClick={() => { this.props.deleteItem(product._id); this.getAllProducts() }}>REMOVER</StyledGreenButton>
+                                            </StyledTextBox>
+                                        </StyledCardCart>
+                                    </StyledBoxCard>
 
                                 )
                             })
-                            : <h1>olarrrr</h1>
+                            : <h1>Carregando</h1>
                     }
+                    {this.props.itemsInTheCart.length ? <h3> PREÇO TOTAL: R${parseFloat(this.state.totalPrice).toFixed(2).replace('.', ',')} </h3> : null}
+                    {this.props.itemsInTheCart.length ? <StyledGreenButton> <Link to='/order' style={{ textDecoration: 'none', color: ' #26acb5' }}>FECHAR PEDIDO</Link></StyledGreenButton>
+ : null}
 
-                </StyledDisplay>
-                {this.props.itemsInTheCart.length ? <h3> PREÇO TOTAL: R${(this.state.totalPrice).toFixed(2)} </h3> : null}
-                {this.props.itemsInTheCart.length ? <StyledGreenButton> <Link to='/order' style={{textDecoration: 'none'}}>FECHAR PEDIDO</Link></StyledGreenButton> : null}
-                
+                </StyledDisplayCart>
+
 
             </div>
         )

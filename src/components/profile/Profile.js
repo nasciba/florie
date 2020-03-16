@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import AuthService from '../auth/auth-service';
 import { Link } from 'react-router-dom';
+import { StyledGreenButton } from '../buttons/styles'
+import { StyledDisplay } from './styles'
 
 export default class Profile extends Component {
 
@@ -28,19 +30,23 @@ export default class Profile extends Component {
         if (this.props.loggedInUser.admin) {
 
             return (
-                <div>
-                    <p>Olá! {this.props.loggedInUser.username}</p>
-                    <Link to='/list-admin'>Gerenciar lista de produtos</Link>
+                <StyledDisplay>
+                    <h2>Olá, <span style={{fontWeight: 'bold'}}>{this.props.loggedInUser.username}</span>!</h2>
+                    <StyledGreenButton> <Link to='/add-product' style={{ textDecoration: 'none', color: ' #26acb5' }}>ADICIONAR NOVO PRODUTO</Link></StyledGreenButton>
+                    <StyledGreenButton> <Link to='/list-admin' style={{ textDecoration: 'none', color: ' #26acb5' }}>LISTA DE PRODUTOS</Link></StyledGreenButton>
                     <Link to='/'>
-                        <button onClick={() => this.logoutUser()}>Logout</button>
+                        <StyledGreenButton onClick={() => this.logoutUser()}>LOGOUT</StyledGreenButton>
                     </Link>
-                    <br></br>
-                </div>
+                </StyledDisplay>
             )
         }
     
             else {
-                return <p>Meus pedidos</p>
+                return(
+                    <StyledDisplay>
+                        <h2>MEUS PEDIDOS</h2>
+                    </StyledDisplay>
+                )
             }
     }
 

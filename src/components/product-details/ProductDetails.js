@@ -25,26 +25,28 @@ class ProductDetails extends Component {
                 console.log(err)
             })
     }
-    
+
 
     render() {
         return (
-            <StyledDisplay>
-                <StyledImgProduct>
-                    <img src={this.state.imageUrl} alt={this.state.name && this.state.brand}></img>
-                </StyledImgProduct>
-                <StyledProdDetailsDescrip>
-                    <p style={{ textTransform: "uppercase", fontWeight: "bold" }}>{this.state.name}</p>
-                    <p style={{ color: "#808080" }}>{this.state.brand}</p>
+            
+                <StyledDisplay>
+                    <StyledImgProduct>
+                        <img src={this.state.imageUrl} alt={this.state.name && this.state.brand}></img>
+                    </StyledImgProduct>
+                    <StyledProdDetailsDescrip>
+                        <p style={{ textTransform: "uppercase", fontWeight: "bold" }}>{this.state.name}</p>
+                        <p style={{ color: "#808080" }}>{this.state.brand}</p>
 
-                    <h1>R${(this.state.price).toFixed}</h1>
-                    <StyledGreenButton onClick={() => {this.props.addItemToCart(this.state._id)}}>ADICIONAR AO CARRINHO</StyledGreenButton>
-                </StyledProdDetailsDescrip>
-                <StyledDetailsText> 
-                    <StyledTitle>Descrição do Produto</StyledTitle>
-                    {this.state.description}
-                </StyledDetailsText>
-            </StyledDisplay >
+                        <h1>R${parseFloat(this.state.price).toFixed(2).replace('.', ',')}</h1>
+                        <StyledGreenButton onClick={() => { this.props.addItemToCart(this.state._id) }}>ADICIONAR AO CARRINHO</StyledGreenButton>
+                    </StyledProdDetailsDescrip>
+                    <StyledDetailsText>
+                        <StyledTitle>Descrição do Produto</StyledTitle>
+                        {this.state.description}
+                    </StyledDetailsText>
+                </StyledDisplay>
+            
         )
     }
 }

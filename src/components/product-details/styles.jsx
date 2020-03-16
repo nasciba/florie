@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const StyledDisplay = styled.div`
     display: flex;
+    padding-bottom: 100px;
     flex-direction: row;
     flex-wrap: wrap;
     // border: solid red 1px;

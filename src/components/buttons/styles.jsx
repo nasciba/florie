@@ -15,6 +15,10 @@ const StyledGreenButton = styled.button`
     align-items: center;
     font-family: Roboto;
     color: #26acb5;
+    Link {
+        color:#26acb5;
+        text-decoration:none
+    }
 `
 
 export {
