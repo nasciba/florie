@@ -25,21 +25,13 @@ class App extends Component {
       loggedUser: null,
       isLoading: true,
       cart: [],
+      totalPrice: 0
     };
+
 
     this.service = new AuthService();
 
   }
-
-  // getSingleProduct = () => {
-  //   const { params } = this.props.match;
-  //   axios.get(`http://localhost:5000/api/products/${params.id}`)
-  //   .then(responseFromApi => {
-  //     const cart = [...this.state.cart]
-  //     cart
-  //   }
-  //   )
-  // } 
 
   addToCart = (id) => {
     let cart = [...this.state.cart];
@@ -64,7 +56,8 @@ class App extends Component {
           ),
             this.setState({
               cart: cart
-            })
+            }),
+            this.getTotalPrice()
           )
         }
         else {
@@ -75,6 +68,17 @@ class App extends Component {
       .catch(error => {
         console.log(error)
       })
+  }
+
+  removeFromCart = (productId) => {
+    let cart = [...this.state.cart]
+    let item = cart.findIndex(element => {
+      return element.id === productId
+    })
+    cart.splice(item, 1);
+    this.setState({ cart: cart });
+    this.getTotalPrice()
+
   }
 
   //OLD addToCart function
@@ -98,6 +102,18 @@ class App extends Component {
   //   }
   // }
 
+  getTotalPrice = () => {
+    let cart = [...this.state.cart];
+    let prices = cart.reduce((acc, product) => {
+
+      return acc = acc + (product.price * product.quantity)
+
+    }, 0)
+    this.setState({ totalPrice: prices })
+
+  }
+
+
   addItem = (productId) => {
     console.log(productId)
     let cart = [...this.state.cart]
@@ -109,7 +125,7 @@ class App extends Component {
     }
     else {
       return (item.quantity += 1,
-        this.setState({ cart: cart })
+        this.setState({ cart: cart }), this.getTotalPrice()
       )
     }
   }
@@ -124,7 +140,8 @@ class App extends Component {
     }
     else {
       item.quantity -= 1;
-      this.setState({ cart: cart })
+      this.setState({ cart: cart }); 
+      this.getTotalPrice()
     }
   }
 
@@ -152,15 +169,6 @@ class App extends Component {
     })
   }
 
-  removeFromCart = (productId) => {
-    let cart = [...this.state.cart]
-    let item = cart.findIndex(element => {
-      return element.id === productId
-    })
-    cart.splice(item, 1);
-    this.setState({ cart: cart })
-
-  }
 
   componentDidMount() {
     const storageCart = sessionStorage.cart;
@@ -189,7 +197,7 @@ class App extends Component {
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
-              <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} totalPrice={this.state.totalPrice} />} />
+              <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem}   totalPrice={this.state.totalPrice} />} />
 
 
 

@@ -79,11 +79,11 @@ class Cart extends Component {
 
                                             <h3>R${parseFloat(product.price).toFixed(2).replace('.', ',')}</h3>
                                                 <StyledProductQtyBtn>
-                                                    <i className="fa fa-minus-square" onClick={() => { this.props.removeItem(product.id); this.getTotalPrice() }}></i>
+                                                    <i className="fa fa-minus-square" onClick={() => { this.props.removeItem(product.id) }}></i>
                                                      <label>{product.quantity}  </label>
-                                                    <i className="fa fa-plus-square" onClick={() => { this.props.addItem(product.id); this.getTotalPrice() }}></i>
+                                                    <i className="fa fa-plus-square" onClick={() => { this.props.addItem(product.id) }}></i>
                                                 </StyledProductQtyBtn>
-                                                <StyledGreenButton onClick={() => { this.props.deleteItem(product._id); this.getAllProducts() }}>REMOVER</StyledGreenButton>
+                                                <StyledGreenButton onClick={() => { this.props.deleteItem(product._id) }}>REMOVER</StyledGreenButton>
                                             </StyledTextBox>
                                         </StyledCardCart>
                                     </StyledBoxCard>
@@ -91,7 +91,7 @@ class Cart extends Component {
                                 )
                             })
                     }
-                    {/* {this.props.itemsInTheCart.length ? <h3> PREÇO TOTAL: R${parseFloat(this.state.totalPrice).toFixed(2).replace('.', ',')} </h3> : null} */}
+                    {this.props.itemsInTheCart.length ? <h3> PREÇO TOTAL: R${parseFloat(this.props.totalPrice).toFixed(2).replace('.', ',')} </h3> : null}
                     {this.props.itemsInTheCart.length ? <StyledGreenButton> <Link to='/order' style={{ textDecoration: 'none', color: ' #26acb5' }}>FECHAR PEDIDO</Link></StyledGreenButton>
  : null}
 
