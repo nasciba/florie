@@ -42,7 +42,6 @@ class App extends Component {
         let foundItem = cart.find(element => {
           return element.id === response._id
         })
-        console.log(foundItem);
         if (foundItem === undefined) {
           return (cart.push(
             {
@@ -81,28 +80,7 @@ class App extends Component {
 
   }
 
-  //OLD addToCart function
-  // addToCart = (productId) => {
-  //   let cart = this.state.cart
-  //   if ((cart.find(element => {
-  //     return element.id === productId
-  //   })) !== undefined) {
-  //     return alert('Você já adicionou este item ao carrinho :)')
-  //   }
-  //   else {
-  //     cart.push(
-  //       {
-  //         id: productId,
-  //         quantity: 1
-  //       }
-  //     );
-  //     this.setState({ cart: cart })
-  //     // sessionStorage.setItem('cart', cart)
-  //     console.log(cart)
-  //   }
-  // }
-
-  getTotalPrice = () => {
+   getTotalPrice = () => {
     let cart = [...this.state.cart];
     let prices = cart.reduce((acc, product) => {
 
@@ -115,7 +93,6 @@ class App extends Component {
 
 
   addItem = (productId) => {
-    console.log(productId)
     let cart = [...this.state.cart]
     let item = cart.find(element => {
       return element.id === productId
@@ -182,7 +159,6 @@ class App extends Component {
 
   render() {
     if (this.state.loggedUser) {
-      console.log('entrou logged')
       return (
         <StyledPageContainer>
           <BrowserRouter>
@@ -192,15 +168,11 @@ class App extends Component {
               <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
               <ProtectedRoute component={AddProduct} path='/add-product' userInSession={this.state.loggedUser} getUser={this.getTheUser} />
               <ProtectedRoute userInSession={this.state.loggedUser} path='/order' cart={this.state.cart} component={Order} />
-
               <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem}   totalPrice={this.state.totalPrice} />} />
-
-
-
             </Switch>
             {/* <Footer></Footer> */}
           </BrowserRouter>
@@ -224,12 +196,11 @@ class App extends Component {
                 <ProtectedRoute component={AddProduct} path='/add-product' userInSession={this.state.loggedUser} getUser={this.getTheUser} />
                 <ProtectedRoute userInSession={this.state.loggedUser} path='/order' component={Order} />
                 <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
-
                 <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
                 <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
                 <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
                 <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
-                <Route exact path='/cart' render={(props) => <Cart {...props} removeItem={this.removeItem} addItem={this.addItem} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} totalPrice={this.state.totalPrice} />} />
+                <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem}   totalPrice={this.state.totalPrice} />} />
               </StyledContentWrap>
             </Switch>
             {/* <Footer></Footer> */}
