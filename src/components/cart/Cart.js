@@ -16,42 +16,42 @@ class Cart extends Component {
         };
     }
 
-    getAllProducts = () => {
-        axios.get('http://localhost:5000/api/products')
-            .then(responseFromApi => {
-                let response = responseFromApi.data.filter(productInDB => {
-                    if (this.props.itemsInTheCart.find(element => {
-                        return element.id === productInDB._id
-                    }) !== undefined) {
-                        return true;
-                    }
-                    return false;
-                }
-                );
-                this.setState({
-                    listOfProducts: response
-                });
-                this.getTotalPrice()
-            })
-    }
+    // getAllProducts = () => {
+    //     axios.get('http://localhost:5000/api/products')
+    //         .then(responseFromApi => {
+    //             let response = responseFromApi.data.filter(productInDB => {
+    //                 if (this.props.itemsInTheCart.find(element => {
+    //                     return element.id === productInDB._id
+    //                 }) !== undefined) {
+    //                     return true;
+    //                 }
+    //                 return false;
+    //             }
+    //             );
+    //             this.setState({
+    //                 listOfProducts: response
+    //             });
+    //             this.getTotalPrice()
+    //         })
+    // }
 
-    getTotalPrice = () => {
-        let prices = this.state.listOfProducts.reduce((acc, productInDB) => {
-            let index = this.props.itemsInTheCart.findIndex(element => {
-                return element.id === productInDB._id
-            });
-            return acc = acc + (productInDB.price * this.props.itemsInTheCart[index].quantity)
+    // getTotalPrice = () => {
+    //     let prices = this.state.listOfProducts.reduce((acc, productInDB) => {
+    //         let index = this.props.itemsInTheCart.findIndex(element => {
+    //             return element.id === productInDB._id
+    //         });
+    //         return acc = acc + (productInDB.price * this.props.itemsInTheCart[index].quantity)
 
-        }, 0)
-        this.setState({ totalPrice: prices })
+    //     }, 0)
+    //     this.setState({ totalPrice: prices })
 
-    }
+    // }
 
-    componentDidMount() {
-        this.getAllProducts()
-        console.log(this.props.itemsInTheCart)
+    // componentDidMount() {
+    //     this.getAllProducts()
+    //     console.log(this.props.itemsInTheCart)
 
-    }
+    // }
 
 
     render() {
@@ -62,15 +62,15 @@ class Cart extends Component {
                     {this.props.itemsInTheCart.length ? <h1>CARRINHO</h1> : null}
 
                     {this.props.itemsInTheCart.length === 0 ? <h1>O seu carrinho está vazio!</h1> :
-                        this.state.listOfProducts.length !== 0 ?
-                            this.state.listOfProducts.map((product) => {
-                                let indexInCart = this.props.itemsInTheCart.findIndex(item => item.id === product._id);
+                        
+                            this.props.itemsInTheCart.map((product) => {
+                                 console.log(product)
                                 return (
                                     <StyledBoxCard>
-                                        <StyledCardCart key={product._id}>
+                                        <StyledCardCart key={product.id}>
                                             <StyledImgCart>
-                                                <Link to={`/products/${product._id}`}>
-                                                    <img src={product.imageUrl} alt={product.title && product.brand}></img>
+                                                <Link to={`/products/${product.id}`}>
+                                                    <img src={product.image} alt={product.name && product.brand}></img>
                                                 </Link>
                                             </StyledImgCart>
                                             <StyledTextBox>
@@ -79,9 +79,9 @@ class Cart extends Component {
 
                                             <h3>R${parseFloat(product.price).toFixed(2).replace('.', ',')}</h3>
                                                 <StyledProductQtyBtn>
-                                                    <i className="fa fa-minus-square" onClick={() => { this.props.removeItem(product._id); this.getTotalPrice() }}></i>
-                                                    {this.props.itemsInTheCart[indexInCart] ? <label>{this.props.itemsInTheCart[indexInCart].quantity}  </label> : null}
-                                                    <i className="fa fa-plus-square" onClick={() => { this.props.addItem(product._id); this.getTotalPrice() }}></i>
+                                                    <i className="fa fa-minus-square" onClick={() => { this.props.removeItem(product.id); this.getTotalPrice() }}></i>
+                                                     <label>{product.quantity}  </label>
+                                                    <i className="fa fa-plus-square" onClick={() => { this.props.addItem(product.id); this.getTotalPrice() }}></i>
                                                 </StyledProductQtyBtn>
                                                 <StyledGreenButton onClick={() => { this.props.deleteItem(product._id); this.getAllProducts() }}>REMOVER</StyledGreenButton>
                                             </StyledTextBox>
@@ -90,9 +90,8 @@ class Cart extends Component {
 
                                 )
                             })
-                            : <h1>Carregando</h1>
                     }
-                    {this.props.itemsInTheCart.length ? <h3> PREÇO TOTAL: R${parseFloat(this.state.totalPrice).toFixed(2).replace('.', ',')} </h3> : null}
+                    {/* {this.props.itemsInTheCart.length ? <h3> PREÇO TOTAL: R${parseFloat(this.state.totalPrice).toFixed(2).replace('.', ',')} </h3> : null} */}
                     {this.props.itemsInTheCart.length ? <StyledGreenButton> <Link to='/order' style={{ textDecoration: 'none', color: ' #26acb5' }}>FECHAR PEDIDO</Link></StyledGreenButton>
  : null}
 

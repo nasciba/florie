@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AuthService from './components/auth/auth-service';
 import ProtectedRoute from './components/auth/protected-route';
@@ -30,51 +31,72 @@ class App extends Component {
 
   }
 
-  fetchUser() {
-    if (this.state.loggedUser === null) {
-      this.service.loggedin()
-        .then(response => {
-          this.setState({
-            loggedUser: response,
-            isLoading: false
-          })
+  // getSingleProduct = () => {
+  //   const { params } = this.props.match;
+  //   axios.get(`http://localhost:5000/api/products/${params.id}`)
+  //   .then(responseFromApi => {
+  //     const cart = [...this.state.cart]
+  //     cart
+  //   }
+  //   )
+  // } 
+
+  addToCart = (id) => {
+    let cart = [...this.state.cart];
+
+    axios.get(`http://localhost:5000/api/products/${id}`)
+      .then(responseFromApi => {
+        let response = responseFromApi.data;
+        let foundItem = cart.find(element => {
+          return element.id === response._id
         })
-        .catch(err => {
-          this.setState({
-            loggedUser: false,
-            isLoading: false
-          })
-        })
-    }
-  }
-
-  getTheUser = (userObj) => {
-    this.setState({
-      loggedUser: userObj
-    })
-  }
-
-
-
-  addToCart = (productId) => {
-    let cart = this.state.cart
-    if ((cart.find(element => {
-      return element.id === productId
-    })) !== undefined) {
-      return alert('Você já adicionou este item ao carrinho :)')
-    }
-    else {
-      cart.push(
-        {
-          id: productId,
-          quantity: 1
+        console.log(foundItem);
+        if (foundItem === undefined) {
+          return (cart.push(
+            {
+              id: response._id,
+              quantity: 1,
+              price: response.price,
+              name: response.name,
+              brand: response.brand,
+              image: response.imageUrl
+            }
+          ),
+            this.setState({
+              cart: cart
+            })
+          )
         }
-      );
-      this.setState({ cart: cart })
-      // sessionStorage.setItem('cart', cart)
-      console.log(cart)
-    }
+        else {
+          return alert('Você já adicionou este item ao carrinho :)')
+        };
+      })
+
+      .catch(error => {
+        console.log(error)
+      })
   }
+
+  //OLD addToCart function
+  // addToCart = (productId) => {
+  //   let cart = this.state.cart
+  //   if ((cart.find(element => {
+  //     return element.id === productId
+  //   })) !== undefined) {
+  //     return alert('Você já adicionou este item ao carrinho :)')
+  //   }
+  //   else {
+  //     cart.push(
+  //       {
+  //         id: productId,
+  //         quantity: 1
+  //       }
+  //     );
+  //     this.setState({ cart: cart })
+  //     // sessionStorage.setItem('cart', cart)
+  //     console.log(cart)
+  //   }
+  // }
 
   addItem = (productId) => {
     console.log(productId)
@@ -105,6 +127,31 @@ class App extends Component {
       this.setState({ cart: cart })
     }
   }
+
+  fetchUser() {
+    if (this.state.loggedUser === null) {
+      this.service.loggedin()
+        .then(response => {
+          this.setState({
+            loggedUser: response,
+            isLoading: false
+          })
+        })
+        .catch(err => {
+          this.setState({
+            loggedUser: false,
+            isLoading: false
+          })
+        })
+    }
+  }
+
+  getTheUser = (userObj) => {
+    this.setState({
+      loggedUser: userObj
+    })
+  }
+
   removeFromCart = (productId) => {
     let cart = [...this.state.cart]
     let item = cart.findIndex(element => {
