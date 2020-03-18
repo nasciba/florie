@@ -9,7 +9,7 @@ class Cart extends Component {
         super(props);
         
     }
-
+   
     render() {
         return (
             <StyledDisplayCart>
@@ -36,7 +36,7 @@ class Cart extends Component {
                                                 <label>{product.quantity}  </label>
                                                 <i className="fa fa-plus-square" onClick={() => { this.props.addItem(product.id) }}></i>
                                             </StyledProductQtyBtn>
-                                            <StyledGreenButton onClick={() => { this.props.deleteItem(product._id) }}>REMOVER</StyledGreenButton>
+                                            <StyledGreenButton onClick={() => { this.props.deleteItem(product.id) }}>REMOVER</StyledGreenButton>
                                         </StyledTextBox>
                                     </StyledCardCart>
                                 </StyledBoxCard>

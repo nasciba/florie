@@ -69,26 +69,29 @@ class App extends Component {
       })
   }
 
-  removeFromCart = (productId) => {
-    let cart = [...this.state.cart]
-    let item = cart.findIndex(element => {
-      return element.id === productId
-    })
-    cart.splice(item, 1);
-    this.setState({ cart: cart });
-    this.getTotalPrice()
 
-  }
 
-   getTotalPrice = () => {
+  getTotalPrice = () => {
+    console.log('entrou')
     let cart = [...this.state.cart];
     let prices = cart.reduce((acc, product) => {
 
       return acc = acc + (product.price * product.quantity)
 
     }, 0)
-    this.setState({ totalPrice: prices })
+    return this.setState({ totalPrice: prices });
 
+  }
+
+  removeFromCart = (productId) => {
+    let cart = [...this.state.cart];
+    let item = cart.find(element => {
+      return element.id === productId
+    });
+    let index = cart.indexOf(item);
+    cart.splice(index, 1);
+    console.log(cart)
+    this.setState({ cart: cart }, this.getTotalPrice());
   }
 
 
@@ -117,7 +120,7 @@ class App extends Component {
     }
     else {
       item.quantity -= 1;
-      this.setState({ cart: cart }); 
+      this.setState({ cart: cart });
       this.getTotalPrice()
     }
   }
@@ -153,7 +156,8 @@ class App extends Component {
       let arrayStorageCart = storageCart.split(',');
       this.setState({ cart: arrayStorageCart })
     }
-    this.fetchUser()
+    this.fetchUser();
+    this.getTotalPrice();
 
   }
 
@@ -172,7 +176,7 @@ class App extends Component {
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
-              <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem}   totalPrice={this.state.totalPrice} />} />
+              <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem} totalPrice={this.state.totalPrice} getTotalPrice={this.getTotalPrice}/>} />
             </Switch>
             {/* <Footer></Footer> */}
           </BrowserRouter>
@@ -200,7 +204,7 @@ class App extends Component {
                 <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
                 <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
                 <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
-                <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem}   totalPrice={this.state.totalPrice} />} />
+                <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem} totalPrice={this.state.totalPrice} getTotalPrice={this.getTotalPrice} />} />
               </StyledContentWrap>
             </Switch>
             {/* <Footer></Footer> */}
