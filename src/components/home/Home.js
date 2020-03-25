@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {
     StyledDisplay, StyledTitle, StyledHeader, StyledSection, StyledContainer, StyledBox, Card
 } from './styles'
 
 class Home extends Component {
-
-
+    
     render() {
         return (
             <StyledDisplay>
                 <StyledHeader>
                     <StyledBox>
-                        <p>confira nossos produtos em destaque</p>
+                        <Link to='/catalog' style={{textDecoration:'none', color:'black'}}><p>confira nossos produtos em destaque</p></Link>
                         <img src="/images/home2.jpg" alt="fotografia de uma mulher de perfil, com pôr do sol e o mar ao fundo"></img>
                     </StyledBox>
                 </StyledHeader>

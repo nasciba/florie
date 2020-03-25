@@ -33,7 +33,6 @@ const StyledBox = styled.div`
     p {
         position: absolute;
         width: 800px;
-        border: solid red 1px;
         font-size: 60px;
         letter-spacing: 10px;
         color: #black;

@@ -8,10 +8,10 @@ import Login from './components/auth/Login';
 import Home from './components/home/Home';
 import Catalog from './components/catalog-all-products/Catalog'
 import Navbar from './components/navbar/Navbar';
-import ProductsList from './components/products/ProductsListAdmin';
+import ProductsList from './components/products-admin/ProductsListAdmin';
 import ProductDetails from './components/product-details/ProductDetails';
-import AddProduct from './components/products/AddProduct';
-import EditProduct from './components/products/EditProduct';
+import AddProduct from './components/products-admin/AddProduct';
+import EditProduct from './components/products-admin/EditProduct';
 import Cart from './components/cart/Cart';
 import Profile from './components/profile/Profile';
 import MyOrders from './components/profile/MyOrders'
@@ -96,7 +96,7 @@ class App extends Component {
         prices = prices + (productInTheCart.price * productInTheCart.quantity);
       }
     )
-    
+
     return prices;
 
   }
@@ -127,6 +127,8 @@ class App extends Component {
       return;
     }
   }
+
+  
 
   fetchUser() {
     if (this.state.loggedUser === null) {
