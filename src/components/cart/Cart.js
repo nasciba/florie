@@ -7,7 +7,6 @@ import { StyledGreenButton } from '../buttons/styles';
 class Cart extends Component {
     constructor(props) {
         super(props);
-
     }
 
     render() {
@@ -35,7 +34,7 @@ class Cart extends Component {
                                             <label>{product.quantity}  </label>
                                             <i className="fa fa-plus-square" onClick={() => { this.props.addItem(product.id) }}></i>
                                         </StyledProductQtyBtn>
-                                        <StyledGreenButton onClick={() => { this.props.deleteItem(product._id) }}>REMOVER</StyledGreenButton>
+                                        <StyledGreenButton onClick={() => { this.props.deleteItem(product.id) }}>REMOVER</StyledGreenButton>
                                     </StyledTextBox>
                                 </StyledCardCart>
                             </StyledBoxCard>
@@ -45,14 +44,14 @@ class Cart extends Component {
 
                         <h3> PREÇO TOTAL: R${parseFloat(this.props.totalPrice).toFixed(2).replace('.', ',')} </h3>
 
-                        <StyledGreenButton> <Link to='/order' style={{ textDecoration: 'none', color: ' #26acb5' }}>FECHAR PEDIDO</Link></StyledGreenButton>
+                        <StyledGreenButton> <Link to='/order' style={{ textDecoration: 'none', color: ' #26acb5' }}>CHECKOUT</Link></StyledGreenButton>
                     </React.Fragment>
                     )
                     :
 
                     <StyledImgEmptyCartDiv>
                         <h1>Sua sacola de compras está vazia!</h1>
-                        <img src="/images/shopping-basket.svg"></img>
+                        <img src="/images/shopping-basket.svg" alt="ícone preto de um cesto de compras"></img>
                     </StyledImgEmptyCartDiv>
                 }
             </StyledDisplayCart>

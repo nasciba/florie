@@ -21,11 +21,9 @@ const StyledBoxCard = styled.div`
         width: 800px;
         border: solid gray 2px;
         border-radius: 10px;
-        margin: 10px;
-        
-        
-        
-    `
+        margin: 10px;   
+`
+
 const StyledTextBox = styled.div`
     padding-top: 20px;
     width: 60%;
@@ -41,9 +39,7 @@ const StyledTextBox = styled.div`
     }
     h3,i {
         margin: 5px 5px 5px 10px;
-    }
-
-   
+    } 
 `
 const StyledProductQtyBtn = styled.div`
     display: flex;

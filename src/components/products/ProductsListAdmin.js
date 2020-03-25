@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { StyledGreenButton } from '../buttons/styles'
 import { StyledDisplayCart, StyledCardCart, StyledTextBox, StyledImgCart } from '../cart/styles'
 import { StyledCard, StyledIconsVertical } from './styles'
 

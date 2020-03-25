@@ -9,12 +9,13 @@ const StyledDisplay = styled.div`
     font-family: Roboto;
     text-align: center;
     font-size: 25px;  
-    margin-bottom: 100px; 
+    padding-bottom: 100px; 
+    margin-bottom: 100px;
+    min-height: 80vh;
 `
 const StyledInputAuth = styled.div`
     border: solid gray 2px;
     border-radius: 8px;
-    margin: 30px;
     color: gray;
     label {
         // padding-top: 60px;
