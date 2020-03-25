@@ -8,9 +8,9 @@ export default class Footer extends Component {
                 <footer>
                     <div>
                         <p>florie store</p>
-                        <p>Rua Alameda Jaú, 1301</p>
-                        <p>São Paulo - SP</p> 
-                        <p>CEP: 01420-903</p> 
+                        <p>rua alameda jaú, 1301</p>
+                        <p>são paulo - sp</p> 
+                        <p>cep: 01420-903</p> 
                         <p><i class="fa fa-envelope" style={{ color: "white" }}></i> florie@gmail.com</p>
                         <p><i class="fa fa-phone" style={{ color: "white" }}></i> (31)98500-2551</p>
                     </div>
