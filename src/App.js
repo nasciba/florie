@@ -17,6 +17,13 @@ import Profile from './components/profile/Profile';
 import MyOrders from './components/profile/MyOrders'
 import Order from './components/order/Order'
 import OrderDetails from './components/order/OrderDetails'
+import Perfumes from './components/products-categories/Perfumes'
+import Body from './components/products-categories/Body'
+import Bath from './components/products-categories/Bath'
+import MakeUp from './components/products-categories/MakeUp'
+import Hair from './components/products-categories/Hair'
+import Face from './components/products-categories/Face'
+
 import './App.css';
 import Footer from './components/footer/Footer'
 import { StyledPageContainer, StyledContentWrap } from './App-Styled'
@@ -128,8 +135,6 @@ class App extends Component {
     }
   }
 
-  
-
   fetchUser() {
     if (this.state.loggedUser === null) {
       this.service.loggedin()
@@ -178,12 +183,13 @@ class App extends Component {
               <ProtectedRoute component={Order} path='/order' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
               <ProtectedRoute component={OrderDetails} path='/order-details' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
               <ProtectedRoute component={MyOrders} userInSession={this.state.loggedUser} path='/my-orders' getUser={this.getTheUser} />
-
               <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem} totalPrice={this.state.totalPrice} />} />
+              <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
+              <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
 
             </Switch>
             <Footer></Footer>
@@ -210,7 +216,6 @@ class App extends Component {
                 <ProtectedRoute component={Order} path='/order' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
                 <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
                 <ProtectedRoute component={OrderDetails} path='/order-details' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
-
                 <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
                 <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
                 <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
@@ -218,6 +223,12 @@ class App extends Component {
                 <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem} totalPrice={this.state.totalPrice} />} />
                 <Route exact path='/catalog' render={(props) => <Catalog {...props} addItemToCart={this.addToCart} />} />
                 <Route component={Profile} userInSession={this.state.loggedUser} path='/profile1' getUser={this.getTheUser} />
+                <Route exact path='/body' render={(props) => <Body {...props} addItemToCart={this.addToCart} />} />
+                <Route exact path='/hair' render={(props) => <Hair {...props} addItemToCart={this.addToCart} />} />
+                <Route exact path='/makeup' render={(props) => <MakeUp {...props} addItemToCart={this.addToCart} />} />
+                <Route exact path='/face' render={(props) => <Face {...props} addItemToCart={this.addToCart} />} />
+                <Route exact path='/perfumes' render={(props) => <Perfumes {...props} addItemToCart={this.addToCart} />} />
+                <Route exact path='/bath' render={(props) => <Bath {...props} addItemToCart={this.addToCart} />} />
 
               </StyledContentWrap>
             </Switch>

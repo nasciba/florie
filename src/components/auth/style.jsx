@@ -3,14 +3,11 @@ import styled from 'styled-components';
 const StyledDisplay = styled.div`
     display: flex;
     flex-direction: column;
-    padding-top: 80px;
     justify-content: center;
     align-items: center;
     font-family: Roboto;
     text-align: center;
     font-size: 25px;  
-    padding-bottom: 100px; 
-    margin-bottom: 100px;
     min-height: 80vh;
 `
 const StyledInputAuth = styled.div`

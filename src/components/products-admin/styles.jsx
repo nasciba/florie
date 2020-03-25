@@ -17,7 +17,7 @@ const StyledCard = styled.div`
     width: 90%;
     margin: 20px 20px; 
     text-align: justify;
-    border: solid gray 1px;
+    border: solid #26acb5 2px;
     border-radius: 10px;
 `
 export {
