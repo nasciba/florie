@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import axios from 'axios';
+import { Container } from './styles'
 
 export default class Face extends Component {
     constructor(props) {
@@ -19,9 +21,9 @@ export default class Face extends Component {
       }
     render() {
         return (
-            <div>
-                
-            </div>
+          <Container>
+              
+          </Container>
         )
     }
 }

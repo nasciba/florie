@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import axios from 'axios';
+import { Container } from './styles'
 
 export default class Perfumes extends Component {
     constructor(props) {
@@ -19,9 +21,9 @@ export default class Perfumes extends Component {
       }
     render() {
         return (
-            <div>
-                
-            </div>
+          <Container>
+              
+          </Container>
         )
     }
 }
