@@ -6,7 +6,7 @@ export default class Footer extends Component {
         return (
             <StyledFooter>
                 <footer>
-                    <p>Teste</p>
+                    <p>Inserir info footer</p>
                 </footer>
             </StyledFooter>
         )

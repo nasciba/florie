@@ -6,6 +6,7 @@ import ProtectedRoute from './components/auth/protected-route';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import Home from './components/home/Home';
+import Catalog from './components/catalog-all-products/Catalog'
 import Navbar from './components/navbar/Navbar';
 import ProductsList from './components/products/ProductsListAdmin';
 import ProductDetails from './components/product-details/ProductDetails';
@@ -23,7 +24,7 @@ class App extends Component {
     super(props)
     this.state = {
       loggedUser: null,
-      isLoading: true,
+      isLoading: false,
       cart: [],
       totalPrice: 0
     };
@@ -36,14 +37,14 @@ class App extends Component {
   addToCart = (id) => {
     let cart = [...this.state.cart];
 
-    axios.get(`http://localhost:5000/api/products/${id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/products/${id}`)
       .then(responseFromApi => {
         let response = responseFromApi.data;
         let foundItem = cart.find(element => {
           return element.id === response._id
         })
         if (foundItem === undefined) {
-          return (cart.push(
+          cart.push(
             {
               id: response._id,
               quantity: 1,
@@ -52,12 +53,9 @@ class App extends Component {
               brand: response.brand,
               image: response.imageUrl
             }
-          ),
-            this.setState({
-              cart: cart
-            }),
-            this.getTotalPrice()
-          )
+          );
+          this.updateCart(cart);
+          return cart;
         }
         else {
           return alert('Você já adicionou este item ao carrinho :)')
@@ -69,42 +67,50 @@ class App extends Component {
       })
   }
 
-  removeFromCart = (productId) => {
+  updateCart = async (cart) => {
+    const totalPrice = await this.getTotalPrice(cart);
+    const newState = { cart: cart, totalPrice: totalPrice }
+    console.log('aqui newstate', newState);
+    await this.setState(newState);
+    sessionStorage.setItem('cart', JSON.stringify(newState));
+
+  }
+
+  removeFromCart = async (productId) => {
     let cart = [...this.state.cart]
     let item = cart.findIndex(element => {
       return element.id === productId
     })
     cart.splice(item, 1);
-    this.setState({ cart: cart });
-    this.getTotalPrice()
+    this.updateCart(cart);
 
   }
 
-   getTotalPrice = () => {
-    let cart = [...this.state.cart];
-    let prices = cart.reduce((acc, product) => {
-
-      return acc = acc + (product.price * product.quantity)
-
-    }, 0)
-    this.setState({ totalPrice: prices })
+  getTotalPrice = (newCart) => {
+    let cart = newCart || [...this.state.cart];
+    let prices = 0;
+    cart.forEach(
+      productInTheCart => {
+        prices = prices + (productInTheCart.price * productInTheCart.quantity);
+      }
+    )
+    // let prices = cart.reduce((acc, product) => {
+    //   return acc = acc + (product.price * product.quantity)
+    // }, 0)
+    return prices;
 
   }
-
 
   addItem = (productId) => {
     let cart = [...this.state.cart]
     let item = cart.find(element => {
       return element.id === productId
     })
-    if (item.quantity === 15) {
-      return item.quantity
+    if (item.quantity < 15) {
+      item.quantity += 1;
+      this.updateCart(cart);
     }
-    else {
-      return (item.quantity += 1,
-        this.setState({ cart: cart }), this.getTotalPrice()
-      )
-    }
+    return;
   }
 
   removeItem = (productId) => {
@@ -117,8 +123,8 @@ class App extends Component {
     }
     else {
       item.quantity -= 1;
-      this.setState({ cart: cart }); 
-      this.getTotalPrice()
+      this.updateCart(cart);
+      return;
     }
   }
 
@@ -148,10 +154,10 @@ class App extends Component {
 
 
   componentDidMount() {
-    const storageCart = sessionStorage.cart;
-    if (storageCart !== undefined) {
-      let arrayStorageCart = storageCart.split(',');
-      this.setState({ cart: arrayStorageCart })
+    const stringOfCartInTheStorage = sessionStorage.cart;    // sessionStorage.setItem('cartInSessionStorage',JSON.stringify(cart));
+    if (stringOfCartInTheStorage !== undefined) {
+      let cartInTheStorage = JSON.parse(stringOfCartInTheStorage);
+      return this.setState(cartInTheStorage);
     }
     this.fetchUser()
 
@@ -167,14 +173,15 @@ class App extends Component {
               <ProtectedRoute userInSession={this.state.loggedUser} path='/list-admin' component={ProductsList} />
               <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
               <ProtectedRoute component={AddProduct} path='/add-product' userInSession={this.state.loggedUser} getUser={this.getTheUser} />
-              <ProtectedRoute userInSession={this.state.loggedUser} path='/order' cart={this.state.cart} component={Order} />
+              <ProtectedRoute component={Order} path='/order' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
               <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
-              <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem}   totalPrice={this.state.totalPrice} />} />
+              <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem} totalPrice={this.state.totalPrice} />} />
+
             </Switch>
-            {/* <Footer></Footer> */}
+            <Footer></Footer>
           </BrowserRouter>
         </StyledPageContainer>
       );
@@ -185,7 +192,8 @@ class App extends Component {
           Carregando
         </div>
       )
-    } else {
+    }
+    else {
       return (
         <StyledPageContainer>
           <BrowserRouter>
@@ -194,16 +202,19 @@ class App extends Component {
               <StyledContentWrap>
                 <ProtectedRoute userInSession={this.state.loggedUser} path='/list-admin' component={ProductsList} />
                 <ProtectedRoute component={AddProduct} path='/add-product' userInSession={this.state.loggedUser} getUser={this.getTheUser} />
-                <ProtectedRoute userInSession={this.state.loggedUser} path='/order' component={Order} />
+                <ProtectedRoute component={Order} path='/order' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
                 <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
                 <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
                 <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
                 <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
                 <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
-                <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem}   totalPrice={this.state.totalPrice} />} />
+                <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem} totalPrice={this.state.totalPrice} />} />
+                <Route exact path='/catalog' render={(props) => <Catalog {...props} addItemToCart={this.addToCart} />} />
+                <Route component={Profile} userInSession={this.state.loggedUser} path='/profile1' getUser={this.getTheUser} />
+
               </StyledContentWrap>
             </Switch>
-            {/* <Footer></Footer> */}
+            <Footer></Footer>
           </BrowserRouter>
         </StyledPageContainer>
       )

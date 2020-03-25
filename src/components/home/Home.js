@@ -1,55 +1,56 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand,StyledPrice, StyledMessage
+import {
+    StyledDisplay, StyledTitle, StyledHeader, StyledSection, StyledContainer, StyledBox, Card
 } from './styles'
-import { StyledGreenButton } from '../buttons/styles';
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            listOfProducts: [],
-        }
-    }
 
-    getAllProducts = () => {
-        axios.get('http://localhost:5000/api/products')
-            .then(responseFromApi => {
-                this.setState({
-                    listOfProducts: responseFromApi.data
-                })
-            })
-    }
-
-    componentDidMount() {
-        this.getAllProducts();
-    }
 
     render() {
         return (
             <StyledDisplay>
-                {this.state.listOfProducts.map(product => {
-                    return (
-                        <StyledCardProduct key={product._id}>
-                            <Link to={`/products/${product._id}`}>
-                                <img src={product.imageUrl} alt={product.title && product.brand}></img>
-                            </Link>
-                            <StyledTextTitle>{product.name}</StyledTextTitle>
-                            <StyledTextBrand>
-                                {product.brand}
-                            </StyledTextBrand>
-                            <StyledPrice>
-                                R${parseFloat(product.price).toFixed(2).replace('.', ',')}
-                            </StyledPrice>
-                            <StyledGreenButton onClick={() => {this.props.addItemToCart(product._id)}}>ADICIONAR AO CARRINHO</StyledGreenButton>
-                            {product.stock <= 5 && product.stock >= 2 ? <StyledMessage> Últimas {product.stock} unidades   </StyledMessage> : null}
-                            {product.stock === 1 ? <StyledMessage> Última unidade!   </StyledMessage> : null}
-                        </ StyledCardProduct>
+                <StyledHeader>
+                    <StyledBox>
+                        <p>Lorem ipsulum sit amet ipsulum...</p>
+                        <img src="/images/home-pic.jpg "></img>
+                    </StyledBox>
+                </StyledHeader>
+                <StyledSection>
+                    <StyledTitle><span>PRODUTOS POR CATEGORIA</span></StyledTitle>
+                    <StyledContainer>
+                        <Card>
+                            <p>Cuidados com a pele</p>
+                            <img src="/images/corpo.jpg"></img>
+                        </Card>
+                        <Card>
+                            <p>Maquiagem</p>
+                            <img src="/images/maquiagem_batom_laranja.jpg"></img>
+                        </Card>
+                        <Card>
+                            <p>Perfumes</p>
+                            <img src="/images/perfume.jpg "></img>
+                        </Card>
 
-                    )
-                })}
-
+                        <Card>
+                            <p>Cabelos</p>
+                            <img src="/images/cachos.jpg "></img>
+                        </Card>
+                        <Card>
+                            <p>Corpo e banho</p>
+                            <img src="/images/banho.jpg "></img>
+                        </Card>
+                        <Card>
+                            <p>Dermocosméticos</p>
+                            <img src="/images/dermocosmeticos.jpg "></img>
+                        </Card>
+                    </StyledContainer>
+                </StyledSection>
+                <StyledSection>
+                    <StyledTitle><span>DESTAQUES</span></StyledTitle>
+                    <StyledContainer>
+                    <h1>Inserir 6 produtos</h1>
+                    </StyledContainer>
+                </StyledSection>
             </StyledDisplay>
         )
 

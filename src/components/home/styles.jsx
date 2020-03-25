@@ -2,79 +2,111 @@ import styled from 'styled-components';
 
 const StyledDisplay = styled.div`
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    justify-content: center; 
-    margin: 50px;  
+    justify-content: center;
+    margin: 0;
+    margin-bottom: 100px;
+    padding: 0;
     
 `
 
-const StyledCardProduct = styled.div`
-    border: solid gray 2px;
-    // outline: orange;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;    
-    padding: 25px;
-    margin: 30px;
-    min-height: 600px;
-    width: 400px;
-    max-height: 25%;
-    color: black;
-    font-family: 'Roboto';
-    align-items: center;
-    img {
-        width: 345px;
-        height: 400px;
-        // border: solid red 1px;
-    };
-    link {
-        text-decoration: none;
-    }
-    `
-    
-    const StyledTextTitle = styled.p`
-    margin: 20px;
-    min-height: 100px;   
-    font-size: 24px;
-    justify-content: center;
-    // border: solid red 1px;
-    text-transform:uppercase;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    `
-  
-    const StyledTextBrand = styled.p`
-    font-size: 22px;
-    font-weight: bold;
-    color:#808080;
-    // border: solid red 1px;
-    margin: 0
-    
-    `
-    const StyledPrice = styled.p`
-    font-size: 30px;
-    color: black;
-    font-weight: bold;
-    // border: solid red 1px;
+const StyledHeader = styled.div`
     margin: 0;
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     `
 
-    const StyledMessage = styled.p`
-    text-size: 5px;
-    margin-top: 25px;  
-    color:#CC3A2D;
-    font-weight:bold;
-    justify-content:center;
+const StyledBox = styled.div`
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    img {
+        height: 100%;
+        width: 100%
+    }
+    p {
+        position: absolute;
+        width: 600px;
+        font-size: 70px;
+        color: cream;
+        right: 50px;
+        top: 200px;
+        font-weight: bold;
+        font-family: 'Playfair Display', serif;
+        letter-spacing: 2px;
+
+    }
     `
+
+const StyledSection = styled.section`
+    position: relative;
+    margin: 50px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;  
+    `
+
+const StyledContainer = styled.div`
+    justify-content: center;
+    width: 75vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+`
+const Card = styled.div`
+    margin: 60px;
+    width: 330px;
+    height: 500px;
+    position: relative;
+    
+    img {
+        width: 100%;
+        height: 100%;
+    };
+    p {
+        top: 50px;
+        right: 25px;
+        letter-spacing: 4px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 30 px;
+        color: #808080;
+        font-weight: bold
+    }
+
+    `
+
+    const StyledTitle = styled.p `
+        width: 80%; 
+        text-align: center; 
+        font-size: 32px;
+        font-weight: lighter;
+        letter-spacing: 3px;
+        border-bottom: 1px solid #808080; 
+        line-height: 0.1em;
+        margin: 10px 0 20px;
+        padding-top: 50px;
+        color: #808080; 
+        span { 
+            background:#fff; 
+            padding:0 10px; 
+    }
+    ` 
+     
 export {
-    StyledCardProduct,
-    StyledTextTitle,
-    StyledTextBrand, 
     StyledDisplay,
-    StyledPrice,
-    StyledMessage,
+    StyledHeader,
+    StyledBox,
+    StyledSection,
+    StyledContainer,
+    Card,
+    StyledTitle
 }

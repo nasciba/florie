@@ -8,9 +8,8 @@ const StyledDisplay = styled.div`
     align-items: center;
     font-family: Roboto;
     text-align: center;
-    font-size: 25px;    
-    
-    
+    font-size: 25px;  
+    margin-bottom: 100px; 
 `
 const StyledInputAuth = styled.div`
     border: solid gray 2px;

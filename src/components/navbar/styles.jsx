@@ -25,6 +25,7 @@ const Nav = styled.nav`
         justify-content: space-around;
         width: 240px;
         
+        
         li {
             a {
                 text-decoration: none;
