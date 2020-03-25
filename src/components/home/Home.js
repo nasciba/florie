@@ -11,8 +11,8 @@ class Home extends Component {
             <StyledDisplay>
                 <StyledHeader>
                     <StyledBox>
-                        <p>Lorem ipsulum sit amet ipsulum...</p>
-                        <img src="/images/home-pic.jpg" alt="fotografia de uma mulher de perfil, com pôr do sol e o mar ao fundo"></img>
+                        <p>confira nossos produtos em destaque</p>
+                        <img src="/images/home2.jpg" alt="fotografia de uma mulher de perfil, com pôr do sol e o mar ao fundo"></img>
                     </StyledBox>
                 </StyledHeader>
                 <StyledSection>

@@ -32,14 +32,15 @@ const StyledBox = styled.div`
     }
     p {
         position: absolute;
-        width: 600px;
-        font-size: 70px;
-        color: cream;
-        right: 50px;
+        width: 800px;
+        border: solid red 1px;
+        font-size: 60px;
+        letter-spacing: 10px;
+        color: #black;
+        left: 50px;
         top: 200px;
         font-weight: bold;
         font-family: 'Playfair Display', serif;
-        letter-spacing: 2px;
 
     }
     `
