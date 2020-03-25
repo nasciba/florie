@@ -8,7 +8,7 @@ const StyledDisplay = styled.div`
     // border: solid red 1px;
     flex-wrap: wrap;
     justify-content: center;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     align-items: start;
 `
 
@@ -48,10 +48,10 @@ const StyledTitle = styled.p`
 `
 
 const StyledDetailsText = styled.div`
-    font-size: 27px;
+    font-size: 30px;
     color: gray;
     text-align: center;
-    justify-content: center;
+    font-family: 'Roboto', sans-serif;
     margin: 10px 60px;
     padding: 35px 80px;
     // border: solid red 1px;
@@ -63,6 +63,6 @@ export {
     StyledImgProduct,
     StyledProdDetailsDescrip,
     StyledDetailsText,
-    
+
 }
 

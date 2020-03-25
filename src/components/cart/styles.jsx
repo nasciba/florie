@@ -6,6 +6,7 @@ const StyledDisplayCart = styled.div`
     flex-wrap: wrap;
     align-items: center;
     padding-top: 60px;
+    margin-bottom: 100px;
     `
 
 const StyledCardCart = styled.div`
@@ -72,6 +73,19 @@ const StyledImgCart = styled.div`
         width: 250px
     }
 `
+const StyledImgEmptyCartDiv = styled.div`
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+    img {
+        margin-top: 50px;
+        height: 10%;
+        width: 10%
+    }
+`
 export {
     StyledDisplayCart,
     StyledBoxCard,
@@ -79,4 +93,5 @@ export {
     StyledTextBox,
     StyledProductQtyBtn,
     StyledImgCart,
+    StyledImgEmptyCartDiv,
 }
