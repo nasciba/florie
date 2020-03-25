@@ -12,7 +12,7 @@ class Home extends Component {
                 <StyledHeader>
                     <StyledBox>
                         <p>Lorem ipsulum sit amet ipsulum...</p>
-                        <img src="/images/home-pic.jpg "></img>
+                        <img src="/images/home-pic.jpg" alt="fotografia de uma mulher de perfil, com pôr do sol e o mar ao fundo"></img>
                     </StyledBox>
                 </StyledHeader>
                 <StyledSection>
@@ -20,28 +20,28 @@ class Home extends Component {
                     <StyledContainer>
                         <Card>
                             <p>Cuidados com a pele</p>
-                            <img src="/images/corpo.jpg"></img>
+                            <img src="/images/corpo.jpg" alt="creme hidratante"></img>
                         </Card>
                         <Card>
                             <p>Maquiagem</p>
-                            <img src="/images/maquiagem_batom_laranja.jpg"></img>
+                            <img src="/images/maquiagem_batom_laranja.jpg" alt="maquiagem"></img>
                         </Card>
                         <Card>
                             <p>Perfumes</p>
-                            <img src="/images/perfume.jpg "></img>
+                            <img src="/images/perfume.jpg" alt="perfume"></img>
                         </Card>
 
                         <Card>
                             <p>Cabelos</p>
-                            <img src="/images/cachos.jpg "></img>
+                            <img src="/images/cachos.jpg" alt="cabelos"></img>
                         </Card>
                         <Card>
                             <p>Corpo e banho</p>
-                            <img src="/images/banho.jpg "></img>
+                            <img src="/images/banho.jpg" alt="produtos banho"></img>
                         </Card>
                         <Card>
                             <p>Dermocosméticos</p>
-                            <img src="/images/dermocosmeticos.jpg "></img>
+                            <img src="/images/dermocosmeticos.jpg" alt="duas mãos de duas pessoas segurando um pequeno frasco"></img>
                         </Card>
                     </StyledContainer>
                 </StyledSection>

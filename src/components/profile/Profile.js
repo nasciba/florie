@@ -31,18 +31,18 @@ export default class Profile extends Component {
                     <MenuContainer>
                         <MenuCards>
                             <Link to='/list-admin'>
-                                <img src="/images/product-list.svg"></img>
+                                <img src="/images/product-list.svg" alt="ícone"></img>
                                 <p>LISTA DE PRODUTOS</p>
                             </Link>
                         </MenuCards>
                         <MenuCards>
                             <Link to='/add-product'>
-                                <img src="/images/plus.svg"></img>
+                                <img src="/images/plus.svg" alt="ícone"></img>
                                 <p>ADICIONAR PRODUTO</p>
                             </Link>
                         </MenuCards>
                         <MenuCards onClick={() => this.logoutUser()}>
-                            <img src="/images/logout.svg"></img>
+                            <img src="/images/logout.svg" alt="ícone"></img>
                             <p>LOGOUT</p>
                         </MenuCards>
                         
@@ -55,22 +55,22 @@ export default class Profile extends Component {
         else {
             return (
                 <StyledDisplay>
-                    <h2>Olá, <span style={{ fontWeight: 'bold' }}>{this.props.loggedInUser.username}</span>!</h2>
+                    <h2>Olá, {this.props.loggedInUser.username}!</h2>
                     <MenuContainer>
                         <MenuCards>
                             <Link to='/'>
-                                <img src="/images/product-list.svg"></img>
+                                <img src="/images/product-list.svg" alt="ícone"></img>
                                 <p>MEU CADASTRO</p>
                             </Link>
                         </MenuCards>
                         <MenuCards>
-                            <Link to='/'>
-                                <img src="/images/tag.svg"></img>
+                            <Link to='/my-orders'>
+                                <img src="/images/tag.svg" alt="ícone"></img>
                                 <p>MEUS PEDIDOS</p>
                             </Link>
                         </MenuCards>
                         <MenuCards onClick={() => this.logoutUser()}>
-                            <img src="/images/logout.svg"></img>
+                            <img src="/images/logout.svg" alt="ícone"></img>
                             <p>LOGOUT</p>
                         </MenuCards>
                         

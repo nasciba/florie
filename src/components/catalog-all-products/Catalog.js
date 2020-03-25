@@ -47,9 +47,10 @@ class Catalog extends Component {
                             {product.stock <= 5 && product.stock >= 2 ? <StyledMessage> Últimas {product.stock} unidades   </StyledMessage> : null}
                             {product.stock === 1 ? <StyledMessage> Última unidade!   </StyledMessage> : null}
                         </ StyledCardProduct>
-
+                        
                     )
                 })}  
+               
             </StyledDisplay>
         )
     }
