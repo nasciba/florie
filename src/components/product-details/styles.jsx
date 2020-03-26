@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 const StyledDisplay = styled.div`
     display: flex;
-    padding-bottom: 100px;
+    padding-bottom: 20px;
     flex-direction: row;
-    flex-wrap: wrap;
-    // border: solid red 1px;
+    align-items: center;
     flex-wrap: wrap;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
@@ -13,29 +12,34 @@ const StyledDisplay = styled.div`
 `
 
 const StyledImgProduct = styled.div`
-
-    margin: 40px 30px;
-    // border: solid black 1px;
+    min-height: 600px;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 30%;
+    max-height: 40%;
     img {
-        height: 650px;
-        width: 510px;
-        // border: solid black 1px;    
+        height: 90%;
+        width: 80%;
       
     }
     
 `
 const StyledProdDetailsDescrip = styled.div`
-    margin-top: 100px;
     padding: 20px;
     display: flex;
     max-width: 1000px;
     min-height: 600px;  
     flex-direction: column;
     align-items: center;
-    margin-right: 40px;
-    // border: solid black 1px;
     text-align: center;
-    font-size:35px;
+    font-size:px;
+    p {
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+
+    }
   
 `
 
@@ -54,7 +58,6 @@ const StyledDetailsText = styled.div`
     font-family: 'Roboto', sans-serif;
     margin: 10px 60px;
     padding: 35px 80px;
-    // border: solid red 1px;
 `
 
 export {

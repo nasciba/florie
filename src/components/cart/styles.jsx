@@ -7,7 +7,7 @@ const StyledDisplayCart = styled.div`
     align-items: center;
     padding-top: 60px;
     margin-bottom: 100px;
-    
+    min-height: 50vh;
     `
 
 const StyledCardCart = styled.div`
@@ -77,7 +77,7 @@ const StyledImgCart = styled.div`
     }
 `
 const StyledImgEmptyCartDiv = styled.div`
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 50px;
