@@ -64,7 +64,7 @@ export default class Profile extends Component {
                             </Link>
                         </MenuCards>
                         <MenuCards>
-                            <Link to='/my-orders'>
+                            <Link to='/'>
                                 <img src="/images/tag.svg" alt="ícone"></img>
                                 <p>MEUS PEDIDOS</p>
                             </Link>
