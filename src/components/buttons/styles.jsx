@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledGreenButton = styled.button`
     min-height: 76px;
-    width:250px;
+    width: 200px;
     margin: 10px;
     margin-top:25px;
     outline: none;
@@ -10,7 +10,7 @@ const StyledGreenButton = styled.button`
     border: solid #26acb5 2px;
     background-color: transparent;
     font-family: 'Muli', sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
     align-items: center;
@@ -21,6 +21,7 @@ const StyledGreenButton = styled.button`
         text-decoration:none
     }
 `
+
 
 export {
     StyledGreenButton,

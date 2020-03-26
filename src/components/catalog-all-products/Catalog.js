@@ -5,6 +5,7 @@ import {
     StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand, StyledPrice, StyledMessage
 } from './styles'
 import { StyledGreenButton } from '../buttons/styles';
+import { StyledTitle } from '../products-categories/styles'
 
 
 class Catalog extends Component {
@@ -30,7 +31,8 @@ class Catalog extends Component {
     render() {
         return (
             <StyledDisplay>
-               {this.state.listOfProducts.map(product => {
+                <StyledTitle style={{width:'80%'}}><span>CATÁLOGO</span></StyledTitle>
+                {this.state.listOfProducts.map(product => {
                     return (
                         <StyledCardProduct key={product._id}>
                             <Link to={`/products/${product._id}`}>
@@ -47,10 +49,10 @@ class Catalog extends Component {
                             {product.stock <= 5 && product.stock >= 2 ? <StyledMessage> Últimas {product.stock} unidades   </StyledMessage> : null}
                             {product.stock === 1 ? <StyledMessage> Última unidade!   </StyledMessage> : null}
                         </ StyledCardProduct>
-                        
+
                     )
-                })}  
-               
+                })}
+
             </StyledDisplay>
         )
     }
