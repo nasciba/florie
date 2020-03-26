@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { Container } from './styles'
+import { Link } from 'react-router-dom';
+import {
+  StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand, StyledPrice, StyledMessage
+} from '../catalog-all-products/styles';
+import { StyledTitle } from './styles'
+import { StyledGreenButton } from '../buttons/styles';
 
 export default class MakeUp extends Component {
   constructor(props) {
@@ -19,11 +24,40 @@ export default class MakeUp extends Component {
         })
       })
   }
+
+  componentDidMount() {
+    this.getAllProducts();
+  }
+
   render() {
     return (
-      <Container>
+      <StyledDisplay>
+        <StyledTitle><span>MAQUIAGEM</span></StyledTitle>
+        {this.state.listOfProducts.filter(product => {
+          return product.type === "Maquiagem"
+        }).map(filteredProduct => {
+          return (
+            <StyledCardProduct key={filteredProduct._id}>
+              <Link to={`/products/${filteredProduct._id}`}>
+                <img src={filteredProduct.imageUrl} alt={filteredProduct.title && filteredProduct.brand}></img>
+              </Link>
+              <StyledTextTitle>{filteredProduct.name}</StyledTextTitle>
+              <StyledTextBrand>
+                {filteredProduct.brand}
+              </StyledTextBrand>
+              <StyledPrice>
+                R${parseFloat(filteredProduct.price).toFixed(2).replace('.', ',')}
+              </StyledPrice>
+              <StyledGreenButton onClick={() => { this.props.addItemToCart(filteredProduct._id) }}>ADICIONAR AO CARRINHO</StyledGreenButton>
+              {filteredProduct.stock <= 5 && filteredProduct.stock >= 2 ? <StyledMessage> Últimas {filteredProduct.stock} unidades   </StyledMessage> : null}
+              {filteredProduct.stock === 1 ? <StyledMessage> Última unidade!   </StyledMessage> : null}
+            </ StyledCardProduct>
 
-      </Container>
+          )
+        })
+        }
+
+      </StyledDisplay>
     )
   }
 }

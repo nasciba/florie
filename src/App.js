@@ -190,6 +190,13 @@ class App extends Component {
               <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem} totalPrice={this.state.totalPrice} />} />
               <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
               <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
+              <Route exact path='/body' render={(props) => <Body {...props} addItemToCart={this.addToCart} />} />
+              <Route exact path='/hair' render={(props) => <Hair {...props} addItemToCart={this.addToCart} />} />
+              <Route exact path='/makeup' render={(props) => <MakeUp {...props} addItemToCart={this.addToCart} />} />
+              <Route exact path='/face' render={(props) => <Face {...props} addItemToCart={this.addToCart} />} />
+              <Route exact path='/perfumes' render={(props) => <Perfumes {...props} addItemToCart={this.addToCart} />} />
+              <Route exact path='/bath' render={(props) => <Bath {...props} addItemToCart={this.addToCart} />} />
+              <Route exact path='/catalog' render={(props) => <Catalog {...props} addItemToCart={this.addToCart} />} />
 
             </Switch>
             <Footer></Footer>
