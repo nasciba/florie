@@ -42,7 +42,9 @@ class Signup extends Component {
           cpf: "",
 
         });
-        this.props.getUser(response)
+        this.props.getUser(response);
+        this.props.history.push('/profile');
+        alert('Conta criada com sucesso!')
       })
       .catch(error => console.log(error))
   }
