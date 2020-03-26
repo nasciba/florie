@@ -64,9 +64,10 @@ const StyledContainer = styled.div`
 `
 const Card = styled.div`
     margin: 60px;
-    width: 330px;
+    width: 355px;
     height: 500px;
     position: relative;
+    text-align: center;
     
     img {
         width: 100%;

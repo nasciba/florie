@@ -30,7 +30,6 @@ const StyledCardProduct = styled.div`
     img {
         width: 345px;
         height: 400px;
-        // border: solid red 1px;
     };
     link {
         text-decoration: none;

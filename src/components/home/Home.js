@@ -21,8 +21,8 @@ class Home extends Component {
 
                         <Card>
                             <Link to='/perfumes' style={{ textDecoration: 'none' }}>
-                                <p>Perfumes</p>
-                                <img src="/images/perfume.jpg" alt="perfume"></img>
+                                <p>Colônias e aromaterapia</p>
+                                <img src="/images/perfume3.jpg" alt="perfume"></img>
                             </Link>
                         </Card>
 
@@ -34,7 +34,7 @@ class Home extends Component {
                         </Card>
                         <Card>
                             <Link to='/body' style={{ textDecoration: 'none' }}>
-                                <p>Cuidados com a pele</p>
+                                <p>Cuidados com o corpo</p>
                                 <img src="/images/corpo.jpg" alt="creme hidratante"></img>
                             </Link>
                         </Card>
@@ -46,14 +46,14 @@ class Home extends Component {
                         </Card>
                         <Card>
                             <Link to='/bath' style={{ textDecoration: 'none' }}>
-                                <p>Corpo e banho</p>
+                                <p>Higiene</p>
                                 <img src="/images/banho.jpg" alt="produtos banho"></img>
                             </Link>
                         </Card>
                         <Card>
                             <Link to='/face' style={{ textDecoration: 'none' }}>
-                                <p>Dermocosméticos</p>
-                                <img src="/images/dermocosmeticos.jpg" alt="duas mãos de duas pessoas segurando um pequeno frasco"></img>
+                                <p>Cuidados com o rosto</p>
+                                <img src="/images/rosto.jpg" alt="duas mãos de duas pessoas segurando um pequeno frasco"></img>
                             </Link>
                         </Card>
                     </StyledContainer>
