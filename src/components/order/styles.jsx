@@ -17,6 +17,8 @@ const Container = styled.div`
     width: 100%;
     margin: 10px;
     background-color: white;
+    font-family: 'Roboto', sans-serif;
+
 `
 
 const Title = styled.p`
@@ -25,7 +27,6 @@ const Title = styled.p`
     font-size: 32px;
     font-weight: lighter;
     letter-spacing: 3px;
-    border-bottom: 1px solid #808080; 
     line-height: 0.1em;
     margin: 10px 0 20px;
     padding-top: 50px;
@@ -39,7 +40,6 @@ const Subtitle = styled.p`
     text-align: center; 
     font-size: 28px;
     font-weight: lighter;
-    text-decoration: underline;
     letter-spacing: 3px;
     margin: 10px 0 20px;
     padding-top: 50px;
@@ -56,10 +56,10 @@ const HalfScreenContainer = styled.div`
     
 `
 const BoxCard = styled.div`
-        width: 700px;
-        border: solid lightgray 2px;
-        border-radius: 8px;
-        margin-bottom: 20px;       
+    width: 900px;
+    border: solid lightgray 2px;
+    border-radius: 8px;
+    margin-bottom: 20px;       
                
 `
 const Card = styled.div`
@@ -79,8 +79,8 @@ const CardImage = styled.div`
     align-items: center;
     img {
         margin: 20px;
-        height: 250px;
-        width: 250px
+        height: 90%;
+        width: 90%
     }
 `
 

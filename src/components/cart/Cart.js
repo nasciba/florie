@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { StyledDisplayCart, StyledBoxCard, StyledCardCart, StyledTextBox, StyledProductQtyBtn, StyledImgCart, StyledImgEmptyCartDiv } from './styles'
 import { StyledGreenButton } from '../buttons/styles';
+import { StyledTitle } from '../products-categories/styles'
 
 
 class Cart extends Component {
@@ -14,7 +15,7 @@ class Cart extends Component {
             <StyledDisplayCart>
                 {this.props.itemsInTheCart.length ?
                     (<React.Fragment>
-                        <h1>CARRINHO</h1>
+             <StyledTitle><span>CARRINHO</span></StyledTitle>
 
                         {this.props.itemsInTheCart.map((product) => (
                             <StyledBoxCard key={product.id}>
@@ -25,10 +26,10 @@ class Cart extends Component {
                                         </Link>
                                     </StyledImgCart>
                                     <StyledTextBox>
-                                        <h3>{product.name}</h3>
-                                        <h3 style={{ color: 'gray' }}>{product.brand}</h3>
+                                        <p>{product.name}</p>
+                                        <p style={{ color: 'gray' }}>{product.brand}</p>
 
-                                        <h3>R${parseFloat(product.price).toFixed(2).replace('.', ',')}</h3>
+                                        <p>R${parseFloat(product.price).toFixed(2).replace('.', ',')}</p>
                                         <StyledProductQtyBtn>
                                             <i className="fa fa-minus-square" onClick={() => { this.props.removeItem(product.id) }}></i>
                                             <label>{product.quantity}  </label>
@@ -42,7 +43,7 @@ class Cart extends Component {
                         )
                         )}
 
-                        <h3> PREÇO TOTAL: R${parseFloat(this.props.totalPrice).toFixed(2).replace('.', ',')} </h3>
+                        <h4> PREÇO TOTAL: R${parseFloat(this.props.totalPrice).toFixed(2).replace('.', ',')} </h4>
 
                         <StyledGreenButton> <Link to='/order' style={{ textDecoration: 'none', color: ' #26acb5' }}>CHECKOUT</Link></StyledGreenButton>
                     </React.Fragment>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { StyledTitle } from './styles'
 import {
   StyledDisplay, StyledCardProduct, StyledTextTitle, StyledTextBrand, StyledPrice, StyledMessage
 } from '../catalog-all-products/styles';
@@ -31,6 +32,7 @@ export default class Perfumes extends Component {
   render() {
     return (
       <StyledDisplay>
+        <StyledTitle><span>COLÔNIAS E PERFUMARIA</span></StyledTitle>
         {this.state.listOfProducts.filter(product => {
           return product.type === "Perfumes"
         }).map(filteredProduct => {

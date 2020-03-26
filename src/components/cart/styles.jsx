@@ -7,6 +7,7 @@ const StyledDisplayCart = styled.div`
     align-items: center;
     padding-top: 60px;
     margin-bottom: 100px;
+    
     `
 
 const StyledCardCart = styled.div`
@@ -25,6 +26,7 @@ const StyledBoxCard = styled.div`
 `
 
 const StyledTextBox = styled.div`
+    font-family: 'Roboto', sans-serif;
     padding-top: 20px;
     width: 60%;
     display: flex;
@@ -36,10 +38,15 @@ const StyledTextBox = styled.div`
     span {
         font-weight: bold;
         margin-top: 10px
-    }
-    h3,i {
+    };
+    p,i {
         margin: 5px 5px 5px 10px;
-    } 
+    };
+    p {
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        
+    }
 `
 const StyledProductQtyBtn = styled.div`
     display: flex;

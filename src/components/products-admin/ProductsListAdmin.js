@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { StyledDisplayCart, StyledCardCart, StyledTextBox, StyledImgCart } from '../cart/styles'
 import { StyledCard, StyledIconsVertical } from './styles'
-
+import { StyledTitle } from '../products-categories/styles'
 
 export default class ProductsList extends Component {
     constructor() {
@@ -54,7 +54,7 @@ export default class ProductsList extends Component {
     render() {
         return (
             <StyledDisplayCart>
-                <h1>EDITAR OU EXCLUIR PRODUTOS</h1>
+                <StyledTitle><span>EDITAR OU EXCLUIR PRODUTOS</span></StyledTitle>
                 {this.state.listOfProducts.map(product => {
                     return (
                         <StyledCard>
