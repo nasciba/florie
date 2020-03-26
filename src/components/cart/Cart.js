@@ -15,8 +15,7 @@ class Cart extends Component {
             <StyledDisplayCart>
                 {this.props.itemsInTheCart.length ?
                     (<React.Fragment>
-             <StyledTitle><span>CARRINHO</span></StyledTitle>
-
+                        <StyledTitle><span>CARRINHO</span></StyledTitle>
                         {this.props.itemsInTheCart.map((product) => (
                             <StyledBoxCard key={product.id}>
                                 <StyledCardCart >
@@ -42,9 +41,7 @@ class Cart extends Component {
 
                         )
                         )}
-
                         <h4> PREÇO TOTAL: R${parseFloat(this.props.totalPrice).toFixed(2).replace('.', ',')} </h4>
-
                         <StyledGreenButton> <Link to='/order' style={{ textDecoration: 'none', color: ' #26acb5' }}>CHECKOUT</Link></StyledGreenButton>
                     </React.Fragment>
                     )
