@@ -18,7 +18,7 @@ const StyledCardProduct = styled.div`
     justify-content: start;
     align-items: center;    
     padding: 25px;
-    margin: 45px;
+    margin: 45px 15px 45px 15px;
     height: 650px;
     width: 400px;
     max-height: 25%;
