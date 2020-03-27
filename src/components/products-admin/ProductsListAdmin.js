@@ -31,11 +31,9 @@ export default class ProductsList extends Component {
     deleteProduct = (productId) => {
         axios.delete(`${process.env.REACT_APP_API_URL}/api/products/${productId}`)
             .then(responseFromApi => {
-                console.log(responseFromApi);
                 if (responseFromApi.status === 200) {
                     for (let i = 0; i < this.state.listOfProducts.length; i += 1) {
                         if (this.state.listOfProducts[i]._id === productId) {
-                            console.log("entrou")
                             this.state.listOfProducts.splice(i, 1);
                         }
                     };

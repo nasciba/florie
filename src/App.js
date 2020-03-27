@@ -79,7 +79,6 @@ class App extends Component {
   updateCart = async (cart) => {
     const totalPrice = await this.getTotalPrice(cart);
     const newState = { cart: cart, totalPrice: totalPrice }
-    console.log('aqui newstate', newState);
     await this.setState(newState);
     sessionStorage.setItem('cart', JSON.stringify(newState));
 

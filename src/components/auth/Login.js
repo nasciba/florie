@@ -9,7 +9,6 @@ class Login extends Component {
         super(props);
         this.state = { username: '', password: '' };
         this.service = new AuthService();
-        console.log(props)
     }
 
     handleFormSubmit = (event) => {

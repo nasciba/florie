@@ -33,9 +33,7 @@ class Order extends Component {
 
     handleSubmit = (event) => {
         const products = this.props.rest.cart;
-        console.log(products)
         const totalPrice = this.props.rest.totalPrice
-        console.log(totalPrice)
         axios.post(`${process.env.REACT_APP_API_URL}/api/order`, { products, totalPrice }, { withCredentials: true })
             .then(() => {
                 this.props.history.push('/order-details')
@@ -43,9 +41,7 @@ class Order extends Component {
             })
             .catch(error => console.log(error))
     }
-    componentDidMount() {
-        console.log('aqui user', this.state.loggedInUser, 'aqui as props', this.props)
-    }
+    
 
     render() {
         return (
