@@ -7,7 +7,7 @@ import {
   StyledTextBrand, StyledPrice, StyledMessage
 } from '../../styles-catalog';
 
-export default class Categories extends Component {
+export default class Products extends Component {
   constructor(props) {
     super(props);
   }
@@ -18,7 +18,7 @@ export default class Categories extends Component {
       <StyledDisplay>
         {this.props.history.location.pathname === '/catalog' ?
           <StyledTitle style={{ width: '80%' }}><span>CATÁLOGO</span></StyledTitle> :
-          <StyledTitle style={{ width: '80%' }}><span>{this.props.categorizedProducts[0].type}</span></StyledTitle>}
+          <StyledTitle style={{ width: '80%' }}><span>{this.props.listOfProducts[0].type}</span></StyledTitle>}
         {this.props.listOfProducts.map(product => {
           return (
             <StyledCardProduct key={product._id}>
