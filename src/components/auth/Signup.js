@@ -7,7 +7,7 @@ import { StyledGreenButton } from '../buttons/styles'
 class Signup extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', password: '', street: '', number: '', complement: '', city: '', state: '', zipcode: '', phoneNumber: '', fullName: '', cpf: '' };
+    this.state = { username: '', password: '', street: '', number: '', complement: '', city: '', state: '', zipcode: '', phoneNumber: '', firstName: '', lastName:'', cpf: '' };
     this.service = new AuthService();
   }
 
@@ -22,16 +22,18 @@ class Signup extends Component {
     const state = this.state.state
     const zipcode = this.state.zipcode
     const phoneNumber = this.state.phoneNumber;
-    const fullName = this.state.fullName;
+    const firstName = this.state.firstName;
+    const lastName = this.state.lastName;
     const cpf = this.state.cpf
 
 
-    this.service.signup(username, password, fullName, street, number, complement, city, state, zipcode, phoneNumber, cpf)
+    this.service.signup(username, password, firstName, lastName, street, number, complement, city, state, zipcode, phoneNumber, cpf)
       .then(response => {
         this.setState({
           username: "",
           password: "",
-          fullName: "",
+          firstName: "",
+          lastName: "",
           street: "",
           number: "",
           complement: "",
@@ -65,9 +67,13 @@ class Signup extends Component {
             <br></br>
             <input type="email" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
             <br></br>
-            <label>Nome completo:</label>
+            <label>Nome:</label>
             <br></br>
-            <input type="text" name="fullName" value={this.state.fullName} onChange={e => this.handleChange(e)} />
+            <input type="text" name="firstName" value={this.state.firstName} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <label>Sobrenome:</label>
+            <br></br>
+            <input type="text" name="lastName" value={this.state.lastName} onChange={e => this.handleChange(e)} />
             <br></br>
             <label>Telefone:</label>
             <br></br>
