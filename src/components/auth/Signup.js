@@ -116,7 +116,7 @@ class Signup extends Component {
 
           <p>Já tem uma conta?
             <br></br>
-            <Link to={"/login"} style={{color: "black"}}>Login</Link>
+            <Link to={"/login"} style={{ color: "black" }}>Login</Link>
           </p>
         </StyledInputAuth>
       </StyledDisplay>
