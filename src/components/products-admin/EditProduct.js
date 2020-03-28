@@ -55,7 +55,6 @@ class EditProduct extends Component {
     handleSubmit = (event) => {
 
         event.preventDefault();
-        console.log('console do state ', this.state)
         service.updateProduct(this.state)
             .then(res => {
                 console.log('added: ', res);

@@ -30,8 +30,13 @@ const StyledBox = styled.div`
         height: 100%;
         width: 100%
     }
+    a {
+        text-decoration:none;
+        color: black;
+    }
     p {
         position: absolute;
+        flex-wrap:wrap;
         width: 800px;
         font-size: 60px;
         letter-spacing: 10px;
