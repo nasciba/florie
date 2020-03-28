@@ -6,7 +6,7 @@ import {
 } from './styles'
 import {
     StyledCardProduct, StyledTextTitle, StyledTextBrand, StyledPrice, StyledMessage
-} from '../catalog-all-products/styles';
+} from '../../styles-catalog';
 import { StyledGreenButton } from '../buttons/styles';
 
 

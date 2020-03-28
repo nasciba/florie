@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { StyledDisplayCart, StyledCardCart, StyledTextBox, StyledImgCart } from '../cart/styles'
 import { StyledCard, StyledIconsVertical } from './styles'
-import { StyledTitle } from '../products-categories/styles'
+import { StyledTitle } from '../products-categories-catalog/styles'
 
 export default class ProductsList extends Component {
     constructor() {
