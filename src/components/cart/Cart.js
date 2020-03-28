@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { StyledDisplayCart, StyledBoxCard, StyledCardCart, StyledTextBox, StyledProductQtyBtn, StyledImgCart, StyledImgEmptyCartDiv } from './styles'
 import { StyledGreenButton } from '../buttons/styles';
-import { StyledTitle } from '../products-categories/styles'
+import { StyledTitle } from '../products-categories-catalog/styles'
 
 
 class Cart extends Component {
