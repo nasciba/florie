@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import service from '../service';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
 import { StyledDisplay, StyledInputAuth, StyledTextAccount } from '../auth/style';
-import { StyledGreenButton } from '../buttons/styles'
+// import { Link } from 'react-router-dom'
+// import { StyledGreenButton } from '../buttons/styles'
 
-class EditProduct extends Component {
+class EditProfile extends Component {
     constructor(props) {
         super(props);
-        this.state = { name: '', description: '', brand: '', price: '', stock: '', image: '' }
+        this.state = { username: '', phoneNumber: '', password: '', firstName: '', lastName: '' },
+        
     }
 
     componentDidMount() {
-        this.getSingleProduct();
+        this.getProfile();
     }
 
-    getSingleProduct = () => {
-        const { params } = this.props.match;
-        axios.get(`${process.env.REACT_APP_API_URL}/api/products/${params.id}`, { withCredentials: true })
+    getProfile = (id) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/user/${id}`, { withCredentials: true })
             .then(apiResponse => {
-                const singleProduct = apiResponse.data;
-                this.setState(singleProduct);
+                const profile = apiResponse.data;
+                this.setState(profile);
             })
             .catch((err) => {
                 console.log(err)
@@ -34,21 +34,7 @@ class EditProduct extends Component {
         this.setState({ [name]: value });
     }
 
-    handleFileUpload = e => {
-        console.log("The file to be uploaded is: ", e.target.files[0]);
-
-        const uploadData = new FormData();
-        uploadData.append("imageUrl", e.target.files[0]);
-
-        service.handleUpload(uploadData)
-            .then(response => {
-                console.log('esta é a: ', response)
-                this.setState({ imageUrl: response.secure_url });
-            })
-            .catch(err => {
-                console.log("Error while uploading the file: ", err);
-            });
-    }
+   
 
 
 
@@ -58,7 +44,7 @@ class EditProduct extends Component {
         service.updateProduct(this.state)
             .then(res => {
                 console.log('added: ', res);
-                this.props.history.push('/list-admin');
+                this.props.history.push('/profile');
             })
             .catch(err => {
                 console.log("Error while adding the image: ", err);
@@ -70,38 +56,9 @@ class EditProduct extends Component {
     render() {
         return (
             <StyledDisplay>
-                <StyledInputAuth>
-                <StyledTextAccount>EDITAR PRODUTO</StyledTextAccount>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Produto:</label>
-                    <br></br>
-                    <input type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} />
-                    <br></br>
-                    <label>Descrição:</label>
-                    <br></br>
-                    <input name="description" value={this.state.description} onChange={e => this.handleChange(e)} />
-                    <br></br>
-                    <label>Marca:</label>
-                    <br></br>
-                    <input type="text" name="brand" value={this.state.brand} onChange={e => this.handleChange(e)} />
-                    <br></br>
-                    <label>Preço:</label>
-                    <br></br>
-                    <input type="number" name="price" value={this.state.price} onChange={e => this.handleChange(e)} />
-                    <br></br>
-                    <label>Estoque:</label>
-                    <br></br>
-                    <input type="number" name="stock" value={this.state.stock} onChange={e => this.handleChange(e)} />
-                    <br></br>
-                    <input type="file" name="imageUrl" onChange={(e) => this.handleFileUpload(e)} />
-                    <br></br>
-                    <StyledGreenButton> <Link to='/list-admin' style={{ textDecoration: 'none', color: ' #26acb5' }}>CANCELAR</Link></StyledGreenButton>
-                    <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
-                    {/* <br></br> */}
-                </form>
-                </StyledInputAuth>
+                <p>teste</p>
             </StyledDisplay>)
     }
 }
 
-export default EditProduct;
+export default EditProfile;
