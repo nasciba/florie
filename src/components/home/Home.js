@@ -4,10 +4,7 @@ import CardProduct from '../products-card/CardProduct.js'
 import {
     StyledDisplay, StyledTitle, StyledHeader, StyledSection, StyledContainer, StyledBox, Card
 } from './styles'
-import {
-    StyledCardProduct, StyledTextTitle, StyledTextBrand, StyledPrice, StyledMessage
-} from '../../styles-catalog';
-import { StyledGreenButton } from '../buttons/styles';
+
 
 
 class Home extends Component {
@@ -15,10 +12,7 @@ class Home extends Component {
         super(props);
        
     }
-    componentDidMount() {
-        console.log('aqui props home', this.props)
-    }
-
+ 
     render() {
         return (
             <StyledDisplay>
