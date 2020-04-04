@@ -19,7 +19,8 @@ import OrderDetails from './components/order/OrderDetails';
 import Products from './components/products-categories-catalog/Products';
 import './App.css';
 import Footer from './components/footer/Footer'
-import { StyledPageContainer, StyledContentWrap } from './App-Styled'
+import { StyledPageContainer, StyledContentWrap } from './App-Styled';
+
 
 class App extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class App extends Component {
     this.state = {
       loggedUser: null,
       isLoading: false,
+      idsOfHighlitedProducts: ["5e7c9ae793d2160024e66ffa", "5e7ca91293d2160024e6700f", "5e7c95ce93d2160024e66ff2", "5e7cab8793d2160024e67013", "5e7ca7f293d2160024e6700e", "5e7c9d5993d2160024e66ffe"],
       listOfProducts: [],
       cart: [],
       totalPrice: 0
@@ -96,7 +98,6 @@ class App extends Component {
         prices = prices + (productInTheCart.price * productInTheCart.quantity);
       }
     )
-
     return prices;
 
   }
@@ -190,7 +191,7 @@ class App extends Component {
               <ProtectedRoute component={Order} path='/order' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
               <ProtectedRoute component={OrderDetails} path='/order-details' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
               <ProtectedRoute component={MyOrders} userInSession={this.state.loggedUser} path='/my-orders' getUser={this.getTheUser} />
-              <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
+              {this.state.listOfProducts.length ? <Route exact path='/' render={(props) => <Home {...props} highlitedProducts={this.state.idsOfHighlitedProducts} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts} />} /> : null}
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
               <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
@@ -231,7 +232,7 @@ class App extends Component {
                 <ProtectedRoute component={Order} path='/order' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
                 <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
                 <ProtectedRoute component={OrderDetails} path='/order-details' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
-                <Route exact path='/' render={(props) => <Home {...props} addItemToCart={this.addToCart} />} />
+                {this.state.listOfProducts.length ? <Route exact path='/' render={(props) => <Home {...props} highlitedProducts={this.state.idsOfHighlitedProducts} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts} />} /> : null}
                 <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
                 <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
                 <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />

@@ -88,6 +88,10 @@ const Card = styled.div`
         font-weight: bold
     }
 
+    a {
+        text-decoration: none;
+    }
+
     `
 
     const StyledTitle = styled.p `
