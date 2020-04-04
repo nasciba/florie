@@ -17,7 +17,7 @@ export default class Products extends Component {
           <StyledTitle style={{ width: '80%' }}><span>{this.props.listOfProducts[0].type}</span></StyledTitle>}
         {this.props.listOfProducts.map(product => {
           return (
-            <CardProduct product={product} key={product._id} />
+            <CardProduct product={product} addItemToCart={this.props.addItemToCart} key={product._id} />
           )
         })
         }
