@@ -20,29 +20,43 @@ class Order extends Component {
         super(props);
         this.state = {
             loggedInUser: null,
-            cart: this.props.rest.cart
+            cart: this.props.rest.cart,
+            totalPrice: this.props.rest.totalPrice,
+            priceWithDelivery: '',
+            typeOfDelivery: 0,
         };
 
     }
 
-    handleChange = (event) => {
+    handleChange = async (event) => {
         const { name, value } = event.target;
-        this.setState({ [name]: value });
+        await this.setState({ [name]: value });
+        this.calculatePriceWithDelivery()
+    }
+
+    calculatePriceWithDelivery = () => {
+        let totalWithDelivery = 0;
+        let priceCart = this.state.totalPrice
+        if (this.state.typeOfDelivery === 'standard') {
+            totalWithDelivery = priceCart + 14.90;
+        }
+        else {
+            totalWithDelivery = priceCart + 20.90;
+        }
+        this.setState({ priceWithDelivery: totalWithDelivery });
     }
 
     handleSubmit = (event) => {
         const products = this.props.rest.cart;
-        const totalPrice = this.props.rest.totalPrice
-        axios.post(`${process.env.REACT_APP_API_URL}/api/order`, { products, totalPrice }, { withCredentials: true })
+        const totalPrice = this.props.rest.totalPrice;
+        const typeOfDelivery = this.state.typeOfDelivery;
+        const priceWithDelivery = this.state.priceWithDelivery;
+        axios.post(`${process.env.REACT_APP_API_URL}/api/order`, { products, totalPrice, priceWithDelivery, typeOfDelivery }, { withCredentials: true })
             .then(() => {
                 this.props.history.push('/order-details')
                 sessionStorage.clear();
             })
             .catch(error => console.log(error))
-    }
-    
-    componentDidMount() {
-        console.log('aqui as props order', this.props)
     }
 
     render() {
@@ -74,37 +88,29 @@ class Order extends Component {
                         })}
                     </HalfScreenContainer>
                     <HalfScreenContainer>
-                        <Subtitle>ENDEREÇO DE ENVIO</Subtitle>
-                        
-                                <CardDelivery>
-                                    <p>{this.props.loggedInUser.fullName}
-                                        <br></br>
-                                        {this.props.loggedInUser.address.street}, {this.props.loggedInUser.address.number} {this.props.loggedInUser.address.complement}
-                                        <br></br>
-                                        CEP:{this.props.loggedInUser.address.zipcode} | {this.props.loggedInUser.address.city} - {this.props.loggedInUser.address.state}
-                                    </p>
-
-                                </CardDelivery>
-                          
                         <Subtitle>FRETE</Subtitle>
-                       
-                                <CardDelivery>
-                                    <form>
-                                        <div className="radio">
-                                            <label>
-                                                <input type="radio" value="standard" />
-                                                Padrão: R$R$20,90 (5 a 8 dias úteis)
-                                            </label>
-                                        </div>
-                                        <div className="radio">
-                                            <label>
-                                                <input type="radio" value="express" />
-                                                Expressa: R$35,90 (2 a 3 dias úteis)
-                                            </label>
-                                        </div>
-                                    </form>
-                                </CardDelivery>
-                        <StyledGreenButton type="submit" onClick={() => this.handleSubmit()}>FINALIZAR PEDIDO</StyledGreenButton>
+                        <CardDelivery>
+                            <form>
+                                <label>
+                                    <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="standard" />
+                                        Padrão: R$R$14,90 (5 a 8 dias úteis)
+                                </label>
+                                <label>
+                                    <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="express" />
+                                        Expressa: R$21,90 (2 a 3 dias úteis)
+                                    </label>
+                            </form>
+                            <p>Subtotal: R${parseFloat(this.state.totalPrice).toFixed(2).replace('.', ',')}</p>
+                            <p>Total: {this.state.priceWithDelivery}</p>
+                            <StyledGreenButton type="submit" onClick={() => this.handleSubmit()}>FINALIZAR PEDIDO</StyledGreenButton>
+                        </CardDelivery>
+                        <Subtitle>ENDEREÇO DE ENVIO</Subtitle>
+                        <CardDelivery>
+                            <p>{this.props.loggedInUser.firstName} {this.props.loggedInUser.lastName} </p>
+                            <p>{this.props.loggedInUser.address.street}, {this.props.loggedInUser.address.number} {this.props.loggedInUser.address.complement}</p>
+                            <p>CEP:{this.props.loggedInUser.address.zipcode} | {this.props.loggedInUser.address.city} - {this.props.loggedInUser.address.state}</p>
+                        </CardDelivery>
+
                     </HalfScreenContainer>
                 </Container>
             </Display>)

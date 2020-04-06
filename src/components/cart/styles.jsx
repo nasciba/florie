@@ -8,7 +8,7 @@ const StyledDisplayCart = styled.div`
     padding-top: 60px;
     margin-bottom: 100px;
     min-height: 50vh;
-    `
+`
 
 const StyledCardCart = styled.div`
     display: flex;
@@ -16,7 +16,7 @@ const StyledCardCart = styled.div`
     justify-content:space-between;
     flex-wrap: wrap;
     margin: 0;
-    `
+`
 
 const StyledBoxCard = styled.div`
         width: 800px;
@@ -44,8 +44,7 @@ const StyledTextBox = styled.div`
     };
     p {
         font-family: 'Roboto', sans-serif;
-        font-weight: bold;
-        
+        font-weight: bold;        
     }
 `
 const StyledProductQtyBtn = styled.div`
