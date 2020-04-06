@@ -55,7 +55,7 @@ export default class Profile extends Component {
         else {
             return (
                 <StyledDisplay>
-                    <h2>Olá, {this.props.loggedInUser.username}!</h2>
+                    <h2>Olá, {this.props.loggedInUser.firstName}!</h2>
                     <MenuContainer>
                         <MenuCards>
                             <Link to='/'>

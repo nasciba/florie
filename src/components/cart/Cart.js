@@ -6,9 +6,9 @@ import { StyledTitle } from '../products-categories-catalog/styles'
 
 
 class Cart extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     render() {
         return (

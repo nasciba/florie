@@ -8,12 +8,7 @@ import {
 
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-       
-    }
- 
-    render() {
+       render() {
         return (
             <StyledDisplay>
                 <StyledHeader>

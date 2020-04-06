@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { StyledDisplay, StyledTitle, StyledImgProduct, StyledProdDetailsDescrip, StyledDetailsText } from './styles'
+import { StyledDisplay, StyledImgProduct, StyledProdDetailsDescrip } from './styles'
 import { StyledGreenButton } from '../buttons/styles';
 
 class ProductDetails extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {};
 
-    }
+    // }
     componentDidMount() {
         this.getSingleProduct();
     }

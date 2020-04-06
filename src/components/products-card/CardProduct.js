@@ -7,9 +7,6 @@ import { StyledGreenButton } from '../buttons/styles';
 
 
 class CardProduct extends Component {
-    constructor(props) {
-        super(props)
-    }
     render() {
         return (
             <StyledCardProduct>
