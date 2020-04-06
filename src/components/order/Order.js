@@ -101,7 +101,7 @@ class Order extends Component {
                                     </label>
                             </form>
                             <p>Subtotal: R${parseFloat(this.state.totalPrice).toFixed(2).replace('.', ',')}</p>
-                            <p>Total: {this.state.priceWithDelivery}</p>
+                            <p>Total:  R${parseFloat(this.state.priceWithDelivery).toFixed(2).replace('.', ',')}</p>
                             <StyledGreenButton type="submit" onClick={() => this.handleSubmit()}>FINALIZAR PEDIDO</StyledGreenButton>
                         </CardDelivery>
                         <Subtitle>ENDEREÇO DE ENVIO</Subtitle>
