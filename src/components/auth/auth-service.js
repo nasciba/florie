@@ -9,8 +9,8 @@ class AuthService {
     this.service = service;
   }
 
-  signup = (username, password, fullName, street, number, complement, city, state, zipcode, phoneNumber, cpf) => {
-    return this.service.post('/signup', { username, password, fullName, street, number, complement, city, state, zipcode, phoneNumber, cpf })
+  signup = (username, password, firstName, lastName, street, number, complement, city, state, zipcode, phoneNumber, cpf) => {
+    return this.service.post('/signup', { username, password, firstName, lastName, street, number, complement, city, state, zipcode, phoneNumber, cpf })
     .then(response => response.data)
   }
 

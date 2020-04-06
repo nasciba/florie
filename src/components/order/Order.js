@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { StyledGreenButton } from '../buttons/styles';
-import { StyledBoxCard, StyledCardCart, StyledTextBox, StyledImgCart } from '../cart/styles'
 import {
     Display,
     Container,
@@ -42,6 +41,9 @@ class Order extends Component {
             .catch(error => console.log(error))
     }
     
+    componentDidMount() {
+        console.log('aqui as props order', this.props)
+    }
 
     render() {
         return (

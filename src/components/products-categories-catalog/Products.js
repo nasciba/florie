@@ -4,9 +4,9 @@ import { StyledTitle } from './styles';
 import { StyledDisplay } from '../../styles-catalog';
 
 export default class Products extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     return (

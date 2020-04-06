@@ -154,15 +154,11 @@ class App extends Component {
   }
 
   getAllProducts = () => {
-    console.log('entrou')
     axios.get(`${process.env.REACT_APP_API_URL}/api/products`)
       .then(responseFromApi => {
-        console.log('aqui response from api', responseFromApi)
         this.setState({
           listOfProducts: responseFromApi.data
-
         })
-        console.log('aqui estado populado', this.state.listOfProducts)
       })
   }
 
@@ -244,7 +240,7 @@ class App extends Component {
                 {this.state.listOfProducts.length ? <Route exact path='/perfumes' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Perfumes")} />} /> : null}
                 {this.state.listOfProducts.length ? <Route exact path='/makeup' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Maquiagem")} />} /> : null}
                 {this.state.listOfProducts.length ? <Route exact path='/hair' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Cabelos")} />} /> : null}
-                {this.state.listOfProducts.length ? <Route exact path='/catalog' render={(props) => <Products {...props} addItemToCart={this.addToCart} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts} />} /> : null}
+                {this.state.listOfProducts.length ? <Route exact path='/catalog' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts} />} /> : null}
 
               </StyledContentWrap>
             </Switch>
