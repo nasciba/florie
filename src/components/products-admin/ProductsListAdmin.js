@@ -80,7 +80,7 @@ export default class ProductsList extends Component {
                                         <i className="fa fa-edit"></i>
                                     </Link>
 
-                                    <i class="fa fa-trash" onClick={() => this.deleteProduct(product._id)}></i>
+                                    <i className="fa fa-trash" onClick={() => this.deleteProduct(product._id)}></i>
                                 </StyledIconsVertical>
 
                             </StyledCardCart>
