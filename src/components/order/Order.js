@@ -22,8 +22,8 @@ class Order extends Component {
             loggedInUser: null,
             cart: this.props.rest.cart,
             totalPrice: this.props.rest.totalPrice,
-            priceWithDelivery: '',
-            typeOfDelivery: 0,
+            priceWithDelivery: 0,
+            typeOfDelivery: ''
         };
 
     }
@@ -37,11 +37,15 @@ class Order extends Component {
     calculatePriceWithDelivery = () => {
         let totalWithDelivery = 0;
         let priceCart = this.state.totalPrice
-        if (this.state.typeOfDelivery === 'standard') {
-            totalWithDelivery = priceCart + 14.90;
+        
+        if (this.state.typeOfDelivery === 'express') {
+            totalWithDelivery = 21.90 + priceCart;
+        }
+        else if (this.state.typeOfDelivery === 'standard') {
+            totalWithDelivery = 14.90 + priceCart;
         }
         else {
-            totalWithDelivery = priceCart + 20.90;
+            totalWithDelivery = priceCart
         }
         this.setState({ priceWithDelivery: totalWithDelivery });
     }
@@ -58,7 +62,12 @@ class Order extends Component {
             })
             .catch(error => console.log(error))
     }
+    
+    componentDidMount() {
+        this.calculatePriceWithDelivery();
+    }
 
+   
     render() {
         return (
             <Display>
@@ -93,7 +102,7 @@ class Order extends Component {
                             <form>
                                 <label>
                                     <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="standard" />
-                                        Padrão: R$R$14,90 (5 a 8 dias úteis)
+                                        Padrão: R$14,90 (5 a 8 dias úteis)
                                 </label>
                                 <label>
                                     <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="express" />
@@ -101,7 +110,10 @@ class Order extends Component {
                                     </label>
                             </form>
                             <p>Subtotal: R${parseFloat(this.state.totalPrice).toFixed(2).replace('.', ',')}</p>
-                            <p>Total:  R${parseFloat(this.state.priceWithDelivery).toFixed(2).replace('.', ',')}</p>
+                         
+                              <p>Total:  R${parseFloat(this.state.priceWithDelivery).toFixed(2).replace('.', ',')}</p>
+
+                          
                             <StyledGreenButton type="submit" onClick={() => this.handleSubmit()}>FINALIZAR PEDIDO</StyledGreenButton>
                         </CardDelivery>
                         <Subtitle>ENDEREÇO DE ENVIO</Subtitle>
