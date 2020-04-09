@@ -86,6 +86,10 @@ class App extends Component {
 
   }
 
+  emptyCart = () => {
+    this.setState({ cart: [], totalPrice: 0 });
+  }
+
   getTotalPrice = (newCart) => {
     let cart = newCart || [...this.state.cart];
     let prices = 0;
@@ -179,7 +183,7 @@ class App extends Component {
               <ProtectedRoute component={Profile} userInSession={this.state.loggedUser} path='/profile' getUser={this.getTheUser} />
               <ProtectedRoute component={AddProduct} path='/add-product' userInSession={this.state.loggedUser} getUser={this.getTheUser} />
               <ProtectedRoute component={Order} path='/order' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
-              <ProtectedRoute component={OrderDetails} path='/order-details' userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
+              <ProtectedRoute component={OrderDetails} path='/order-details' emptyCart={this.emptyCart} userInSession={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
               <ProtectedRoute component={MyOrders} userInSession={this.state.loggedUser} path='/my-orders' getUser={this.getTheUser} />
               <Route exact path='/add-product' component={AddProduct} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
