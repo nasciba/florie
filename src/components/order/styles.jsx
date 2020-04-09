@@ -9,8 +9,6 @@ const Display = styled.div`
     min-height: 80vh;
     padding-bottom: 100px;
     background-color: light-gray;
-    border: solid red 1px;  
-
 `
 
 const Container = styled.div`
@@ -18,7 +16,6 @@ const Container = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    border: solid blue 1px;  
     margin: 10px;
     font-family: 'Roboto', sans-serif;
 
@@ -52,7 +49,6 @@ const HalfScreenContainer = styled.div`
     width: 45%;
     display: flex;
     flex-direction: column;
-    border: solid yellow 1px;
     align-items: center;
     justify-content: left;    
     margin: 20px;
@@ -109,17 +105,15 @@ const CardDelivery = styled.div`
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: center;
     justify-content: center;
     margin: 20px;
-    p, form {
+    h4, p, form {
     margin: 20px;
-    text-align: left;
+    text-align: center;
     display: flex;
-    flex-direction: column
-    }
-    button {
-        justify-content: center;
+    line-spacing: 1;
+    flex-direction: column;
     }
 `
 
