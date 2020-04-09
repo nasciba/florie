@@ -109,12 +109,8 @@ class Order extends Component {
                                         Expressa: R$21,90 (2 a 3 dias úteis)
                                 </label>
                             </form>
-                            <p>Subtotal: R${parseFloat(this.state.totalPrice).toFixed(2).replace('.', ',')}</p>
-
-                            <p>Total:  R${parseFloat(this.state.priceWithDelivery).toFixed(2).replace('.', ',')}</p>
-
-
-                            <StyledGreenButton type="submit" onClick={() => this.handleSubmit()}>FINALIZAR PEDIDO</StyledGreenButton>
+                            <h4>Subtotal: R${parseFloat(this.state.totalPrice).toFixed(2).replace('.', ',')}</h4>
+                            <h4>Total:  R${parseFloat(this.state.priceWithDelivery).toFixed(2).replace('.', ',')}</h4>
                         </CardDelivery>
                         <Subtitle>ENDEREÇO DE ENVIO</Subtitle>
                         <CardDelivery>
@@ -122,6 +118,7 @@ class Order extends Component {
                             <p>{this.props.loggedInUser.address.street}, {this.props.loggedInUser.address.number} {this.props.loggedInUser.address.complement}</p>
                             <p>CEP:{this.props.loggedInUser.address.zipcode} | {this.props.loggedInUser.address.city} - {this.props.loggedInUser.address.state}</p>
                         </CardDelivery>
+                        <StyledGreenButton type="submit" onClick={() => this.handleSubmit()}>FINALIZAR PEDIDO</StyledGreenButton>
 
                     </HalfScreenContainer>
                 </Container>
