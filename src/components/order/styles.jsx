@@ -9,14 +9,17 @@ const Display = styled.div`
     min-height: 80vh;
     padding-bottom: 100px;
     background-color: light-gray;
+    border: solid red 1px;  
+
 `
 
 const Container = styled.div`
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
+    border: solid blue 1px;  
     margin: 10px;
-    background-color: white;
     font-family: 'Roboto', sans-serif;
 
 `
@@ -46,9 +49,10 @@ const Subtitle = styled.p`
     color: #808080;
 `
 const HalfScreenContainer = styled.div`
-    width: 50%;
+    width: 45%;
     display: flex;
     flex-direction: column;
+    border: solid yellow 1px;
     align-items: center;
     justify-content: left;    
     margin: 20px;
@@ -56,7 +60,7 @@ const HalfScreenContainer = styled.div`
     
 `
 const BoxCard = styled.div`
-    width: 900px;
+    width: 650px;
     border: solid lightgray 2px;
     border-radius: 8px;
     margin-bottom: 20px;       
@@ -111,6 +115,11 @@ const CardDelivery = styled.div`
     p, form {
     margin: 20px;
     text-align: left;
+    display: flex;
+    flex-direction: column
+    }
+    button {
+        justify-content: center;
     }
 `
 

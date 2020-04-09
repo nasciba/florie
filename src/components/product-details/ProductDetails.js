@@ -4,11 +4,11 @@ import { StyledDisplay, StyledImgProduct, StyledProdDetailsDescrip } from './sty
 import { StyledGreenButton } from '../buttons/styles';
 
 class ProductDetails extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {};
+    constructor(props) {
+        super(props);
+        this.state = {};
 
-    // }
+    }
     componentDidMount() {
         this.getSingleProduct();
     }
