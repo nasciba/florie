@@ -6,6 +6,15 @@ import {
 } from './styles'
 
 export default class OrderDetails extends Component {
+    constructor(props) {
+        super(props);
+        console.log(this.props)
+    }
+
+    componentDidMount() {
+        this.props.rest.emptyCart();
+    }
+
     render() {
         return (
             <Display>
