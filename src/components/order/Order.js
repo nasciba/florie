@@ -37,7 +37,7 @@ class Order extends Component {
     calculatePriceWithDelivery = () => {
         let totalWithDelivery = 0;
         let priceCart = this.state.totalPrice
-        
+
         if (this.state.typeOfDelivery === 'express') {
             totalWithDelivery = 21.90 + priceCart;
         }
@@ -62,12 +62,12 @@ class Order extends Component {
             })
             .catch(error => console.log(error))
     }
-    
+
     componentDidMount() {
         this.calculatePriceWithDelivery();
     }
 
-   
+
     render() {
         return (
             <Display>
@@ -107,13 +107,13 @@ class Order extends Component {
                                 <label>
                                     <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="express" />
                                         Expressa: R$21,90 (2 a 3 dias úteis)
-                                    </label>
+                                </label>
                             </form>
                             <p>Subtotal: R${parseFloat(this.state.totalPrice).toFixed(2).replace('.', ',')}</p>
-                         
-                              <p>Total:  R${parseFloat(this.state.priceWithDelivery).toFixed(2).replace('.', ',')}</p>
 
-                          
+                            <p>Total:  R${parseFloat(this.state.priceWithDelivery).toFixed(2).replace('.', ',')}</p>
+
+
                             <StyledGreenButton type="submit" onClick={() => this.handleSubmit()}>FINALIZAR PEDIDO</StyledGreenButton>
                         </CardDelivery>
                         <Subtitle>ENDEREÇO DE ENVIO</Subtitle>
