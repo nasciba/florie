@@ -1,32 +1,20 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { StyledDisplayCart, StyledCardCart, StyledTextBox, StyledImgCart } from '../cart/styles'
 import { StyledCard, StyledIconsVertical } from './styles'
+import { StyledDisplay, StyledTextAccount } from '../auth/style';
 import { StyledTitle } from '../products-categories-catalog/styles'
+import { StyledGreenButton } from '../buttons/styles'
 
 export default class ProductsList extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            listOfProducts: [],
+            listOfProducts: this.props.rest.listOfProducts
         };
 
     }
-
-    getAllProducts = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/products`)
-            .then(responseFromApi => {
-                this.setState({
-                    listOfProducts: responseFromApi.data
-                })
-            })
-    }
-
-    componentDidMount() {
-        this.getAllProducts();
-    }
-
 
     deleteProduct = (productId) => {
         axios.delete(`${process.env.REACT_APP_API_URL}/api/products/${productId}`)
@@ -50,45 +38,60 @@ export default class ProductsList extends Component {
     }
 
     render() {
-        return (
-            <StyledDisplayCart>
-                <StyledTitle><span>EDITAR OU EXCLUIR PRODUTOS</span></StyledTitle>
-                {this.state.listOfProducts.map(product => {
-                    return (
-                        <StyledCard>
-                            <StyledCardCart key={product._id}>
-                                <StyledImgCart>
-                                    <Link to={`/products/${product._id}`}>
-                                        <img src={product.imageUrl} alt={product.title && product.brand}></img>
-                                    </Link>
-                                </StyledImgCart>
-                                <StyledTextBox>
-                                    <span>Produto:</span>
-                                    {product.name}
-                                    <span>Marca:</span>
-                                    {product.brand}
-                                    <span>Preço:</span>
-                                    R${parseFloat(product.price).toFixed(2).replace('.', ',')}
-                                    <span>Estoque:</span>
-                                    {product.stock}
-                                    <span>Descrição: </span>
-                                    {product.description}
-                                </StyledTextBox>
-                                <StyledIconsVertical>
+        if (this.props.loggedInUser.admin) {
+            return (
+                <StyledDisplayCart>
 
-                                    <Link to={`/edit-product/${product._id}`} style={{ color: 'black' }}>
-                                        <i className="fa fa-edit"></i>
-                                    </Link>
+                    <StyledTitle><span>GERENCIAR INFORMAÇÕES SOBRE PRODUTOS</span></StyledTitle>
+                    <StyledGreenButton>
+                        <span>
+                            <Link to={'/add-product'}>ADICIONAR NOVO PRODUTO</Link>
+                        </span>
+                    </StyledGreenButton>
+                    {this.state.listOfProducts.map(product => {
+                        return (
+                            <StyledCard key={product._id}>
+                                <StyledCardCart >
+                                    <StyledImgCart>
+                                        <Link to={`/products/${product._id}`}>
+                                            <img src={product.imageUrl} alt={product.title && product.brand}></img>
+                                        </Link>
+                                    </StyledImgCart>
+                                    <StyledTextBox>
+                                        <span>Produto:</span>
+                                        {product.name}
+                                        <span>Marca:</span>
+                                        {product.brand}
+                                        <span>Preço:</span>
+                                        R${parseFloat(product.price).toFixed(2).replace('.', ',')}
+                                        <span>Estoque:</span>
+                                        {product.stock}
+                                        <span>Descrição: </span>
+                                        {product.description}
+                                    </StyledTextBox>
+                                    <StyledIconsVertical>
 
-                                    <i className="fa fa-trash" onClick={() => this.deleteProduct(product._id)}></i>
-                                </StyledIconsVertical>
+                                        <Link to={`/edit-product/${product._id}`} style={{ color: 'black' }}>
+                                            <i className="fa fa-edit"></i>
+                                        </Link>
 
-                            </StyledCardCart>
-                        </StyledCard>
-                    )
-                })}
+                                        <i className="fa fa-trash" onClick={() => this.deleteProduct(product._id)}></i>
+                                    </StyledIconsVertical>
 
-            </StyledDisplayCart>
-        )
+                                </StyledCardCart>
+                            </StyledCard>
+                        )
+                    })}
+
+                </StyledDisplayCart>
+            )
+        }
+        else {
+            return (
+                <StyledDisplay>
+                    <StyledTextAccount>Você não tem acesso a esta área do site!</StyledTextAccount>
+                </StyledDisplay>
+            )
+        }
     }
 }

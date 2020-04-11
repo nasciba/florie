@@ -27,7 +27,7 @@ export default class Profile extends Component {
 
             return (
                 <StyledDisplay>
-                    <h2>Olá, <span style={{ fontWeight: 'bold' }}>{this.props.loggedInUser.username}</span>!</h2>
+                    <h2>Olá, <span style={{ fontWeight: 'bold' }}>{this.props.loggedInUser.name}</span>!</h2>
                     <MenuContainer>
                         <MenuCards>
                             <Link to='/list-admin'>

@@ -50,7 +50,12 @@ class AddProduct extends Component {
                 console.log("Error while adding the image: ", err);
             });
     }
+
+    componentDidMount() {
+        console.log(this.props)
+    }
     render() {
+        if (this.props.loggedInUser.admin)  {
         return (
             <StyledDisplay>
                 <StyledInputAuth>
@@ -88,6 +93,14 @@ class AddProduct extends Component {
                     </form>
                 </StyledInputAuth>
             </StyledDisplay>)
+        }
+        else {
+            return(
+            <StyledDisplay>
+                <StyledTextAccount>Você não tem acesso a esta área do site!</StyledTextAccount>
+            </StyledDisplay>
+            )
+        }
     }
 }
 
