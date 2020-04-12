@@ -3,6 +3,7 @@ import AuthService from '../auth/auth-service';
 import { Link } from 'react-router-dom';
 import { StyledDisplay, MenuContainer, MenuCards } from './styles'
 
+
 export default class Profile extends Component {
 
     constructor(props) {
@@ -15,14 +16,19 @@ export default class Profile extends Component {
         this.service.logout()
             .then(() => {
                 this.setState({ loggedInUser: null });
+                sessionStorage.removeItem('loggedUser');
+                sessionStorage.removeItem('cart');
                 this.props.history.push('/');
                 this.props.rest.getUser(null);
             })
     }
 
+    componentDidMount() {
+        console.log(this.props)
+    }
+
     render() {
         if (this.props.loggedInUser.admin) {
-
             return (
                 <StyledDisplay>
                     <h2>Olá, <span style={{ fontWeight: 'bold' }}>{this.props.loggedInUser.firstName}</span>!</h2>
@@ -43,14 +49,10 @@ export default class Profile extends Component {
                             <img src="/images/logout.svg" alt="ícone"></img>
                             <p>LOGOUT</p>
                         </MenuCards>
-                        
-                        
                     </MenuContainer>
                 </StyledDisplay>
             )
-        }
-
-        else {
+        } else if (!this.props.loggedInUser.admin){
             return (
                 <StyledDisplay>
                     <h2>Olá, {this.props.loggedInUser.firstName}!</h2>
@@ -71,13 +73,10 @@ export default class Profile extends Component {
                             <img src="/images/logout.svg" alt="ícone"></img>
                             <p>LOGOUT</p>
                         </MenuCards>
-                        
-                        
                     </MenuContainer>
                 </StyledDisplay>
             )
         }
     }
-
 }
 
