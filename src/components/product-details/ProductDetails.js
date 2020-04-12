@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Footer from '../footer/Footer'
 import { StyledDisplay, StyledImgProduct, StyledProdDetailsDescrip } from './styles'
 import { StyledGreenButton } from '../buttons/styles';
 
@@ -29,7 +30,7 @@ class ProductDetails extends Component {
 
     render() {
         return (
-
+            <React.Fragment>
             <StyledDisplay>
                 <StyledImgProduct>
                     <img src={this.state.imageUrl} alt={this.state.name && this.state.brand}></img>
@@ -44,7 +45,8 @@ class ProductDetails extends Component {
                 </StyledProdDetailsDescrip>
 
             </StyledDisplay>
-
+            <Footer/>
+            </React.Fragment>
         )
     }
 }

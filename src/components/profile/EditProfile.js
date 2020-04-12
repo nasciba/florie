@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { StyledGreenButton } from '../buttons/styles';
+import { StyledGreenButton } from '../buttons/styles';
 import { StyledDisplay, StyledInputAuth, StyledTextAccount } from '../auth/style';
 
 class EditProfile extends Component {
@@ -71,7 +71,7 @@ class EditProfile extends Component {
                     <input type="text" name="city" value={this.state.address.city} onChange={e => this.handleChange(e)} />
                     <label>Estado:</label>
                     <input type="text" name="state" value={this.state.address.state} onChange={e => this.handleChange(e)} />
-                    <input type="submit" value="SALVAR"/>
+                    <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
                 </form>
             </StyledDisplay>)
     }

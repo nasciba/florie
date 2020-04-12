@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
+import Footer from '../footer/Footer'
 import { StyledDisplay, StyledInputAuth, StyledTextAccount } from './style';
 import { StyledGreenButton } from '../buttons/styles'
 
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = { username: '', password: '' };
+        this.state = {
+            username: '',
+            password: ''
+        };
         this.service = new AuthService();
     }
 
@@ -33,13 +37,14 @@ class Login extends Component {
 
     render() {
         return (
+            <React.Fragment>
             <StyledDisplay>
                 <StyledInputAuth>
-                <StyledTextAccount>Acesse sua conta aqui ;)</StyledTextAccount>
+                    <StyledTextAccount>Acesse sua conta aqui ;)</StyledTextAccount>
                     <form onSubmit={this.handleFormSubmit}>
-                        <input type="text" name="username" placeholder="Seu e-mail" value={this.state.username} onChange={e => this.handleChange(e)} />
-                        <br></br>          
-                        <input name="password" placeholder="Sua senha" type="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+                        <input type="text" name="username" placeholder="Seu e-mail" value={this.state.username} onChange={event => this.handleChange(event)} />
+                        <br></br>
+                        <input name="password" placeholder="Sua senha" type="password" value={this.state.password} onChange={event => this.handleChange(event)} />
                         <br></br>
                         <StyledGreenButton type="submit">LOGIN</StyledGreenButton>
                     </form>
@@ -49,7 +54,9 @@ class Login extends Component {
                         Cadastre-se <Link to={"/signup"} style={{ color: "black" }}>aqui</Link>
                     </p>
                 </StyledInputAuth>
-            </StyledDisplay >
+            </StyledDisplay>
+            <Footer/>
+            </React.Fragment>
         )
     }
 }

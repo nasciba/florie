@@ -8,7 +8,9 @@ export default class Profile extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { loggedInUser: this.props.loggedInUser };
+        this.state = {
+            loggedInUser: this.props.loggedInUser
+        };
         this.service = new AuthService();
     }
 
@@ -18,6 +20,7 @@ export default class Profile extends Component {
                 this.setState({ loggedInUser: null });
                 sessionStorage.removeItem('loggedUser');
                 sessionStorage.removeItem('cart');
+                this.props.rest.emptyCart();
                 this.props.history.push('/');
                 this.props.rest.getUser(null);
             })
@@ -48,7 +51,7 @@ export default class Profile extends Component {
                     </MenuContainer>
                 </StyledDisplay>
             )
-        } else if (!this.props.loggedInUser.admin){
+        } else if (!this.props.loggedInUser.admin) {
             return (
                 <StyledDisplay>
                     <h2>Olá, {this.props.loggedInUser.firstName}!</h2>
