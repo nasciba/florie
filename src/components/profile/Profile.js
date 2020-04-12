@@ -8,7 +8,7 @@ export default class Profile extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { loggedInUser: null };
+        this.state = { loggedInUser: this.props.loggedInUser };
         this.service = new AuthService();
     }
 
@@ -21,10 +21,6 @@ export default class Profile extends Component {
                 this.props.history.push('/');
                 this.props.rest.getUser(null);
             })
-    }
-
-    componentDidMount() {
-        console.log(this.props)
     }
 
     render() {
