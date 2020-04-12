@@ -74,9 +74,7 @@ class Order extends Component {
                 <Title><span>RESUMO DO PEDIDO </span></Title>
                 <Container>
                     <HalfScreenContainer>
-
                         <Subtitle>PRODUTOS SELECIONADOS</Subtitle>
-
                         {this.props.rest.cart.map((product) => {
                             return (
                                 <BoxCard key={product.id}>
@@ -125,6 +123,5 @@ class Order extends Component {
             </Display>)
     }
 }
-
 
 export default Order;

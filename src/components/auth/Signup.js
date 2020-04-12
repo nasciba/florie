@@ -7,7 +7,7 @@ import { StyledGreenButton } from '../buttons/styles'
 class Signup extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', password: '', street: '', number: '', complement: '', city: '', state: '', zipcode: '', phoneNumber: '', firstName: '', lastName:'', cpf: '' };
+    this.state = { username: '', password: '', street: '', number: '', complement: '', district: '', city: '', state: '', zipcode: '', phoneNumber: '', firstName: '', lastName:'', cpf: '' };
     this.service = new AuthService();
   }
 
@@ -15,19 +15,20 @@ class Signup extends Component {
     event.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
-    const street = this.state.street
-    const number = this.state.number
-    const complement = this.state.complement
-    const city = this.state.city
-    const state = this.state.state
-    const zipcode = this.state.zipcode
+    const street = this.state.street;
+    const number = this.state.number;
+    const complement = this.state.complement;
+    const district = this.state.district;
+    const city = this.state.city;
+    const state = this.state.state;
+    const zipcode = this.state.zipcode;
     const phoneNumber = this.state.phoneNumber;
     const firstName = this.state.firstName;
     const lastName = this.state.lastName;
     const cpf = this.state.cpf
 
 
-    this.service.signup(username, password, firstName, lastName, street, number, complement, city, state, zipcode, phoneNumber, cpf)
+    this.service.signup(username, password, firstName, lastName, street, number, complement, district, city, state, zipcode, phoneNumber, cpf)
       .then(response => {
         this.setState({
           username: "",
@@ -37,6 +38,7 @@ class Signup extends Component {
           street: "",
           number: "",
           complement: "",
+          district: "",
           city: "",
           state: "",
           zipcode: "",
@@ -94,6 +96,11 @@ class Signup extends Component {
             <label>Complemento (apto, bloco, etc.):</label>
             <br></br>
             <input type="text" name="complement" value={this.state.address} onChange={e => this.handleChange(e)} />
+            <br></br>
+            <br></br>
+            <label>Bairro:</label>
+            <br></br>
+            <input type="text" name="district" value={this.state.address} onChange={e => this.handleChange(e)} />
             <br></br>
             <label>Cidade:</label>
             <br></br>

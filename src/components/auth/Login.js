@@ -19,6 +19,8 @@ class Login extends Component {
             .then(response => {
                 this.setState({ username: "", password: "" });
                 this.props.getUser(response);
+                sessionStorage.setItem('loggedUser', JSON.stringify(response));
+                console.log('aqui', sessionStorage);
                 this.props.history.push(`${this.props.location.state.from.pathname}`);
             })
             .catch(error => console.log(error))

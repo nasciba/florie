@@ -20,14 +20,12 @@ export default class Profile extends Component {
             })
     }
 
-
-
     render() {
         if (this.props.loggedInUser.admin) {
 
             return (
                 <StyledDisplay>
-                    <h2>Olá, <span style={{ fontWeight: 'bold' }}>{this.props.loggedInUser.name}</span>!</h2>
+                    <h2>Olá, <span style={{ fontWeight: 'bold' }}>{this.props.loggedInUser.firstName}</span>!</h2>
                     <MenuContainer>
                         <MenuCards>
                             <Link to='/list-admin'>
@@ -58,7 +56,7 @@ export default class Profile extends Component {
                     <h2>Olá, {this.props.loggedInUser.firstName}!</h2>
                     <MenuContainer>
                         <MenuCards>
-                            <Link to='/'>
+                            <Link to='/my-data'>
                                 <img src="/images/product-list.svg" alt="ícone"></img>
                                 <p>MEU CADASTRO</p>
                             </Link>
