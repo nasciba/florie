@@ -24,7 +24,13 @@ const StyledDisplay = styled.div`
     button {
         align-item: center
     }
-   
+    span {
+        margin: 15px;
+        a {
+            color: gray;
+            text-decoration: none;
+        }
+    }
     input {
         border-radius: 8px;
         border: solid gray 2px;
@@ -51,7 +57,7 @@ const StyledDisplay = styled.div`
 `
 
 const StyledTextAccount = styled.h3`
-    color: black;
+    color: gray;
     margin-top: 15 0 0 0; 
 `
 const StyledRow = styled.div`

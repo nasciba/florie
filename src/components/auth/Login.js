@@ -46,14 +46,11 @@ class Login extends Component {
                             <input name="password" placeholder="Sua senha" type="password" value={this.state.password} onChange={event => this.handleChange(event)} />
                             <StyledGreenButton type="submit">LOGIN</StyledGreenButton>
                         </form>
-                        <p>
-                            Não tem uma conta?
-                    <br></br>
-                        Cadastre-se <Link to={"/signup"} style={{ color: "black" }}>aqui</Link>
-                        </p>
+                        <span>Não tem uma conta?</span>
+                        <span>Cadastre-se <Link to={"/signup"}>aqui</Link></span>  
                     </StyledInputAuth>
                 </StyledDisplay>
-                <Footer />
+                <Footer/>
             </React.Fragment>
         )
     }

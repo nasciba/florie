@@ -58,7 +58,6 @@ class Signup extends Component {
     this.setState({ [name]: value });
   }
 
-
   render() {
     return (
       <React.Fragment>
@@ -94,8 +93,7 @@ class Signup extends Component {
             <input name="password" type="password" placeholder="pelo menos 7 caracteres :D" value={this.state.password} onChange={event => this.handleChange(event)} />
             <StyledGreenButton type="submit">CRIAR CONTA</StyledGreenButton>
           </form>
-          <p>Já tem uma conta?</p>
-          <p><Link to={"/login"} style={{ color: "black" }}>Login</Link></p>
+          <span>Já tem uma conta? <Link to={"/login"}>Login</Link></span>
         </StyledInputAuth>
       </StyledDisplay>
       <Footer/>
