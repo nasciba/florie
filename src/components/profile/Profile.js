@@ -17,14 +17,16 @@ export default class Profile extends Component {
     logoutUser = () => {
         this.service.logout()
             .then(() => {
-                this.setState({ loggedInUser: null });
                 sessionStorage.removeItem('loggedUser');
                 sessionStorage.removeItem('cart');
+                // this.setState({ loggedInUser: null });
+                this.props.rest.getUser(null);
                 this.props.rest.emptyCart();
                 this.props.history.push('/');
-                this.props.rest.getUser(null);
             })
     }
+
+    
 
     render() {
         if (this.props.loggedInUser.admin) {
@@ -63,7 +65,7 @@ export default class Profile extends Component {
                             </Link>
                         </MenuCards>
                         <MenuCards>
-                            <Link to='/'>
+                            <Link to={`/my-orders/${this.props.loggedInUser._id}`}>
                                 <img src="/images/tag.svg" alt="ícone"></img>
                                 <p>MEUS PEDIDOS</p>
                             </Link>

@@ -6,7 +6,7 @@ const ProtectedRoute = ({ component: Component, loggedInUser, ...rest }) => {
     <Route
       {...rest}
       render={props => {
-        if (loggedInUser || sessionStorage.loggedUser) {
+        if (loggedInUser) {
           return <Component {...props} rest={rest} loggedInUser={loggedInUser} />
         } else {
           return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
@@ -16,4 +16,5 @@ const ProtectedRoute = ({ component: Component, loggedInUser, ...rest }) => {
     />
   )
 }
+
 export default ProtectedRoute;

@@ -38,24 +38,22 @@ class Login extends Component {
     render() {
         return (
             <React.Fragment>
-            <StyledDisplay>
-                <StyledInputAuth>
-                    <StyledTextAccount>Acesse sua conta aqui ;)</StyledTextAccount>
-                    <form onSubmit={this.handleFormSubmit}>
-                        <input type="text" name="username" placeholder="Seu e-mail" value={this.state.username} onChange={event => this.handleChange(event)} />
-                        <br></br>
-                        <input name="password" placeholder="Sua senha" type="password" value={this.state.password} onChange={event => this.handleChange(event)} />
-                        <br></br>
-                        <StyledGreenButton type="submit">LOGIN</StyledGreenButton>
-                    </form>
-                    <p>
-                        Não tem uma conta?
+                <StyledDisplay>
+                    <StyledInputAuth>
+                        <StyledTextAccount>Acesse sua conta aqui ;)</StyledTextAccount>
+                        <form onSubmit={this.handleFormSubmit}>
+                            <input type="text" name="username" placeholder="Seu e-mail" value={this.state.username} onChange={event => this.handleChange(event)} />
+                            <input name="password" placeholder="Sua senha" type="password" value={this.state.password} onChange={event => this.handleChange(event)} />
+                            <StyledGreenButton type="submit">LOGIN</StyledGreenButton>
+                        </form>
+                        <p>
+                            Não tem uma conta?
                     <br></br>
                         Cadastre-se <Link to={"/signup"} style={{ color: "black" }}>aqui</Link>
-                    </p>
-                </StyledInputAuth>
-            </StyledDisplay>
-            <Footer/>
+                        </p>
+                    </StyledInputAuth>
+                </StyledDisplay>
+                <Footer />
             </React.Fragment>
         )
     }

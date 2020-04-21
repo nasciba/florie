@@ -30,11 +30,9 @@ class EditProfile extends Component {
         this.setState({ [name]: value, address });
     }
 
-     handleSubmit = (event) => {
-        const {firstName, lastName, phoneNumber, address } = this.state;
-       
+    handleSubmit = (event) => {
+        const { firstName, lastName, phoneNumber, address } = this.state;
         event.preventDefault();
-
         axios.put(`${process.env.REACT_APP_API_URL}/api/user/${this.state.id}`, { firstName, lastName, phoneNumber, address })
             .then(apiResponse => {
                 console.log(apiResponse)
@@ -42,37 +40,39 @@ class EditProfile extends Component {
             .catch((err) => {
                 console.log(err)
             })
-            this.props.history.push('/my-data');
-            window.location.reload();
-
+        this.props.history.push('/my-data');
+        window.location.reload();
     }
-  
+
     render() {
         return (
             <StyledDisplay>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Nome:</label>
-                    <input type="text" name="firstName" value={this.state.firstName} onChange={e => this.handleChange(e)} />
-                    <label>Sobrenome:</label>
-                    <input type="text" name="lastName" value={this.state.lastName} onChange={e => this.handleChange(e)} />
-                    <label>Telefone:</label>
-                    <input type="number" name="phoneNumber" value={this.state.phoneNumber} onChange={e => this.handleChange(e)} />
-                    <label>Logradouro:</label>
-                    <input type="text" name="street" value={this.state.address.street} onChange={e => this.handleChange(e)} />
-                    <label>Número:</label>
-                    <input type="number" name="number" value={this.state.address.number} onChange={e => this.handleChange(e)} />
-                    <label>Complemento:</label>
-                    <input type="text" name="complement" value={this.state.address.complement} onChange={e => this.handleChange(e)} />
-                    <label>Bairro:</label>
-                    <input type="text" name="district" value={this.state.address.district} onChange={e => this.handleChange(e)} />
-                    <label>CEP:</label>
-                    <input type="text" name="zipcode" value={this.state.address.zipcode} onChange={e => this.handleChange(e)} />
-                    <label>Cidade:</label>
-                    <input type="text" name="city" value={this.state.address.city} onChange={e => this.handleChange(e)} />
-                    <label>Estado:</label>
-                    <input type="text" name="state" value={this.state.address.state} onChange={e => this.handleChange(e)} />
-                    <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
-                </form>
+                <StyledInputAuth>
+                    <StyledTextAccount>Editar meu cadastro</StyledTextAccount>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>NOME:</label>
+                        <input type="text" name="firstName" value={this.state.firstName} onChange={e => this.handleChange(e)} />
+                        <label>SOBRENOME:</label>
+                        <input type="text" name="lastName" value={this.state.lastName} onChange={e => this.handleChange(e)} />
+                        <label>TELEFONE:</label>
+                        <input type="number" name="phoneNumber" value={this.state.phoneNumber} onChange={e => this.handleChange(e)} />
+                        <label>LOGRADOURO:</label>
+                        <input type="text" name="street" value={this.state.address.street} onChange={e => this.handleChange(e)} />
+                        <label>NÚMERO:</label>
+                        <input type="number" name="number" value={this.state.address.number} onChange={e => this.handleChange(e)} />
+                        <label>COMPLEMENTO:</label>
+                        <input type="text" name="complement" value={this.state.address.complement} onChange={e => this.handleChange(e)} />
+                        <label>BAIRRO:</label>
+                        <input type="text" name="district" value={this.state.address.district} onChange={e => this.handleChange(e)} />
+                        <label>CEP:</label>
+                        <input type="text" name="zipcode" value={this.state.address.zipcode} onChange={e => this.handleChange(e)} />
+                        <label>CIDADE:</label>
+                        <input type="text" name="city" value={this.state.address.city} onChange={e => this.handleChange(e)} />
+                        <label>ESTADO:</label>
+                        <input type="text" name="state" value={this.state.address.state} onChange={e => this.handleChange(e)} />
+                        <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
+                    </form>
+                </StyledInputAuth>
             </StyledDisplay>)
     }
 }

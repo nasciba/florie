@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { StyledGreenButton } from '../buttons/styles';
 import { Link } from 'react-router-dom';
+import { StyledGreenButton } from '../buttons/styles';
+import { StyledDisplay, StyledInputAuth, StyledTextAccount, StyledRow } from '../auth/style'
+
 
 class MyData extends Component {
     constructor(props) {
@@ -12,23 +14,60 @@ class MyData extends Component {
         if (this.props.loggedInUser) {
             const user = this.props.loggedInUser
             return (
-                <div>
-                    <h1>MEUS DADOS</h1>
-                    <label>Nome:</label> <span>{user.firstName}</span>
-                    <label>Sobrenome:</label> <span>{user.lastName}</span>
-                    <label>Telefone:</label> <span>{user.phoneNumber}</span>
-                    <label>E-mail:</label> <span>{user.username}</span>
-                    <label>CPF:</label> <span>{user.cpf}</span>
-                    <label>Logradouro:</label> <span>{user.address.street}</span>
-                    <label>Número:</label> <span>{user.address.number}</span>
-                    <label>Complemento:</label> <span>{user.address.complement}</span>
-                    <label>CEP:</label> <span>{user.address.zipcode}</span>
-                    <label>Cidade:</label> <span>{user.address.city}</span>
-                    <label>Estado:</label> <span>{user.address.state}</span>
+                <StyledDisplay>
+                    <StyledInputAuth>
+                        <StyledTextAccount>Meus dados</StyledTextAccount>
+                        <dl>
+                            <StyledRow>
+                                <dt>Nome:</dt>
+                                <dd>{user.firstName}</dd>
+                            </StyledRow>
+                            <StyledRow>
+                                <dt>Sobrenome:</dt>
+                                <dd>{user.lastName}</dd>
+                            </StyledRow>
+                            <StyledRow>
+                                <dt>Telefone:</dt>
+                                <dd>{user.phoneNumber}</dd>
+                            </StyledRow>
+                            <StyledRow>
+                                <dt>E-mail:</dt>
+                                <dd>{user.username}</dd>
+                            </StyledRow>
+                            <StyledRow>
+                                <dt>CPF:</dt>
+                                <dd>{user.cpf}</dd>
+                            </StyledRow>
+                            <StyledRow>
+                                <dt>Logradouro:</dt>
+                                <dd>{user.address.street}</dd>
+                            </StyledRow>
+                            <StyledRow>
+                                <dt>Número:</dt>
+                                <dd>{user.address.number}</dd>
+                            </StyledRow>
+                            <StyledRow>
+                                <dt>Complemento:</dt>
+                                <dd>{user.address.complement}</dd>
+                            </StyledRow>
+                            <StyledRow>
+                                <dt>CEP:</dt>
+                                <dd>{user.address.zipcode}</dd>
+                            </StyledRow>
+                            <StyledRow>
+                                <dt>Cidade:</dt>
+                                <dd>{user.address.city}</dd>
+                            </StyledRow>
+                            <StyledRow>
+                                <dt>Estado:</dt>
+                                <dd>{user.address.state}</dd>
+                            </StyledRow>
+                        </dl>
+                    </StyledInputAuth>
                     <StyledGreenButton>
                         <Link to={`/edit-profile/${user._id}`}>EDITAR DADOS</Link>
                     </StyledGreenButton>
-                </div>
+                </StyledDisplay>
             )
         } else {
             return null

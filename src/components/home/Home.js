@@ -15,7 +15,7 @@ class Home extends Component {
                 <StyledDisplay>
                     <StyledHeader>
                         <StyledBox>
-                            <Link to='/catalog'><p>os melhores cosméticos <span style={{ color: '#26acb5' }}>orgânicos</span></p></Link>
+                            <Link to='/catalog'><p>os melhores cosméticos <br></br><span style={{ color: '#26acb5' }}>orgânicos</span> e <span style={{ color: '#26acb5' }}>veganos</span></p></Link>
                             <img src="/images/home2.jpg" alt="rosas"></img>
                         </StyledBox>
                     </StyledHeader>

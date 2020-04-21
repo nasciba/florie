@@ -19,7 +19,6 @@ import MyOrders from './components/profile/MyOrders'
 import Order from './components/order/Order'
 import OrderDetails from './components/order/OrderDetails';
 import Products from './components/products-categories-catalog/Products';
-import Footer from './components/footer/Footer'
 import { StyledPageContainer, StyledContentWrap } from './App-Styled';
 
 class App extends Component {
@@ -71,10 +70,12 @@ class App extends Component {
 
   updateCart = async (cart) => {
     const totalPrice = await this.getTotalPrice(cart);
-    const newState = { cart: cart, totalPrice: totalPrice }
-    await this.setState(newState);
-    sessionStorage.setItem('cart', JSON.stringify(newState));
-
+    const newStateCart = { cart: cart };
+    const newStateTotalPrice = { totalPrice: totalPrice }
+    await this.setState(newStateCart);
+    await this.setState(newStateTotalPrice)
+    sessionStorage.setItem('cart', JSON.stringify(newStateCart));
+    sessionStorage.setItem('totalPrice', JSON.stringify(newStateTotalPrice));
   }
 
   removeFromCart = async (productId) => {
@@ -130,8 +131,6 @@ class App extends Component {
     }
   }
 
-
-
   fetchUser() {
     if (this.state.loggedUser === null) {
       this.service.loggedin()
@@ -150,8 +149,8 @@ class App extends Component {
     }
   }
 
-  getTheUser = (userObj) => {
-    this.setState({
+  getTheUser = async (userObj) => {
+    await this.setState({
       loggedUser: userObj
     })
   }
@@ -165,23 +164,51 @@ class App extends Component {
       })
   }
 
-  componentDidMount() {
-    this.getAllProducts();
-    this.fetchUser();
-    const stringOfCartInTheStorage = sessionStorage.cart;    
-    const stringOfUserInTheStorage = sessionStorage.loggedUser
-    if (stringOfCartInTheStorage !== undefined) {
-      let cartInTheStorage = JSON.parse(stringOfCartInTheStorage);
-      return this.setState(cartInTheStorage);
+  sessionStorageCart = async () => {
+    const stringOfCartInTheStorage = sessionStorage.cart;
+    if (stringOfCartInTheStorage !== undefined && !this.state.cart.length) {
+      await this.setState(JSON.parse(stringOfCartInTheStorage));
     }
-    if (stringOfUserInTheStorage !== undefined) {
-      let userInTheStorage = JSON.parse(stringOfUserInTheStorage);
-      return this.setState(userInTheStorage);
+    else {
+      return null
     }
-
   }
 
+  sessionStorageTotalPrice = () => {
+    const totalPrice = sessionStorage.totalPrice;
+    if (totalPrice !== undefined && this.state.totalPrice === 0) {
+      this.setState(JSON.parse(totalPrice));
+    }
+    else {
+      return null
+    }
+  }
+
+  sessionStorageUser = () => {
+    const loggedUserinStorage = sessionStorage.loggedUser;
+    console.log(typeof loggedUserinStorage);
+    if (loggedUserinStorage !== undefined && this.state.loggedUser === null) {
+      console.log('entrou no if user')
+      return this.getTheUser(JSON.parse(loggedUserinStorage))
+    }
+    else {
+      console.log('entrou no else user')
+      return null
+    }
+  }
+
+
+  componentDidMount() {
+    this.getAllProducts();
+    this.sessionStorageCart();
+    this.sessionStorageTotalPrice();
+    this.sessionStorageUser();
+  }
+  
+  
   render() {
+    this.fetchUser();
+    console.log('aqui user no render', this.state.loggedUser)
     if (this.state.loggedUser) {
       return (
         <StyledPageContainer>
@@ -193,7 +220,7 @@ class App extends Component {
               <ProtectedRoute component={AddProduct} path='/add-product' loggedInUser={this.state.loggedUser} />
               <ProtectedRoute component={Order} path='/order' loggedInUser={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
               <ProtectedRoute component={OrderDetails} path='/order-details' emptyCart={this.emptyCart} loggedInUser={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
-              <ProtectedRoute component={MyOrders} loggedInUser={this.state.loggedUser} path='/my-orders' />
+              <ProtectedRoute component={MyOrders} loggedInUser={this.state.loggedUser} path='/my-orders/:id' />
               <ProtectedRoute component={MyData} loggedInUser={this.state.loggedUser} path='/my-data' />
               <Route exact path='/edit-profile/:id' render={(props) => <EditProfile {...props} loggedInUser={this.state.loggedUser} />} />
               <Route exact path='/edit-product/:id' component={EditProduct} />
@@ -203,7 +230,7 @@ class App extends Component {
               <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
               {this.state.listOfProducts.length ? <Route exact path='/' render={(props) => <Home {...props} highlitedProducts={this.state.idsOfHighlitedProducts} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts} />} /> : null}
               {this.state.listOfProducts.length ? <Route exact path='/catalog' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts} />} /> : null}
-              {this.state.listOfProducts.length ? <Route exact path='/bath' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Banho")} />} /> : null}
+              {this.state.listOfProducts.length ? <Route exact path='/bath' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Higiene")} />} /> : null}
               {this.state.listOfProducts.length ? <Route exact path='/body' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Corpo")} />} /> : null}
               {this.state.listOfProducts.length ? <Route exact path='/face' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Rosto")} />} /> : null}
               {this.state.listOfProducts.length ? <Route exact path='/perfumes' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Perfumes")} />} /> : null}
@@ -234,13 +261,14 @@ class App extends Component {
                 <ProtectedRoute component={Profile} loggedInUser={this.state.loggedUser} emptyCart={this.emptyCart} path='/profile' getUser={this.getTheUser} />
                 <ProtectedRoute component={OrderDetails} path='/order-details' loggedInUser={this.state.loggedUser} cart={this.state.cart} totalPrice={this.state.totalPrice} />
                 <ProtectedRoute component={MyData} loggedInUser={this.state.loggedUser} path='/my-data' />
+                <ProtectedRoute component={MyOrders} loggedInUser={this.state.loggedUser} path='/my-orders/:id' />
                 <Route exact path='/products/:id' render={(props) => <ProductDetails {...props} addItemToCart={this.addToCart} />} />
                 <Route exact path='/signup' render={(props) => <Signup {...props} getUser={this.getTheUser} />} />
                 <Route exact path='/login' render={(props) => <Login {...props} getUser={this.getTheUser} />} />
                 <Route exact path='/cart' render={(props) => <Cart {...props} itemsInTheCart={this.state.cart} deleteItem={this.removeFromCart} removeItem={this.removeItem} addItem={this.addItem} totalPrice={this.state.totalPrice} />} />
                 {this.state.listOfProducts.length ? <Route exact path='/' render={(props) => <Home {...props} highlitedProducts={this.state.idsOfHighlitedProducts} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts} />} /> : null}
                 {this.state.listOfProducts.length ? <Route exact path='/catalog' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts} />} /> : null}
-                {this.state.listOfProducts.length ? <Route exact path='/bath' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Banho")} />} /> : null}
+                {this.state.listOfProducts.length ? <Route exact path='/bath' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Higiene")} />} /> : null}
                 {this.state.listOfProducts.length ? <Route exact path='/body' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Corpo")} />} /> : null}
                 {this.state.listOfProducts.length ? <Route exact path='/face' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Rosto")} />} /> : null}
                 {this.state.listOfProducts.length ? <Route exact path='/perfumes' render={(props) => <Products {...props} addItemToCart={this.addToCart} listOfProducts={this.state.listOfProducts.filter(product => product.type === "Perfumes")} />} /> : null}

@@ -19,7 +19,7 @@ class Order extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedInUser: null,
+            loggedInUser: this.props.loggedInUser,
             cart: this.props.rest.cart,
             totalPrice: this.props.rest.totalPrice,
             priceWithDelivery: 0,
@@ -38,10 +38,10 @@ class Order extends Component {
         let totalWithDelivery = 0;
         let priceCart = this.state.totalPrice
 
-        if (this.state.typeOfDelivery === 'express') {
+        if (this.state.typeOfDelivery === 'Expressa') {
             totalWithDelivery = 21.90 + priceCart;
         }
-        else if (this.state.typeOfDelivery === 'standard') {
+        else if (this.state.typeOfDelivery === 'Padrão') {
             totalWithDelivery = 14.90 + priceCart;
         }
         else {
@@ -66,7 +66,6 @@ class Order extends Component {
     componentDidMount() {
         this.calculatePriceWithDelivery();
     }
-
 
     render() {
         return (
@@ -99,11 +98,11 @@ class Order extends Component {
                         <CardDelivery>
                             <form>
                                 <label>
-                                    <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="standard" />
+                                    <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="Padrão" required/>
                                         Padrão: R$14,90 (5 a 8 dias úteis)
                                 </label>
                                 <label>
-                                    <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="express" />
+                                    <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="Expressa"/>
                                         Expressa: R$21,90 (2 a 3 dias úteis)
                                 </label>
                             </form>
