@@ -16,7 +16,7 @@ const StyledGreenButton = styled.button`
     align-items: center;
     font-family: 'Roboto', sans-serif;
     color: #26acb5;
-    Link {
+    a {
         color:#26acb5;
         text-decoration:none
     }

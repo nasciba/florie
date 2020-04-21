@@ -71,34 +71,22 @@ class EditProduct extends Component {
         return (
             <StyledDisplay>
                 <StyledInputAuth>
-                <StyledTextAccount>EDITAR PRODUTO</StyledTextAccount>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Produto:</label>
-                    <br></br>
-                    <input type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} />
-                    <br></br>
-                    <label>Descrição:</label>
-                    <br></br>
-                    <input name="description" value={this.state.description} onChange={e => this.handleChange(e)} />
-                    <br></br>
-                    <label>Marca:</label>
-                    <br></br>
-                    <input type="text" name="brand" value={this.state.brand} onChange={e => this.handleChange(e)} />
-                    <br></br>
-                    <label>Preço:</label>
-                    <br></br>
-                    <input type="number" name="price" value={this.state.price} onChange={e => this.handleChange(e)} />
-                    <br></br>
-                    <label>Estoque:</label>
-                    <br></br>
-                    <input type="number" name="stock" value={this.state.stock} onChange={e => this.handleChange(e)} />
-                    <br></br>
-                    <input type="file" name="imageUrl" onChange={(e) => this.handleFileUpload(e)} />
-                    <br></br>
-                    <StyledGreenButton> <Link to='/list-admin' style={{ textDecoration: 'none', color: ' #26acb5' }}>CANCELAR</Link></StyledGreenButton>
-                    <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
-                    {/* <br></br> */}
-                </form>
+                    <StyledTextAccount>EDITAR PRODUTO</StyledTextAccount>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>Produto:</label>
+                        <input type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} />
+                        <label>Descrição:</label>
+                        <input name="description" value={this.state.description} onChange={e => this.handleChange(e)} />
+                        <label>Marca:</label>
+                        <input type="text" name="brand" value={this.state.brand} onChange={e => this.handleChange(e)} />
+                        <label>Preço:</label>
+                        <input type="number" name="price" value={this.state.price} onChange={e => this.handleChange(e)} />
+                        <label>Estoque:</label>
+                        <input type="number" name="stock" value={this.state.stock} onChange={e => this.handleChange(e)} />
+                        <input type="file" name="imageUrl" onChange={(e) => this.handleFileUpload(e)} />
+                        <StyledGreenButton> <Link to='/list-admin' style={{ textDecoration: 'none', color: ' #26acb5' }}>CANCELAR</Link></StyledGreenButton>
+                        <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
+                    </form>
                 </StyledInputAuth>
             </StyledDisplay>)
     }

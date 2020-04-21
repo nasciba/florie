@@ -50,44 +50,44 @@ class AddProduct extends Component {
                 console.log("Error while adding the image: ", err);
             });
     }
+
+    componentDidMount() {
+        console.log(this.props)
+    }
     render() {
-        return (
-            <StyledDisplay>
-                <StyledInputAuth>
-                    <StyledTextAccount>INSERIR NOVO PRODUTO</StyledTextAccount>
-                    <form onSubmit={this.handleSubmit}>
-                        <label>Produto:</label>
-                        <br></br>
-                        <input type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} />
-                        <br></br>
-                        <label>Descrição:</label>
-                        <br></br>
-                        <input name="description" value={this.state.description} onChange={e => this.handleChange(e)} />
-                        <br></br>
-                        <label>Marca:</label>
-                        <br></br>
-                        <input type="text" name="brand" value={this.state.brand} onChange={e => this.handleChange(e)} />
-                        <br></br>
-                        <label>Preço:</label>
-                        <br></br>
-                        <input type="number" name="price" value={this.state.price} onChange={e => this.handleChange(e)} />
-                        <br></br>
-                        <label>Estoque:</label>
-                        <br></br>
-                        <input type="number" name="stock" value={this.state.stock} onChange={e => this.handleChange(e)} />
-                        <br></br>
-                        <label>Tipo:</label>
-                        <br></br>
-                        <input type="text" name="type" value={this.state.type} onChange={e => this.handleChange(e)} />
-                        <br></br>
-                        <input
-                            type="file" name="imageUrl"
-                            onChange={(e) => this.handleFileUpload(e)} />
-                        <br></br>
-                        <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
-                    </form>
-                </StyledInputAuth>
-            </StyledDisplay>)
+        if (this.props.loggedInUser.admin) {
+            return (
+                <StyledDisplay>
+                    <StyledInputAuth>
+                        <StyledTextAccount>INSERIR NOVO PRODUTO</StyledTextAccount>
+                        <form onSubmit={this.handleSubmit}>
+                            <label>Produto:</label>
+                            <input type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} />
+                            <label>Descrição:</label>
+                            <input name="description" value={this.state.description} onChange={e => this.handleChange(e)} />
+                            <label>Marca:</label>
+                            <input type="text" name="brand" value={this.state.brand} onChange={e => this.handleChange(e)} />
+                            <label>Preço:</label>
+                            <input type="number" name="price" value={this.state.price} onChange={e => this.handleChange(e)} />
+                            <label>Estoque:</label>
+                            <input type="number" name="stock" value={this.state.stock} onChange={e => this.handleChange(e)} />
+                            <label>Tipo:</label>
+                            <input type="text" name="type" value={this.state.type} onChange={e => this.handleChange(e)} />
+                            <input
+                                type="file" name="imageUrl"
+                                onChange={(e) => this.handleFileUpload(e)} />
+                            <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
+                        </form>
+                    </StyledInputAuth>
+                </StyledDisplay>)
+        }
+        else {
+            return (
+                <StyledDisplay>
+                    <StyledTextAccount>Você não tem acesso a esta área do site!</StyledTextAccount>
+                </StyledDisplay>
+            )
+        }
     }
 }
 

@@ -3,31 +3,36 @@ import AuthService from '../auth/auth-service';
 import { Link } from 'react-router-dom';
 import { StyledDisplay, MenuContainer, MenuCards } from './styles'
 
+
 export default class Profile extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { loggedInUser: null };
+        this.state = {
+            loggedInUser: this.props.loggedInUser
+        };
         this.service = new AuthService();
     }
 
     logoutUser = () => {
         this.service.logout()
             .then(() => {
-                this.setState({ loggedInUser: null });
-                this.props.history.push('/');
+                sessionStorage.removeItem('loggedUser');
+                sessionStorage.removeItem('cart');
+                // this.setState({ loggedInUser: null });
                 this.props.rest.getUser(null);
+                this.props.rest.emptyCart();
+                this.props.history.push('/');
             })
     }
 
-
+    
 
     render() {
         if (this.props.loggedInUser.admin) {
-
             return (
                 <StyledDisplay>
-                    <h2>Olá, <span style={{ fontWeight: 'bold' }}>{this.props.loggedInUser.username}</span>!</h2>
+                    <h2>Olá, <span style={{ fontWeight: 'bold' }}>{this.props.loggedInUser.firstName}</span>!</h2>
                     <MenuContainer>
                         <MenuCards>
                             <Link to='/list-admin'>
@@ -45,26 +50,22 @@ export default class Profile extends Component {
                             <img src="/images/logout.svg" alt="ícone"></img>
                             <p>LOGOUT</p>
                         </MenuCards>
-                        
-                        
                     </MenuContainer>
                 </StyledDisplay>
             )
-        }
-
-        else {
+        } else if (!this.props.loggedInUser.admin) {
             return (
                 <StyledDisplay>
                     <h2>Olá, {this.props.loggedInUser.firstName}!</h2>
                     <MenuContainer>
                         <MenuCards>
-                            <Link to='/'>
+                            <Link to='/my-data'>
                                 <img src="/images/product-list.svg" alt="ícone"></img>
                                 <p>MEU CADASTRO</p>
                             </Link>
                         </MenuCards>
                         <MenuCards>
-                            <Link to='/'>
+                            <Link to={`/my-orders/${this.props.loggedInUser._id}`}>
                                 <img src="/images/tag.svg" alt="ícone"></img>
                                 <p>MEUS PEDIDOS</p>
                             </Link>
@@ -73,13 +74,10 @@ export default class Profile extends Component {
                             <img src="/images/logout.svg" alt="ícone"></img>
                             <p>LOGOUT</p>
                         </MenuCards>
-                        
-                        
                     </MenuContainer>
                 </StyledDisplay>
             )
         }
     }
-
 }
 

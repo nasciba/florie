@@ -28,7 +28,7 @@ export default {
   },
 
   updateProduct(updatedProduct) {
-    console.log('product with image is: ', updatedProduct)
+    console.log('updated product is: ', updatedProduct)
     return service.put(`/products/${updatedProduct._id}`, updatedProduct)
       .then(res => res.data)
       .catch(errorHandler);

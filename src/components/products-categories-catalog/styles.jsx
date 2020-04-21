@@ -15,6 +15,7 @@ const StyledTitle = styled.div`
         margin: 10px 0 10px 0px;
         padding-top: 50px;
         color: #808080; 
+
     }
 `
 
