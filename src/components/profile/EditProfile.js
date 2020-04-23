@@ -35,7 +35,8 @@ class EditProfile extends Component {
         event.preventDefault();
         axios.put(`${process.env.REACT_APP_API_URL}/api/user/${this.state.id}`, { firstName, lastName, phoneNumber, address })
             .then(apiResponse => {
-                console.log(apiResponse)
+                console.log(apiResponse);
+
             })
             .catch((err) => {
                 console.log(err)

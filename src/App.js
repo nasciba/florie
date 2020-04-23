@@ -26,7 +26,7 @@ class App extends Component {
     super(props)
     this.state = {
       loggedUser: null,
-      isLoading: false,
+      isLoading: true,
       idsOfHighlitedProducts: ["5e7c9ae793d2160024e66ffa", "5e7ca91293d2160024e6700f", "5e7c95ce93d2160024e66ff2", "5e7cab8793d2160024e67013", "5e7ca7f293d2160024e6700e", "5e7c9d5993d2160024e66ffe"],
       listOfProducts: [],
       cart: [],
@@ -186,29 +186,25 @@ class App extends Component {
 
   sessionStorageUser = () => {
     const loggedUserinStorage = sessionStorage.loggedUser;
-    console.log(typeof loggedUserinStorage);
     if (loggedUserinStorage !== undefined && this.state.loggedUser === null) {
-      console.log('entrou no if user')
       return this.getTheUser(JSON.parse(loggedUserinStorage))
     }
     else {
-      console.log('entrou no else user')
       return null
     }
   }
 
 
   componentDidMount() {
-    this.getAllProducts();
+    this.sessionStorageUser();
     this.sessionStorageCart();
     this.sessionStorageTotalPrice();
-    this.sessionStorageUser();
+    this.getAllProducts();
   }
   
   
   render() {
     this.fetchUser();
-    console.log('aqui user no render', this.state.loggedUser)
     if (this.state.loggedUser) {
       return (
         <StyledPageContainer>
@@ -243,9 +239,9 @@ class App extends Component {
     }
     else if (this.state.isLoading) {
       return (
-        <div>
-          Carregando
-        </div>
+        <StyledPageContainer>
+          <h4>Carregando</h4>
+        </StyledPageContainer>
       )
     }
     else {

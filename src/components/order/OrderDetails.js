@@ -8,7 +8,6 @@ import {
 export default class OrderDetails extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props)
     }
 
     componentDidMount() {
