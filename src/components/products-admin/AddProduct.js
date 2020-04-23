@@ -51,9 +51,6 @@ class AddProduct extends Component {
             });
     }
 
-    componentDidMount() {
-        console.log(this.props)
-    }
     render() {
         if (this.props.loggedInUser.admin) {
             return (
