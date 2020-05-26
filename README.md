@@ -21,4 +21,4 @@ Florie é um e-commerce de cosméticos veganos e orgânicos.
 - O acesso de administrador permite adicionar, editar e remover produtos cadastrados no banco de dados.
 
 ## :pushpin: Próximos passos
-- API pagamento com cartão de crédito.
+- API de pagamento com cartão de crédito.
