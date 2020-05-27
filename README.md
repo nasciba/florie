@@ -4,7 +4,7 @@ https://florie.herokuapp.com/
 
 ## :wrench: Ferramentas utilizadas
 - [React](https://reactjs.org/) - Uma biblioteca JavaScript para criar interfaces de usuário <br/>
-- [Styled Components](https://reactjs.org/) - Styled Components </br>
+- [Styled Components](https://reactjs.org/) - Biblioteca para escrever CSS com JavaScript </br>
 - [Node.js](https://nodejs.org/en/) - Interpretador assíncrono de JavaScript <br/>
 - [Express](https://expressjs.com/pt-br/) - Web framework <br/>
 - [MongoDB](https://www.mongodb.com/) - Banco de dados NoSQL <br/>
