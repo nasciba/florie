@@ -15,7 +15,7 @@ https://florie.herokuapp.com/
 - [Heroku](https://www.heroku.com/) - Plataforma em nuvem em que o projeto está implantado.<br/>
 
 ## :gear: Funcionalidades
-- O site tem acesso de administrador e de usuário. O usuário pode comprar produtos e, quando logado, consegue visualizar seus pedidos e alterar endereço salvo no cadastro.
+- O site tem acesso de administrador e de usuário. O usuário, quando logado, consegue visualizar seus pedidos e alterar endereço salvo no cadastro.
 - O acesso de administrador permite adicionar, editar e remover produtos cadastrados no banco de dados.
 
 ## :pushpin: Próximos passos
