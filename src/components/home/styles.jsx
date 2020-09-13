@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import bg_home from './images/bg_home.jpg'
 
 const StyledDisplay = styled.div`
     display: flex;
@@ -13,7 +14,7 @@ const StyledDisplay = styled.div`
 
 const StyledHeader = styled.div`
     margin: 0;
-    height: 90vh;
+    height: 1000px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -22,30 +23,27 @@ const StyledHeader = styled.div`
 const StyledBox = styled.div`
     width: 100%;
     height: 100%;
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    img {
-        height: 100%;
-        width: 100%
-    }
+    background-image: url(${bg_home});
+    background-position: center;
+    background-size: cover;
     a {
         text-decoration:none;
         color: black;
-    }
-    p {
-        position: absolute;
-        flex-wrap:wrap;
         width: 900px;
         font-size: 60px;
         letter-spacing: 10px;
         color: #black;
-        left: 50px;
-        top: 200px;
         font-weight: bold;
         font-family: 'Playfair Display', serif;
-
+    }
+    
+    p {
+        padding-left: 50px;
+        padding-top: 10%;
+    }
+ 
+    span {
+        color: #26acb5;
     }
     `
 
@@ -94,7 +92,7 @@ const Card = styled.div`
 
     `
 
-    const StyledTitle = styled.p `
+const StyledTitle = styled.p`
         width: 80%; 
         text-align: center; 
         font-size: 32px;
@@ -109,8 +107,8 @@ const Card = styled.div`
             background:#fff; 
             padding:0 10px; 
     }
-    ` 
-     
+    `
+
 export {
     StyledDisplay,
     StyledHeader,
