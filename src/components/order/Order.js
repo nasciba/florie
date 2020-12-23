@@ -3,17 +3,20 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { StyledGreenButton } from '../buttons/styles';
 import {
-    Display,
-    Container,
-    HalfScreenContainer,
-    Title,
-    Subtitle,
+    StyledColumn,
+    StyledSubtitle,
     Card,
     CardImage,
     CardText,
     CardDelivery,
     BoxCard
 } from './styles'
+
+import {
+    StyledTitle,
+    StyledContainer,
+    StyledDisplayFlexRow
+} from '../GlobalStyles'
 
 class Order extends Component {
     constructor(props) {
@@ -69,11 +72,11 @@ class Order extends Component {
 
     render() {
         return (
-            <Display>
-                <Title><span>RESUMO DO PEDIDO </span></Title>
-                <Container>
-                    <HalfScreenContainer>
-                        <Subtitle>PRODUTOS SELECIONADOS</Subtitle>
+            <StyledContainer>
+                <StyledTitle>RESUMO DO PEDIDO </StyledTitle>
+                <StyledDisplayFlexRow>
+                    <StyledColumn>
+                        <StyledSubtitle>PRODUTOS SELECIONADOS</StyledSubtitle>
                         {this.props.rest.cart.map((product) => {
                             return (
                                 <BoxCard key={product.id}>
@@ -92,24 +95,24 @@ class Order extends Component {
                                 </BoxCard>
                             )
                         })}
-                    </HalfScreenContainer>
-                    <HalfScreenContainer>
-                        <Subtitle>FRETE</Subtitle>
+                    </StyledColumn>
+                    <StyledColumn>
+                        <StyledSubtitle>FRETE</StyledSubtitle>
                         <CardDelivery>
                             <form>
                                 <label>
-                                    <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="Padrão" required/>
-                                        Padrão: R$14,90 (5 a 8 dias úteis)
-                                </label>
+                                    <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="Padrão" required />
+                                         Padrão: R$14,90 (5 a 8 dias úteis)
+                                    </label>
                                 <label>
-                                    <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="Expressa"/>
-                                        Expressa: R$21,90 (2 a 3 dias úteis)
-                                </label>
+                                    <input type="radio" onChange={this.handleChange} name="typeOfDelivery" value="Expressa" />
+                                         Expressa: R$21,90 (2 a 3 dias úteis)
+                                    </label>
                             </form>
                             <h4>Subtotal: R${parseFloat(this.state.totalPrice).toFixed(2).replace('.', ',')}</h4>
                             <h4>Total:  R${parseFloat(this.state.priceWithDelivery).toFixed(2).replace('.', ',')}</h4>
                         </CardDelivery>
-                        <Subtitle>ENDEREÇO DE ENVIO</Subtitle>
+                        <StyledSubtitle>ENDEREÇO DE ENVIO</StyledSubtitle>
                         <CardDelivery>
                             <p>{this.props.loggedInUser.firstName} {this.props.loggedInUser.lastName} </p>
                             <p>{this.props.loggedInUser.address.street}, {this.props.loggedInUser.address.number} {this.props.loggedInUser.address.complement}</p>
@@ -117,9 +120,11 @@ class Order extends Component {
                         </CardDelivery>
                         <StyledGreenButton type="submit" onClick={() => this.handleSubmit()}>FINALIZAR PEDIDO</StyledGreenButton>
 
-                    </HalfScreenContainer>
-                </Container>
-            </Display>)
+                    </StyledColumn>
+
+                </StyledDisplayFlexRow>
+            </StyledContainer>
+        )
     }
 }
 

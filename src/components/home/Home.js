@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import CardProduct from '../products-card/CardProduct.js'
 import Footer from '../footer/Footer'
 import {
-    StyledDisplay, StyledTitle, StyledHeader, StyledSection, StyledContainer, StyledBox, Card
+    StyledDisplay, StyledTitle, StyledHeader, StyledSection, StyledProductsContainer, StyledBox, Card
 } from './styles'
 
 
@@ -18,71 +18,65 @@ class Home extends Component {
                             <Link to='/catalog'>
                                 <p>os melhores cosméticos <br/> <span>orgânicos</span> e <span>veganos</span></p>
                             </Link>
-                            {/* <img src="/images/home2.jpg" alt="rosas"></img> */}
                         </StyledBox>
                     </StyledHeader>
                     <StyledSection>
                         <StyledTitle><span>DESTAQUES</span></StyledTitle>
-                        <StyledContainer>
+                        <StyledProductsContainer>
                             {this.props.listOfProducts.filter(product => {
                                 return this.props.highlitedProducts.includes(product._id)
                             }).map(productFound => {
                                 return (
                                     <CardProduct product={productFound} addItemToCart={this.props.addItemToCart} key={productFound._id} />
-
                                 )
                             })}
-                        </StyledContainer>
+                        </StyledProductsContainer>
                     </StyledSection>
                     <StyledSection>
-                        <StyledTitle><span>PRODUTOS POR CATEGORIA</span></StyledTitle>
-                        <StyledContainer>
-
+                        <StyledTitle><span>CATEGORIAS</span></StyledTitle>
+                        <StyledProductsContainer>
                             <Card>
                                 <Link to='/perfumes'>
-                                    <p>Colônias e aromaterapia</p>
-                                    <img src="/images/perfume3.jpg" alt="perfume"></img>
+                                    <h3>COLÔNIAS E AROMATERAPIA</h3>
+                                    <img src="/images/home/perfume3.jpg" alt="perfume"></img>
                                 </Link>
                             </Card>
                             <Card>
                                 <Link to='/hair'>
-                                    <p>Cabelos</p>
-                                    <img src="/images/cachos.jpg" alt="cabelos"></img>
+                                    <h3>CABELOS</h3>
+                                    <img src="/images/home/cachos.jpg" alt="cabelos"></img>
                                 </Link>
                             </Card>
-
                             <Card>
                                 <Link to='/body'>
-                                    <p>Cuidados com o corpo</p>
-                                    <img src="/images/corpo.jpg" alt="creme hidratante"></img>
+                                    <h3>CORPO</h3>
+                                    <img src="/images/home/corpo.jpg" alt="creme hidratante"></img>
                                 </Link>
                             </Card>
-
                             <Card>
                                 <Link to='/makeup'>
-                                    <p>Maquiagem</p>
-                                    <img src="/images/maquiagem_batom_laranja.jpg" alt="maquiagem"></img>
+                                    <h3>MAQUIAGEM</h3>
+                                    <img src="/images/home/maquiagem_batom_laranja.jpg" alt="maquiagem"></img>
                                 </Link>
                             </Card>
                             <Card>
                                 <Link to='/bath'>
-                                    <p>Higiene</p>
-                                    <img src="/images/banho.jpg" alt="produtos banho"></img>
+                                    <h3>HIGIENE</h3>
+                                    <img src="/images/home/banho.jpg" alt="produtos banho"></img>
                                 </Link>
                             </Card>
                             <Card>
                                 <Link to='/face'>
-                                    <p>Cuidados com o rosto</p>
-                                    <img src="/images/rosto.jpg" alt="duas mãos de duas pessoas segurando um pequeno frasco"></img>
+                                    <h3>ROSTO</h3>
+                                    <img src="/images/home/rosto.jpg" alt="duas mãos de duas pessoas segurando um pequeno frasco"></img>
                                 </Link>
                             </Card>
-                        </StyledContainer>
+                        </StyledProductsContainer>
                     </StyledSection>
                 </StyledDisplay>
                 <Footer />
             </React.Fragment>
         )
-
     }
 }
 

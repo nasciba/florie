@@ -10,35 +10,39 @@ const StyledDisplay = styled.div`
     padding-bottom: 100px;
     
 `
-
+const StyledImgwhiteLayer = styled.div`
+    
+`
 const StyledCardProduct = styled.div`
-    border-radius: 8px;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: center;    
-    padding: 25px;
-    margin: 45px 15px 45px 15px;
-    height: 650px;
+    margin: 15px 10px 15px 10px;
+    height: 550px;
     width: 400px;
-    max-height: 25%;
     color: black;
-    font-family: 'Roboto';
     align-items: center;
     img {
-        width: 345px;
-        height: 400px;
+        width: 290px;
+        height: 325px; 
+        opacity:(90%);    
     };
-    link {
-        text-decoration: none;
+
+    @media(max-width: 768px) {
+        max-width: 300px;
+        img {
+            height: auto;
+            max-width: 80%;
+            margin-left: 20px;
+        }
     }
     `
 
-const StyledTextTitle = styled.p`
+const StyledTextTitle = styled.h3`
     margin-top: 20px;
     margin-bottom: 0;
-    min-height: 100px;   
-    font-size: 19px;
+    min-height: 40px;
     justify-content: center;
     text-transform:uppercase;
     font-weight: bold;
@@ -47,15 +51,13 @@ const StyledTextTitle = styled.p`
     color: black;
     `
 
-const StyledTextBrand = styled.p`
-    font-size: 22px;
+const StyledTextBrand = styled.h4`
     font-weight: bold;
     color:#808080;
-    margin: 0;
-    
+    margin: 10px;
     `
 const StyledPrice = styled.p`
-    font-size: 25px;
+    font-size: 20px;
     color: black;
     margin: 0;
 `

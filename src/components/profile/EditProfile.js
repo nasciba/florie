@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { StyledGreenButton } from '../buttons/styles';
-import { StyledDisplay, StyledInputAuth, StyledTextAccount } from '../auth/style';
+import { StyledBorder, StyledTitle, StyledDisplay, StyledFormField } from './styles';
 
 class EditProfile extends Component {
     constructor(props) {
@@ -48,32 +48,52 @@ class EditProfile extends Component {
     render() {
         return (
             <StyledDisplay>
-                <StyledInputAuth>
-                    <StyledTextAccount>Editar meu cadastro</StyledTextAccount>
+                <StyledTitle>EDITAR CADASTRO</StyledTitle>
+                <StyledBorder>
                     <form onSubmit={this.handleSubmit}>
-                        <label>NOME:</label>
-                        <input type="text" name="firstName" value={this.state.firstName} onChange={e => this.handleChange(e)} />
-                        <label>SOBRENOME:</label>
-                        <input type="text" name="lastName" value={this.state.lastName} onChange={e => this.handleChange(e)} />
-                        <label>TELEFONE:</label>
-                        <input type="number" name="phoneNumber" value={this.state.phoneNumber} onChange={e => this.handleChange(e)} />
-                        <label>LOGRADOURO:</label>
-                        <input type="text" name="street" value={this.state.address.street} onChange={e => this.handleChange(e)} />
-                        <label>NÚMERO:</label>
-                        <input type="number" name="number" value={this.state.address.number} onChange={e => this.handleChange(e)} />
-                        <label>COMPLEMENTO:</label>
-                        <input type="text" name="complement" value={this.state.address.complement} onChange={e => this.handleChange(e)} />
-                        <label>BAIRRO:</label>
-                        <input type="text" name="district" value={this.state.address.district} onChange={e => this.handleChange(e)} />
-                        <label>CEP:</label>
-                        <input type="text" name="zipcode" value={this.state.address.zipcode} onChange={e => this.handleChange(e)} />
-                        <label>CIDADE:</label>
-                        <input type="text" name="city" value={this.state.address.city} onChange={e => this.handleChange(e)} />
-                        <label>ESTADO:</label>
-                        <input type="text" name="state" value={this.state.address.state} onChange={e => this.handleChange(e)} />
+                        <StyledFormField>
+                            <label>Nome:</label>
+                            <input type="text" name="firstName" value={this.state.firstName} onChange={e => this.handleChange(e)} />
+                        </StyledFormField>
+                        <StyledFormField>
+                            <label>Sobrenome:</label>
+                            <input type="text" name="lastName" value={this.state.lastName} onChange={e => this.handleChange(e)} />
+                        </StyledFormField>
+                        <StyledFormField>
+                            <label>Telefone:</label>
+                            <input type="number" name="phoneNumber" value={this.state.phoneNumber} onChange={e => this.handleChange(e)} />
+                        </StyledFormField>
+                        <StyledFormField>
+                            <label>Rua/Avenida:</label>
+                            <input type="text" name="street" value={this.state.address.street} onChange={e => this.handleChange(e)} />
+                        </StyledFormField>
+                        <StyledFormField>
+                            <label>Número:</label>
+                            <input type="number" name="number" value={this.state.address.number} onChange={e => this.handleChange(e)} />
+                        </StyledFormField>
+                        <StyledFormField>
+                            <label>Complemento:</label>
+                            <input type="text" name="complement" value={this.state.address.complement} onChange={e => this.handleChange(e)} />
+                        </StyledFormField>
+                        <StyledFormField>
+                            <label>Bairro:</label>
+                            <input type="text" name="district" value={this.state.address.district} onChange={e => this.handleChange(e)} />
+                        </StyledFormField>
+                        <StyledFormField>
+                            <label>CEP:</label>
+                            <input type="text" name="zipcode" value={this.state.address.zipcode} onChange={e => this.handleChange(e)} />
+                        </StyledFormField>
+                        <StyledFormField>
+                            <label>Cidade:</label>
+                            <input type="text" name="city" value={this.state.address.city} onChange={e => this.handleChange(e)} />
+                        </StyledFormField>
+                        <StyledFormField>
+                            <label>Estado:</label>
+                            <input type="text" name="state" value={this.state.address.state} onChange={e => this.handleChange(e)} />
+                        </StyledFormField>
                         <StyledGreenButton type="submit">SALVAR</StyledGreenButton>
                     </form>
-                </StyledInputAuth>
+                </StyledBorder>
             </StyledDisplay>)
     }
 }

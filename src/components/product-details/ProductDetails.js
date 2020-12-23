@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Footer from '../footer/Footer'
-import { StyledDisplay, StyledImgProduct, StyledProdDetailsDescrip } from './styles'
+import { StyledDisplay, StyledImgProduct, StyledProductDetails } from './styles'
 import { StyledGreenButton } from '../buttons/styles';
 
 class ProductDetails extends Component {
@@ -35,14 +35,14 @@ class ProductDetails extends Component {
                 <StyledImgProduct>
                     <img src={this.state.imageUrl} alt={this.state.name && this.state.brand}></img>
                 </StyledImgProduct>
-                <StyledProdDetailsDescrip>
-                    <p style={{ textTransform: "uppercase", fontWeight: "bold" }}>{this.state.name}</p>
-                    <p style={{ color: "#808080", fontWeight: "bold" }}>{this.state.brand}</p>
+                <StyledProductDetails>
+                    <h4 style={{ textTransform: "uppercase"}}>{this.state.name}</h4>
+                    <h5 style={{ color: "#808080", fontWeight: "bold" }}>{this.state.brand}</h5>
                     <h4>DESCRIÇÃO</h4>
                     <p>{this.state.description}</p>
                     <h3>R${parseFloat(this.state.price).toFixed(2).replace('.', ',')}</h3>
                     <StyledGreenButton onClick={() => { this.props.addItemToCart(this.state._id) }}>ADICIONAR AO CARRINHO</StyledGreenButton>
-                </StyledProdDetailsDescrip>
+                </StyledProductDetails>
 
             </StyledDisplay>
             <Footer/>

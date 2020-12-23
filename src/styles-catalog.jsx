@@ -23,7 +23,6 @@ const StyledCardProduct = styled.div`
     width: 400px;
     max-height: 25%;
     color: black;
-    font-family: 'Roboto';
     align-items: center;
     img {
         width: 345px;

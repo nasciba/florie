@@ -1,26 +1,31 @@
 import styled from 'styled-components';
 
 const StyledDisplay = styled.div`
+    width: 100%;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     text-align: center;
-    font-size: 25px;  
-    min-height: 80vh;
+    font-size: 20px;
+    margin-top: 60px;
     input {
         text-align: center;
     }
+    @media(max-width: 768px) {
+        font-size: 16px;
+    }
     `
-    const StyledInputAuth = styled.div`
-    
-    font-family: Roboto;
+const StyledInputAuth = styled.div`
     letter-spacing: 1px;
     border: solid gray 2px;
     border-radius: 8px;
-    // color: gray;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center
+    flex-wrap: wrap;    
+    margin-top: 30px;
     button {
         align-item: center
     }
@@ -32,21 +37,24 @@ const StyledDisplay = styled.div`
         }
     }
     input {
+
         border-radius: 8px;
         border: solid gray 2px;
-        min-width: 400px;
-        margin: 20px;
-        padding: 20px; 
+        min-width: 120px;
+        margin: 10px;
+        padding: 10px; 
         text-align: center;
         color: black;
-        font-size: 25px;     
+        font-size: 18px;     
     };
+
     label {
         min-width: 400px;
         text-align: center;
         color: black;
-        font-size: 25px;     
+        font-size: 20px;     
     };
+
     form {
         display:flex;
         flex-direction: column;
@@ -54,13 +62,26 @@ const StyledDisplay = styled.div`
         align-items: center;
     }
 
+    @media(max-width:768px) {
+        width: 80%;
+        input {
+            font-size: 16px;
+            width: 70%;
+        };
+        label {
+            font-size: 16px;
+        }
+    };
+
 `
 
 const StyledTextAccount = styled.h3`
     color: gray;
-    margin-top: 15 0 0 0; 
+    margin: 25px;
 `
-const StyledRow = styled.div`
+
+
+/*const StyledRow = styled.div`
     display: flex;
     text-align: left;
     flex-direction: row;
@@ -73,10 +94,11 @@ const StyledRow = styled.div`
         min-width: 450px;
         border-bottom: solid lightgray 2px;
     }
-`
+`*/
 export {
     StyledDisplay,
     StyledTextAccount,
     StyledInputAuth,
-    StyledRow
+       
+    
 }
