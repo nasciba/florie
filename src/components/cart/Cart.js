@@ -47,7 +47,7 @@ class Cart extends Component {
 
         <StyledImgEmptyCartDiv>
             <h1>Sua sacola de compras está vazia!</h1>
-            <img src="/images/shopping-basket.svg" alt="ícone preto de um cesto de compras"></img>
+            <img src= {require('../../assets/shopping-basket.svg')} alt="ícone preto de um cesto de compras"></img>
         </StyledImgEmptyCartDiv>
     }
             </StyledDisplayCart>
