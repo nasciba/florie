@@ -3,11 +3,16 @@ import styled from 'styled-components';
 const StyledDisplay = styled.div`
     display: flex;
     padding-bottom: 20px;
+    margin-top: 120px;
     flex-direction: row;
     align-items: center;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: start;
+
+    @media(max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `
 
 const StyledImgProduct = styled.div`
@@ -26,7 +31,7 @@ const StyledImgProduct = styled.div`
     
 `
 const StyledProductDetails = styled.div`
-    
+    margin-top: 50px;
     display: flex;
     max-width: 1000px;
     min-height: 600px;  
@@ -36,6 +41,11 @@ const StyledProductDetails = styled.div`
     font-size: 16px;
     p {
         text-align: center;
+        margin: 15px;
+        line-height: 25px;
+    }
+    h4 {
+        margin: 15px;
     }
   
 `
