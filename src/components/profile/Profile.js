@@ -37,18 +37,18 @@ export default class Profile extends Component {
                         <MenuCards>
                             <Link to='/list-admin'>
                                 <p>LISTA DE PRODUTOS</p>
-                                <img src="/images/product-list.svg" alt="ícone"></img>
+                                <img src={require("../../assets/images/product-list.svg")} alt="ícone"></img>
                             </Link>
                         </MenuCards>
                         <MenuCards>
                             <Link to='/add-product'>
                                 <p>ADICIONAR PRODUTO</p>
-                                <img src="/images/plus.svg" alt="ícone"></img>
+                                <img src={require("../../assets/images/plus.svg")} alt="ícone"></img>
                             </Link>
                         </MenuCards>
                         <MenuCards onClick={() => this.logoutUser()}>
                             <p>LOGOUT</p>
-                            <img src="/images/logout.svg" alt="ícone"></img>
+                            <img src={require("../../assets/images/logout.svg")} alt="ícone"></img>
                         </MenuCards>
                     </MenuContainer>
                 </StyledDisplay>
@@ -61,18 +61,18 @@ export default class Profile extends Component {
                         <MenuCards>
                             <Link to='/my-data'>
                                 <p>MEU CADASTRO</p>
-                                <img src="/images/product-list.svg" alt="ícone"></img>
+                                <img src={require("../../assets/images/product-list.svg")} alt="ícone"></img>
                             </Link>
                         </MenuCards>
                         <MenuCards>
                             <Link to={`/my-orders/${this.props.loggedInUser._id}`}>
                                 <p>MEUS PEDIDOS</p>
-                                <img src="/images/tag.svg" alt="ícone"></img>
+                                <img src={require("../../assets/images/tag.svg")}  alt="ícone"></img>
                             </Link>
                         </MenuCards>
                         <MenuCards onClick={() => this.logoutUser()}>
                             <p>LOGOUT</p>
-                            <img src="/images/logout.svg" alt="ícone"></img>
+                            <img src={require("../../assets/images/logout.svg")} alt="ícone"></img>
                         </MenuCards>
                     </MenuContainer>
                 </StyledDisplay>
