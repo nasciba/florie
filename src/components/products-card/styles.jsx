@@ -16,7 +16,7 @@ const StyledCardProduct = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;    
-    margin: 15px 10px 15px 10px;
+    margin: 15px 40px;
     height: 550px;
     width: 400px;
     color: black;

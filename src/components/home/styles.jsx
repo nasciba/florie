@@ -94,9 +94,11 @@ const StyledProductsContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    
 `
+
 const Card = styled.div`
-    margin: 40px;
+    margin: 40px 80px;
     width: 290px;
     height: 400px;
     position: relative;
