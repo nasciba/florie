@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
-    StyledCardProduct, StyledTextTitle, StyledTextBrand, StyledPrice, StyledMessage
+    StyledCardProduct, 
+    StyledTextTitle, 
+    StyledTextBrand, 
+    StyledPrice, 
+    StyledMessage
 } from './styles';
 import { StyledGreenButton } from '../buttons/styles';
 

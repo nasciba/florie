@@ -25,6 +25,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      navbarOpen: false,
       loggedUser: null,
       isLoading: true,
       idsOfHighlitedProducts: ["5e7c9ae793d2160024e66ffa", "5e7ca91293d2160024e6700f", "5e7c95ce93d2160024e66ff2", "5e7cab8793d2160024e67013", "5e7ca7f293d2160024e6700e", "5e7c9d5993d2160024e66ffe"],
@@ -34,7 +35,7 @@ class App extends Component {
     };
     this.service = new AuthService();
   }
-
+  
   addToCart = (id) => {
     let cart = [...this.state.cart];
 
@@ -131,6 +132,10 @@ class App extends Component {
     }
   }
 
+  handleNavbar = () => {
+    this.setState({ navbarOpen: !this.state.navbarOpen });
+  }
+
   fetchUser() {
     if (this.state.loggedUser === null) {
       this.service.loggedin()
@@ -209,7 +214,8 @@ class App extends Component {
       return (
         <StyledPageContainer>
           <BrowserRouter>
-            <Navbar cartCount={this.state.cart.length} />
+            {/* <Navbar cartCount={this.state.cart.length} /> */}
+            <Navbar cartCount={this.state.cart} navbarState = {this.state.navbarOpen} handleNavbar = {this.handleNavbar } />
             <Switch>
               {this.state.listOfProducts.length ? <ProtectedRoute loggedInUser={this.state.loggedUser} listOfProducts={this.state.listOfProducts} deleteProduct={this.deleteProduct} path='/list-admin' component={ProductsList} /> : null}
               <ProtectedRoute component={Profile} loggedInUser={this.state.loggedUser} emptyCart={this.emptyCart} path='/profile' getUser={this.getTheUser} />
@@ -248,7 +254,8 @@ class App extends Component {
       return (
         <StyledPageContainer>
           <BrowserRouter>
-            <Navbar cartCount={this.state.cart.length} />
+            {/* <Navbar cartCount={this.state.cart.length} /> */}
+            <Navbar navbarState = {this.state.navbarOpen} handleNavbar = {this.handleNavbar } cartCount = {this.state.cart}/>
             <Switch>
               <StyledContentWrap>
                 <ProtectedRoute loggedInUser={this.state.loggedUser} path='/list-admin' deleteProduct={this.deleteProduct} component={ProductsList} />
