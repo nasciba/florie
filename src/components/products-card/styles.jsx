@@ -10,9 +10,7 @@ const StyledDisplay = styled.div`
     padding-bottom: 100px;
     
 `
-const StyledImgwhiteLayer = styled.div`
-    
-`
+
 const StyledCardProduct = styled.div`
     display: flex;
     flex-direction: column;
