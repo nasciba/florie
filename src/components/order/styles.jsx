@@ -17,8 +17,6 @@ const Container = styled.div`
     flex-wrap: wrap;
     width: 100%;
     margin: 10px;
-    font-family: 'Roboto', sans-serif;
-
 `
 
 const Title = styled.p`
@@ -36,39 +34,47 @@ const Title = styled.p`
         padding:0 10px; 
 }
 `
-const Subtitle = styled.p`
+const StyledSubtitle = styled.h2`
     text-align: center; 
-    font-size: 28px;
     font-weight: lighter;
     letter-spacing: 3px;
-    margin: 10px 0 20px;
-    padding-top: 50px;
+    margin: 35px 0;
     color: #808080;
 `
-const HalfScreenContainer = styled.div`
-    width: 45%;
+const StyledColumn = styled.div`
+    min-width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: left;    
-    margin: 20px;
-    padding-bottom: 20px;
+    margin: 0 20px;
     
+    @media(max-width: 1258px) {
+        width: 100%;
+    }
 `
 const BoxCard = styled.div`
     width: 650px;
-    border: solid lightgray 2px;
-    border-radius: 8px;
-    margin-bottom: 20px;       
-               
-`
-const Card = styled.div`
     display: flex;
     flex-direction: row;
     justify-content:space-between;
     flex-wrap: wrap;
-    margin: 0;  
+    border: solid lightgray 2px;
+    border-radius: 5px;
+    margin-bottom: 20px;  
+
+    @media(max-width: 1258px) {
+        width: 100%;
+    }   
+    
+               
 `
+
+    const Card = styled.div`
+        display: flex;
+        
+        margin: 0;  
+    `
 const CardImage = styled.div`
     width: 18%;
     margin-left: 5px;
@@ -79,8 +85,8 @@ const CardImage = styled.div`
     align-items: center;
     img {
         margin: 20px;
-        height: 90%;
-        width: 90%
+        height: auto;
+        width: 80%;
     }
 `
 
@@ -100,14 +106,14 @@ const CardText = styled.div`
        
 `
 const CardDelivery = styled.div`
-    width: 650px;
+    width: 100%;
     border: solid lightgray 2px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px;
+    margin: 0 20px;
     h4, p, form {
     margin: 20px;
     text-align: center;
@@ -120,9 +126,9 @@ const CardDelivery = styled.div`
 export {
     Display,
     Container,
-    HalfScreenContainer,
+    StyledColumn,
     Title,
-    Subtitle,
+    StyledSubtitle,
     Card,
     CardImage,
     CardText,

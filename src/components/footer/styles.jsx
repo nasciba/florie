@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const StyledFooter = styled.div`
+
     margin: 0;
     padding: 0;
     width: 100%;
@@ -21,12 +22,16 @@ const StyledFooter = styled.div`
     
         p {
             margin: 20px;
-            font-family: 'Roboto', sans-serif;
-            // font-family: 'Playfair Display', serif;
-            font-size: 24px;
+            font-size: 19px;
             letter-spacing: 8px;
             color:#26acb5;
             font-weight: light;
+     }
+     @media(max-width: 768px) {
+         p {
+             font-size: 16px;
+             letter-spacing: 3px;
+         }
      }
     }
 

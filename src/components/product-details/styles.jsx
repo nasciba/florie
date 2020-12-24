@@ -7,12 +7,11 @@ const StyledDisplay = styled.div`
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-    font-family: 'Roboto', sans-serif;
     align-items: start;
 `
 
 const StyledImgProduct = styled.div`
-    min-height: 600px;  
+    //min-height: 600px;  
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,19 +25,17 @@ const StyledImgProduct = styled.div`
     }
     
 `
-const StyledProdDetailsDescrip = styled.div`
-    padding: 20px;
+const StyledProductDetails = styled.div`
+    
     display: flex;
     max-width: 1000px;
     min-height: 600px;  
     flex-direction: column;
     align-items: center;
     text-align: center;
-    font-size:px;
+    font-size: 16px;
     p {
         text-align: center;
-        font-family: 'Roboto', sans-serif;
-
     }
   
 `
@@ -55,17 +52,19 @@ const StyledDetailsText = styled.div`
     font-size: 30px;
     color: gray;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
     margin: 10px 60px;
     padding: 35px 80px;
 `
+
+
 
 export {
     StyledDisplay,
     StyledTitle,
     StyledImgProduct,
-    StyledProdDetailsDescrip,
+    StyledProductDetails,
     StyledDetailsText,
+    
 
 }
 

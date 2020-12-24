@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
-    StyledCardProduct, StyledTextTitle, StyledTextBrand, StyledPrice, StyledMessage
+    StyledCardProduct, 
+    StyledTextTitle, 
+    StyledTextBrand, 
+    StyledPrice, 
+    StyledMessage
 } from './styles';
 import { StyledGreenButton } from '../buttons/styles';
 
@@ -20,7 +24,7 @@ class CardProduct extends Component {
                 <StyledPrice>
                     R${parseFloat(this.props.product.price).toFixed(2).replace('.', ',')}
                 </StyledPrice>
-                <StyledGreenButton onClick={() => { this.props.addItemToCart(this.props.product._id) }}>ADICIONAR AO CARRINHO</StyledGreenButton>
+                <StyledGreenButton onClick={() => { this.props.addItemToCart(this.props.product._id) }}>COMPRAR</StyledGreenButton>
                 {this.props.product.stock <= 5 && this.props.product.stock >= 2 ? <StyledMessage> Últimas {this.props.product.stock} unidades   </StyledMessage> : null}
                 {this.props.product.stock === 1 ? <StyledMessage> Última unidade!   </StyledMessage> : null}
             </ StyledCardProduct>

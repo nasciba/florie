@@ -13,67 +13,76 @@ const StyledDisplayCart = styled.div`
 const StyledCardCart = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
-    flex-wrap: wrap;
-    margin: 0;
+    justify-content:space-around;
+
+    @media(max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 `
 
 const StyledBoxCard = styled.div`
-        width: 800px;
+        max-width: 750px;
         border: solid gray 2px;
         border-radius: 10px;
-        margin: 10px;   
+        margin: 20px;   
 `
 
 const StyledTextBox = styled.div`
-    font-family: 'Roboto', sans-serif;
-    padding-top: 20px;
-    width: 60%;
     display: flex;
+    margin:25px;
     flex-direction: column;
     align-items: left;
     justify-content: center;
-    margin-left: 25px;
-    padding-bottom:20px;
+    font-size: 16px;
+    padding-top: 20px;
+    width: 65%;
     span {
-        font-weight: bold;
-        margin-top: 10px
-    };
-    p,i {
-        margin: 5px 5px 5px 10px;
-    };
-    p {
-        font-family: 'Roboto', sans-serif;
-        font-weight: bold;        
+        font-weight: bold;  
+    }
+    h4, h5 {
+        margin: 10px 0;
+    }
+    
+    button {
+        width: 15%;
+    }
+    
+    @media(max-width: 768px) {
+        align-items: center;
+        button {
+            width: 50%;
+        }
     }
 `
-const StyledProductQtyBtn = styled.div`
+const StyledQuantityBtn = styled.div`
     display: flex;
     flex-direction: row; 
     justify-content: left;
     align-items: center;
-    margin: 0;
-    i {
-        margin-left: 10px;
-    };
-    label {
-        margin: 15px;
+    span {
+        margin: 25px;
+    }
+    @media(max-width: 768px) {
+        justify-content: center;
     }
 
 `
 const StyledImgCart = styled.div`
-    width: 25%;
-    margin-left: 5px;
-    padding-left:30px;
+    width: 30%;
     display: flex;
-    flex-direction:column;
-    justify-content: left;
     align-items: center;
     img {
-        margin: 20px;
-        height: 250px;
-        width: 250px
+        height: auto;
+        width: 100%;
+        padding: 20px;
     }
+    @media(max-width: 768px) {
+        width: 80%;
+    }
+    
 `
 const StyledImgEmptyCartDiv = styled.div`
     width: 100%;
@@ -93,7 +102,7 @@ export {
     StyledBoxCard,
     StyledCardCart,
     StyledTextBox,
-    StyledProductQtyBtn,
+    StyledQuantityBtn,
     StyledImgCart,
     StyledImgEmptyCartDiv,
 }

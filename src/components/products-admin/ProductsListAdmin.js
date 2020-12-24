@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { StyledDisplayCart, StyledCardCart, StyledTextBox, StyledImgCart } from '../cart/styles'
-import { StyledCard, StyledIconsVertical } from './styles'
+import { StyledDisplayCart, StyledTextBox, StyledImgCart } from '../cart/styles'
+import { StyledCard, StyledIcons, StyledProductImg, StyledDescriptionProduct } from './styles'
 import { StyledDisplay, StyledTextAccount } from '../auth/style';
-import { StyledTitle } from '../products-categories-catalog/styles'
+import { StyledTitle, StyledContainer } from '../GlobalStyles'
 import { StyledGreenButton } from '../buttons/styles'
 
 export default class ProductsList extends Component {
@@ -40,50 +40,51 @@ export default class ProductsList extends Component {
     render() {
         if (this.props.loggedInUser.admin) {
             return (
-                <StyledDisplayCart>
+                <StyledContainer>
 
-                    <StyledTitle><span>GERENCIAR INFORMAÇÕES SOBRE PRODUTOS</span></StyledTitle>
-                    <StyledGreenButton>
-                        <span>
-                            <Link to={'/add-product'}>ADICIONAR NOVO PRODUTO</Link>
-                        </span>
-                    </StyledGreenButton>
-                    {this.state.listOfProducts.map(product => {
-                        return (
-                            <StyledCard key={product._id}>
-                                <StyledCardCart >
-                                    <StyledImgCart>
+                    <StyledDisplayCart>
+
+                        <StyledTitle><span>GERENCIAR PRODUTOS</span></StyledTitle>
+                        <StyledGreenButton>
+                            <span>
+                                <Link to={'/add-product'}>ADICIONAR PRODUTO</Link>
+                            </span>
+                        </StyledGreenButton>
+                        {this.state.listOfProducts.map(product => {
+                            return (
+                                <StyledCard key={product._id}>
+                                    <StyledProductImg>
                                         <Link to={`/products/${product._id}`}>
                                             <img src={product.imageUrl} alt={product.title && product.brand}></img>
                                         </Link>
-                                    </StyledImgCart>
-                                    <StyledTextBox>
+                                    </StyledProductImg>
+                                    <StyledDescriptionProduct>
                                         <span>Produto:</span>
-                                        {product.name}
+                                        <span>{product.name}</span>
                                         <span>Marca:</span>
-                                        {product.brand}
+                                        <span>{product.brand}</span>
                                         <span>Preço:</span>
-                                        R${parseFloat(product.price).toFixed(2).replace('.', ',')}
+                                        <span>R${parseFloat(product.price).toFixed(2).replace('.', ',')}</span>
                                         <span>Estoque:</span>
-                                        {product.stock}
+                                        <span>{product.stock}</span>
                                         <span>Descrição: </span>
-                                        {product.description}
-                                    </StyledTextBox>
-                                    <StyledIconsVertical>
+                                        <span>{product.description}</span>
+                                    </StyledDescriptionProduct>
+                                    <StyledIcons>
 
                                         <Link to={`/edit-product/${product._id}`} style={{ color: 'black' }}>
                                             <i className="fa fa-edit"></i>
                                         </Link>
 
                                         <i className="fa fa-trash" onClick={() => this.deleteProduct(product._id)}></i>
-                                    </StyledIconsVertical>
+                                    </StyledIcons>
 
-                                </StyledCardCart>
-                            </StyledCard>
-                        )
-                    })}
+                                </StyledCard>
+                            )
+                        })}
 
-                </StyledDisplayCart>
+                    </StyledDisplayCart>
+                </StyledContainer>
             )
         }
         else {
