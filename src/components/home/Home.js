@@ -38,7 +38,7 @@ class Home extends Component {
                             <Card>
                                 <Link to='/perfumes'>
                                     <h3>COLÔNIAS E AROMATERAPIA</h3>
-                                    <img src="/images/perfume3.jpg" alt="perfume"></img>
+                                    <img src={require("/images/perfume3.jpg")} alt="perfume"></img>
                                 </Link>
                             </Card>
                             <Card>
