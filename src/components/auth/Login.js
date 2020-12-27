@@ -43,10 +43,10 @@ class Login extends Component {
                         <form onSubmit={this.handleFormSubmit}>
                             <input type="text" name="username" placeholder="Seu e-mail" value={this.state.username} onChange={event => this.handleChange(event)} />
                             <input name="password" placeholder="Sua senha" type="password" value={this.state.password} onChange={event => this.handleChange(event)} />
-                            <StyledGreenButton type="submit">LOGIN</StyledGreenButton>
+                            <StyledGreenButton type="submit">ENTRAR</StyledGreenButton>
+                            <StyledGreenButton><Link to={"/signup"}>CADASTRAR</Link></StyledGreenButton>
                         </form>
-                        <span>Não tem uma conta?</span>
-                        <span>Cadastre-se <Link to={"/signup"}>aqui</Link></span>  
+                         
                     </StyledInputAuth>
                 </StyledDisplay>
                 <Footer/>

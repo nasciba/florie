@@ -37,7 +37,7 @@ const MenuCards = styled.div`
     margin: 15px;
     img {
         height: auto;
-        width: 100px;
+        width: 75px;
     };
 
     img:hover {

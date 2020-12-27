@@ -5,7 +5,6 @@ import { animated } from "react-spring";
 
 export const NavBar = styled(animated.nav)`
   position: fixed;
-  height: 70px;
   width: 100%;
   top: 0;
   left: 0;
@@ -18,9 +17,10 @@ export const FlexContainer = styled.div`
   max-width: 120rem;
   display: flex;
   margin: auto;
-  padding: 0 1rem;
+  padding: 0 1rem 0 0;
   justify-content: space-between;
   height: 5rem;
+
 `;
 
 export const Burgerwrapper = styled.div`
@@ -29,6 +29,8 @@ export const Burgerwrapper = styled.div`
   @media (min-width: 769px) {
     display: none;
   }
+
+  
 `;
 
 export const NavLinks = styled(animated.ul)`
@@ -47,9 +49,9 @@ export const NavLinks = styled(animated.ul)`
     cursor: pointer;
 
     span {
-      background: red;
       padding: 2px 5px;
       color: white;
+      background-color: red;
       border-radius: 100%;
       font-size: 15px;
       font-weight: lighter;
@@ -75,13 +77,13 @@ export const Wrapper = styled.div`
   padding-top: .7rem;
   cursor: pointer;
   display: block;
-
+  
   & span {
     background: black;
     display: block;
     position: relative;
-    width: 2.8rem;
-    height: .3rem;
+    width: 2.5rem;
+    height: .4rem;    
     margin-bottom: .7rem;
     transition: all ease-in-out 0.2s;
   }
@@ -92,12 +94,12 @@ export const Wrapper = styled.div`
 
   .open span:nth-child(3) {
     transform: rotate(45deg);
-    top: -12px;
+    top: -13.2px;
   }
 
   .open span:nth-child(1) {
     transform: rotate(-45deg);
-    top: 12px;
+    top: 13.2px;
   }
 
 `;
@@ -108,8 +110,8 @@ export const Collapsewrapper = styled(animated.div)`
   background: white;
   position: fixed;
   z-index: 1;
-  top: 4.5rem;
   text-align: center;
+  top: 4.5rem;
   left: 0;
   right: 0;
 
@@ -144,8 +146,13 @@ export const NavLinksCollapseMenu = styled.ul`
 // Logo
 
 export const Image = styled.img`
-  height: 85%;
+  height: 100%;
   margin: auto 0;
+
+  @media(max-width: 460px) {
+    width: 50%;
+    height: 100%;
+  }
 `;
 
 export default {

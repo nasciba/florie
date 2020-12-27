@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
+
 
 const StyledTitle = styled.h1`
     letter-spacing: 5px;
@@ -21,9 +23,26 @@ const StyledDisplayFlexColumn = styled.div`
     
 `
 
+const GlobalStyles = createGlobalStyle`
+  *,
+  *::after,
+  *::before {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: inherit;
+  }
+  
+  body {
+    box-sizing: border-box;
+  }
+`;
+
+export default GlobalStyles;
+
 export {
     StyledTitle,
     StyledContainer,
-    StyledDisplayFlexRow
+    StyledDisplayFlexRow,
+    GlobalStyles
 
 }

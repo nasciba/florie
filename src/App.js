@@ -20,6 +20,7 @@ import Order from './components/order/Order'
 import OrderDetails from './components/order/OrderDetails';
 import Products from './components/products-categories-catalog/Products';
 import { StyledPageContainer, StyledContentWrap } from './App-Styled';
+import GlobalStyles from './components/GlobalStyles';
 
 class App extends Component {
   constructor(props) {
@@ -216,6 +217,7 @@ class App extends Component {
           <BrowserRouter>
             {/* <Navbar cartCount={this.state.cart.length} /> */}
             <Navbar cartCount={this.state.cart} navbarState = {this.state.navbarOpen} handleNavbar = {this.handleNavbar } />
+            <GlobalStyles/>
             <Switch>
               {this.state.listOfProducts.length ? <ProtectedRoute loggedInUser={this.state.loggedUser} listOfProducts={this.state.listOfProducts} deleteProduct={this.deleteProduct} path='/list-admin' component={ProductsList} /> : null}
               <ProtectedRoute component={Profile} loggedInUser={this.state.loggedUser} emptyCart={this.emptyCart} path='/profile' getUser={this.getTheUser} />

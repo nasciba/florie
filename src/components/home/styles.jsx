@@ -132,23 +132,20 @@ const Card = styled.div`
 `
 
 const StyledTitle = styled.p`
-        width:  20%; 
+        max-width:  80%; 
+        display: flex;
+        flex-wrap: wrap;
         text-align: center; 
-        font-size: 29px;
+        font-size: 25px;
         font-weight: lighter;
         letter-spacing: 3px;
-        border-bottom: 1px solid #808080; 
-        line-height: 0.1em;
         margin: 10px 0 20px;
-        padding-top: 50px;
+        padding-top: 30px;
         color: #808080; 
-        span { 
-            background: #fff; 
-            padding:0 10px; 
     };
 
     @media(max-width: 768px) {
-        font-size: 19px;    
+        font-size: 18px;    
     }
     `
 
