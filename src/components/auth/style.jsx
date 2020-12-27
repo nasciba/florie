@@ -7,7 +7,7 @@ const StyledDisplay = styled.div`
     justify-content: center;
     align-items: start;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 60px;
     input {
         text-align: center;
@@ -18,7 +18,7 @@ const StyledDisplay = styled.div`
     `
 const StyledInputAuth = styled.div`
     letter-spacing: 1px;
-    border: solid gray 2px;
+    border: solid lightgray 2px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -26,9 +26,11 @@ const StyledInputAuth = styled.div`
     align-items: center
     flex-wrap: wrap;    
     margin-top: 30px;
+
     button {
-        align-item: center
+        margin: 5px 0 15px 0;
     }
+
     span {
         margin: 15px;
         a {
@@ -36,23 +38,24 @@ const StyledInputAuth = styled.div`
             text-decoration: none;
         }
     }
+
     input {
 
         border-radius: 8px;
-        border: solid gray 2px;
+        border: solid lightgray 2px;
         min-width: 120px;
         margin: 10px;
         padding: 10px; 
         text-align: center;
-        color: black;
-        font-size: 18px;     
+        color: gray;
+        font-size: 15px;     
     };
 
     label {
         min-width: 400px;
         text-align: center;
         color: black;
-        font-size: 20px;     
+        font-size: 18px;     
     };
 
     form {

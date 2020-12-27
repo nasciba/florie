@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSpring } from 'react-spring';
 import { Collapsewrapper, NavLinksCollapseMenu } from './styles'
+
 export const CollapseMenu = (props) => {
   const { open } = useSpring({ open: props.navbarState ? 0 : 1 });
 
