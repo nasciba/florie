@@ -53,7 +53,7 @@ export const NavLinks = styled(animated.ul)`
       color: white;
       background-color: red;
       border-radius: 100%;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: lighter;
     }
 
@@ -129,7 +129,7 @@ export const NavLinksCollapseMenu = styled.ul`
   }
 
   & a {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     line-height: 2;
     color: black;
     text-transform: uppercase;
@@ -150,7 +150,7 @@ export const Image = styled.img`
   margin: auto 0;
 
   @media(max-width: 460px) {
-    width: 50%;
+    max-width: 70%;
     height: 100%;
   }
 `;
