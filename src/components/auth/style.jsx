@@ -29,6 +29,7 @@ const StyledInputAuth = styled.div`
 
     button {
         margin: 5px 0 15px 0;
+        width: 50%
     }
 
     span {
