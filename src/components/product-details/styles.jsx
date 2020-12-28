@@ -21,12 +21,18 @@ const StyledImgProduct = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 30%;
+    max-width: 60%;
     max-height: 40%;
     img {
         height: 90%;
         width: 80%;
       
+    }
+    @media(max-width: 768px) {
+        img {
+            width: 100%;
+            height: auto;
+        }
     }
     
 `

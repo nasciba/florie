@@ -10,7 +10,7 @@ export const NavBar = styled(animated.nav)`
   left: 0;
   background: white;
   z-index: 1;
-  font-size: 1.4rem;
+  font-size: 1rem;
 `;
 
 export const FlexContainer = styled.div`
@@ -25,13 +25,33 @@ export const FlexContainer = styled.div`
 
 export const Burgerwrapper = styled.div`
   margin: auto 0;
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+     text-decoration: none;
+     margin-right: 40px;
+  }
 
   @media (min-width: 769px) {
     display: none;
   }
-
   
 `;
+
+export const BaloonNumberOfItems = styled.span`
+  padding: 2px 5px;
+  color: white;
+  background-color: red;
+  border-radius: 100%;
+  font-size: 14px;
+  font-weight: lighter;
+  text-decoration: none;
+
+`
 
 export const NavLinks = styled(animated.ul)`
   justify-self: end;
@@ -41,21 +61,11 @@ export const NavLinks = styled(animated.ul)`
   & a {
     color: black;
     text-transform: uppercase;
-    font-weight: 600;
     border-bottom: 1px solid transparent;
     margin: 0 1.5rem;
     transition: all 300ms linear 0s;
     text-decoration: none;
     cursor: pointer;
-
-    span {
-      padding: 2px 5px;
-      color: white;
-      background-color: red;
-      border-radius: 100%;
-      font-size: 14px;
-      font-weight: lighter;
-    }
 
     &:hover {
       color: #fdcb6e;
@@ -68,7 +78,7 @@ export const NavLinks = styled(animated.ul)`
     }
   }
 `;
- 
+
 
 //Burgermenu
 
@@ -100,6 +110,32 @@ export const Wrapper = styled.div`
   .open span:nth-child(1) {
     transform: rotate(-45deg);
     top: 13.2px;
+  }
+
+  @media(max-width: 768px) {
+    & span {
+      background: black;
+      display: block;
+      position: relative;
+      width: 1.6rem;
+      height: .3rem;    
+      margin-bottom: .5rem;
+      transition: all ease-in-out 0.2s;
+    }
+  
+    .open span:nth-child(2) {
+        opacity: 0;
+      }
+  
+    .open span:nth-child(3) {
+      transform: rotate(45deg);
+      top: -9.8px;
+    }
+  
+    .open span:nth-child(1) {
+      transform: rotate(-45deg);
+      top: 9.8px;
+    }
   }
 
 `;
@@ -146,22 +182,24 @@ export const NavLinksCollapseMenu = styled.ul`
 // Logo
 
 export const Image = styled.img`
-  height: 100%;
-  margin: auto 0;
+  height: 70%;
+  margin-left: auto;
+  margin-top: 10px;
 
   @media(max-width: 460px) {
-    max-width: 70%;
-    height: 100%;
+    max-width: 60%;
+    height: 70%;
   }
 `;
 
 export default {
-    NavBar,
-    FlexContainer,
-    NavLinks,
-    Wrapper,
-    Collapsewrapper,
-    NavLinksCollapseMenu,
-    
+  BaloonNumberOfItems,
+  Collapsewrapper,
+  FlexContainer,
+  NavBar,
+  NavLinks,
+  NavLinksCollapseMenu,
+  Wrapper,
+
 }
 
