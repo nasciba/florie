@@ -41,37 +41,37 @@ class Home extends Component {
                         <StyledProductsContainer>
                             <Card>
                                 <Link to='/perfumes'>
-                                    <h3>COLÔNIAS E AROMATERAPIA</h3>
+                                    <h4>COLÔNIAS E AROMATERAPIA</h4>
                                     <img src={require("./images/perfume3.jpg")} alt="perfume"></img>
                                 </Link>
                             </Card>
                             <Card>
                                 <Link to='/hair'>
-                                    <h3>CABELOS</h3>
+                                    <h4>CABELOS</h4>
                                     <img src={require("./images/cachos.jpg")} alt="cabelos"></img>
                                 </Link>
                             </Card>
                             <Card>
                                 <Link to='/body'>
-                                    <h3>CORPO</h3>
+                                    <h4>CORPO</h4>
                                     <img src={require("./images/corpo.jpg")} alt="creme hidratante"></img>
                                 </Link>
                             </Card>
                             <Card>
                                 <Link to='/makeup'>
-                                    <h3>MAQUIAGEM</h3>
+                                    <h4>MAQUIAGEM</h4>
                                     <img src={require("./images/maquiagem_batom_laranja.jpg")} alt="maquiagem"></img>
                                 </Link>
                             </Card>
                             <Card>
                                 <Link to='/bath'>
-                                    <h3>HIGIENE</h3>
+                                    <h4>HIGIENE</h4>
                                     <img src={require("./images/banho.jpg")} alt="produtos banho"></img>
                                 </Link>
                             </Card>
                             <Card>
                                 <Link to='/face'>
-                                    <h3>ROSTO</h3>
+                                    <h4>ROSTO</h4>
                                     <img src={require("./images/rosto.jpg")} alt="duas mãos de duas pessoas segurando um pequeno frasco"></img>
                                 </Link>
                             </Card>
