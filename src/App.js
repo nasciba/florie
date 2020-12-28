@@ -21,6 +21,7 @@ import OrderDetails from './components/order/OrderDetails';
 import Products from './components/products-categories-catalog/Products';
 import { StyledPageContainer, StyledContentWrap } from './App-Styled';
 import GlobalStyles from './components/GlobalStyles';
+import LoadingContent from './Loading'
 
 class App extends Component {
   constructor(props) {
@@ -215,7 +216,6 @@ class App extends Component {
       return (
         <StyledPageContainer>
           <BrowserRouter>
-            {/* <Navbar cartCount={this.state.cart.length} /> */}
             <Navbar cartCount={this.state.cart} navbarState = {this.state.navbarOpen} handleNavbar = {this.handleNavbar } />
             <GlobalStyles/>
             <Switch>
@@ -248,7 +248,7 @@ class App extends Component {
     else if (this.state.isLoading) {
       return (
         <StyledPageContainer>
-          <h4>Carregando</h4>
+          <LoadingContent/>
         </StyledPageContainer>
       )
     }
@@ -256,7 +256,6 @@ class App extends Component {
       return (
         <StyledPageContainer>
           <BrowserRouter>
-            {/* <Navbar cartCount={this.state.cart.length} /> */}
             <Navbar navbarState = {this.state.navbarOpen} handleNavbar = {this.handleNavbar } cartCount = {this.state.cart}/>
             <Switch>
               <StyledContentWrap>
