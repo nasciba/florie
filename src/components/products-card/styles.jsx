@@ -16,28 +16,39 @@ const StyledCardProduct = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;    
-    margin: 15px 40px;
-    height: 550px;
-    width: 400px;
+    margin: 15px 10px;
+    height: 460px;
+    width: 350px;
     color: black;
     align-items: center;
+
     img {
-        width: 290px;
-        height: 325px; 
-        opacity:(90%);    
+        max-width: 80%;
+        height: 200px; 
+        opacity:(90%);
+        margin-left: 30px;
     };
+
+    button {
+        max-width: 10%;
+        max-height: 5%;
+
+    }
 
     @media(max-width: 768px) {
         max-width: 300px;
+
         img {
             height: auto;
             max-width: 80%;
-            margin-left: 20px;
+            padding: 20px;
         }
     }
-    `
 
-const StyledTextTitle = styled.h3`
+`
+
+const StyledTextTitle = styled.h4`
+    max-width: 90%;
     margin-top: 20px;
     margin-bottom: 0;
     min-height: 40px;
@@ -47,15 +58,17 @@ const StyledTextTitle = styled.h3`
     text-align: center;
     text-decoration: none;
     color: black;
-    `
+    
+`
 
-const StyledTextBrand = styled.h4`
+const StyledTextBrand = styled.h5`
     font-weight: bold;
     color:#808080;
     margin: 10px;
-    `
+
+`
 const StyledPrice = styled.p`
-    font-size: 20px;
+    font-size: 14px;
     color: black;
     margin: 0;
 `

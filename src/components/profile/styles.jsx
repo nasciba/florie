@@ -11,7 +11,7 @@ const StyledDisplay = styled.div`
     width: 100%;
     
 `
-const StyledTitle = styled.h1`
+const StyledTitle = styled.h3`
     letter-spacing: 5px;
     color: gray;
     padding-top: 30px;

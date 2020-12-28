@@ -27,7 +27,11 @@ class Home extends Component {
                                 return this.props.highlitedProducts.includes(product._id)
                             }).map(productFound => {
                                 return (
-                                    <CardProduct product={productFound} addItemToCart={this.props.addItemToCart} key={productFound._id} />
+                                    <CardProduct 
+                                    product={productFound} 
+                                    addItemToCart={this.props.addItemToCart} 
+                                    key={productFound._id} 
+                                    />
                                 )
                             })}
                         </StyledProductsContainer>

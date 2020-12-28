@@ -42,7 +42,7 @@ const StyledBox = styled.div`
         flex-wrap: wrap;
         color: black;
         max-width: 900px;
-        font-size: 45px;
+        font-size: 39px;
         letter-spacing: 10px;
         color: #black;
         font-weight: bold;
@@ -98,16 +98,18 @@ const StyledProductsContainer = styled.div`
 `
 
 const Card = styled.div`
-    margin: 40px 80px;
+    margin: 20px 20px;
     width: 290px;
     height: 400px;
     position: relative;
     text-align: center;
+
     img {
-        width: 90%;
-        height: 90%;
+        width: 70%;
+        height: 70%;
         border-radius: 4px;
     };
+
     h3 {
         margin-bottom: 20px;
     }

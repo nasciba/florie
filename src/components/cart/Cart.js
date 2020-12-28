@@ -61,7 +61,7 @@ class Cart extends Component {
                             <FlexBox>
                                 <JustifyAlignCenter>
                                     <StyledH3> SUBTOTAL: R${parseFloat(this.props.totalPrice).toFixed(2).replace('.', ',')} </StyledH3>
-                                    <StyledGreenButton> <Link to='/order' style={{ textDecoration: 'none' }}>Fechar Pedido</Link></StyledGreenButton>
+                                    <StyledGreenButton> <Link to='/order' style={{ textDecoration: 'none' }}>FECHAR PEDIDO</Link></StyledGreenButton>
                                 </JustifyAlignCenter>
                             </FlexBox>
                         </FlexboxCardsandSubtotal>
