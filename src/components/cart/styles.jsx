@@ -51,7 +51,7 @@ const StyledH3 = styled.h3`
     width: 100%;
     text-align: center;
     color: #808080;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
 
 `
 const StyledH4 = styled.h4`
