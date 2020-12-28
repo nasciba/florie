@@ -27,18 +27,31 @@ export const Burgerwrapper = styled.div`
   margin: auto 0;
   display: flex;
   flex-direction: row;
-  width: 40%;
-  justify-content: space-between;
+  width: 20%;
+  justify-content: center;
   align-items: center;
 
   a {
-     text-decoration: none;
-     margin-right: 40px;
-  }
+    text-decoration: none;
+    margin-right: 40px;
+ }
 
   @media (min-width: 769px) {
     display: none;
   }
+
+  @media (max-width: 679px) {
+    width: 25%;
+  }
+
+  @media (max-width: 516px) {
+    width: 50%;
+  }
+  @media (max-width: 352px) {
+    width: 65%;
+  }
+
+  
   
 `;
 
@@ -72,9 +85,14 @@ export const NavLinks = styled(animated.ul)`
       border-bottom: 1px solid #fdcb6e;
     }
 
-
     @media (max-width: 768px) {
       display: none;
+    }
+    
+    @media (max-width: 550px) {
+      a : i {
+        font-size: 14px;
+      }
     }
   }
 `;
@@ -114,29 +132,22 @@ export const Wrapper = styled.div`
 
   @media(max-width: 768px) {
     & span {
-      background: black;
-      display: block;
-      position: relative;
       width: 1.6rem;
       height: .3rem;    
       margin-bottom: .5rem;
-      transition: all ease-in-out 0.2s;
     }
-  
-    .open span:nth-child(2) {
-        opacity: 0;
-      }
-  
+   
     .open span:nth-child(3) {
       transform: rotate(45deg);
-      top: -9.8px;
+      top: -12.5px;
     }
   
     .open span:nth-child(1) {
       transform: rotate(-45deg);
-      top: 9.8px;
+      top: 12.5px;
     }
   }
+
 
 `;
 
@@ -187,9 +198,18 @@ export const Image = styled.img`
   margin-top: 10px;
 
   @media(max-width: 460px) {
-    max-width: 60%;
+    max-width: 70%;
     height: 70%;
   }
+
+  @media(max-width: 352px) {
+    max-width: 50%;
+    height: 45%;
+  }
+
+  
+
+  
 `;
 
 export default {
