@@ -111,18 +111,20 @@ const Card = styled.div`
     };
 
     h3 {
-        margin-bottom: 20px;
     }
+    
     img:hover {
         transform: scale(1.03);
     }
     
-    h3 {
+    h4 {
+        margin-bottom: 20px;
         top: 50px;
         letter-spacing: 4px;
         color: #808080;
         font-weight: bold;
     }
+
     a {
         text-decoration: none;
     }
