@@ -98,7 +98,7 @@ const StyledProductsContainer = styled.div`
 `
 
 const Card = styled.div`
-    margin: 20px 20px;
+    margin: 30px 40px;
     width: 290px;
     height: 400px;
     position: relative;
