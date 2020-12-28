@@ -30,7 +30,7 @@ const StyledCardProduct = styled.div`
     };
 
     button {
-        max-width: 10%;
+        max-width: 40%;
         max-height: 5%;
 
     }

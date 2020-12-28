@@ -208,8 +208,6 @@ export const Image = styled.img`
   }
 
   
-
-  
 `;
 
 export default {
