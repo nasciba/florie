@@ -117,7 +117,7 @@ const Card = styled.div`
         transform: scale(1.03);
     }
     
-    h4 {
+    h5 {
         margin-bottom: 20px;
         top: 50px;
         letter-spacing: 4px;

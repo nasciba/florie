@@ -173,6 +173,7 @@ class App extends Component {
         listOfProducts: apiResponse.data,
       });
     } finally {
+      console.log(this.state.listOfProducts)
       this.setState({ isLoading: false });
     }
   };
@@ -213,7 +214,7 @@ class App extends Component {
 
   render() {
     this.fetchUser();
-    if (this.state.loggedUser) {
+    if (!this.state.isLoading) {
       return (
         <StyledPageContainer>
           <BrowserRouter>
@@ -224,225 +225,20 @@ class App extends Component {
             />
             <GlobalStyles />
             <Switch>
-              <ProtectedRoute
-                loggedInUser={this.state.loggedUser}
-                listOfProducts={this.state.listOfProducts}
-                deleteProduct={this.deleteProduct}
-                path="/list-admin"
-                component={ProductsList}
-              />
-              <ProtectedRoute
-                component={Profile}
-                loggedInUser={this.state.loggedUser}
-                emptyCart={this.emptyCart}
-                path="/profile"
-                getUser={this.getTheUser}
-              />
-              <ProtectedRoute
-                component={AddProduct}
-                path="/add-product"
-                loggedInUser={this.state.loggedUser}
-              />
-              <ProtectedRoute
-                component={Order}
-                path="/order"
-                loggedInUser={this.state.loggedUser}
-                cart={this.state.cart}
-                totalPrice={this.state.totalPrice}
-              />
-              <ProtectedRoute
-                component={OrderDetails}
-                path="/order-details"
-                emptyCart={this.emptyCart}
-                loggedInUser={this.state.loggedUser}
-                cart={this.state.cart}
-                totalPrice={this.state.totalPrice}
-              />
-              <ProtectedRoute
-                component={MyOrders}
-                loggedInUser={this.state.loggedUser}
-                path="/my-orders/:id"
-              />
-              <ProtectedRoute
-                component={MyData}
-                loggedInUser={this.state.loggedUser}
-                path="/my-data"
-              />
-              <Route
-                exact
-                path="/edit-profile/:id"
-                render={(props) => (
-                  <EditProfile
-                    {...props}
-                    loggedInUser={this.state.loggedUser}
-                  />
-                )}
-              />
-              <Route exact path="/edit-product/:id" component={EditProduct} />
-              <Route
-                exact
-                path="/products/:id"
-                render={(props) => (
-                  <ProductDetails {...props} addItemToCart={this.addToCart} />
-                )}
-              />
-              <Route
-                exact
-                path="/cart"
-                render={(props) => (
-                  <Cart
-                    {...props}
-                    itemsInTheCart={this.state.cart}
-                    deleteItem={this.removeFromCart}
-                    removeItem={this.removeItem}
-                    addItem={this.addItem}
-                    totalPrice={this.state.totalPrice}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/login"
-                render={(props) => (
-                  <Login {...props} getUser={this.getTheUser} />
-                )}
-              />
-              <Route
-                exact
-                path="/signup"
-                render={(props) => (
-                  <Signup {...props} getUser={this.getTheUser} />
-                )}
-              />
-              <Route
-                exact
-                path="/"
-                render={(props) => (
-                  <Home
-                    {...props}
-                    highlitedProducts={this.state.idsOfHighlitedProducts}
-                    addItemToCart={this.addToCart}
-                    listOfProducts={this.state.listOfProducts}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/catalog"
-                render={(props) => (
-                  <Products
-                    {...props}
-                    addItemToCart={this.addToCart}
-                    listOfProducts={this.state.listOfProducts}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/bath"
-                render={(props) => (
-                  <Products
-                    {...props}
-                    addItemToCart={this.addToCart}
-                    listOfProducts={this.state.listOfProducts.filter(
-                      (product) => product.type === "Higiene"
-                    )}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/body"
-                render={(props) => (
-                  <Products
-                    {...props}
-                    addItemToCart={this.addToCart}
-                    listOfProducts={this.state.listOfProducts.filter(
-                      (product) => product.type === "Corpo"
-                    )}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/face"
-                render={(props) => (
-                  <Products
-                    {...props}
-                    addItemToCart={this.addToCart}
-                    listOfProducts={this.state.listOfProducts.filter(
-                      (product) => product.type === "Rosto"
-                    )}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/perfumes"
-                render={(props) => (
-                  <Products
-                    {...props}
-                    addItemToCart={this.addToCart}
-                    listOfProducts={this.state.listOfProducts.filter(
-                      (product) => product.type === "Perfumes"
-                    )}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/makeup"
-                render={(props) => (
-                  <Products
-                    {...props}
-                    addItemToCart={this.addToCart}
-                    listOfProducts={this.state.listOfProducts.filter(
-                      (product) => product.type === "Maquiagem"
-                    )}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/hair"
-                render={(props) => (
-                  <Products
-                    {...props}
-                    addItemToCart={this.addToCart}
-                    listOfProducts={this.state.listOfProducts.filter(
-                      (product) => product.type === "Cabelo"
-                    )}
-                  />
-                )}
-              />
-            </Switch>
-          </BrowserRouter>
-        </StyledPageContainer>
-      );
-    } else if (this.state.isLoading) {
-      return (
-        <ThemeProvider theme={theme}>
-          <StyledPageContainer>
-            <CircularProgress color="primary" />
-          </StyledPageContainer>
-        </ThemeProvider>
-      );
-    } else {
-      return (
-        <StyledPageContainer>
-          <BrowserRouter>
-            <Navbar
-              navbarState={this.state.navbarOpen}
-              handleNavbar={this.handleNavbar}
-              cartCount={this.state.cart}
-            />
-            <Switch>
               <StyledContentWrap>
                 <ProtectedRoute
                   loggedInUser={this.state.loggedUser}
-                  path="/list-admin"
+                  listOfProducts={this.state.listOfProducts}
                   deleteProduct={this.deleteProduct}
+                  path="/list-admin"
                   component={ProductsList}
+                />
+                <ProtectedRoute
+                  component={Profile}
+                  loggedInUser={this.state.loggedUser}
+                  emptyCart={this.emptyCart}
+                  path="/profile"
+                  getUser={this.getTheUser}
                 />
                 <ProtectedRoute
                   component={AddProduct}
@@ -457,48 +253,39 @@ class App extends Component {
                   totalPrice={this.state.totalPrice}
                 />
                 <ProtectedRoute
-                  component={Profile}
-                  loggedInUser={this.state.loggedUser}
-                  emptyCart={this.emptyCart}
-                  path="/profile"
-                  getUser={this.getTheUser}
-                />
-                <ProtectedRoute
                   component={OrderDetails}
                   path="/order-details"
+                  emptyCart={this.emptyCart}
                   loggedInUser={this.state.loggedUser}
                   cart={this.state.cart}
                   totalPrice={this.state.totalPrice}
-                />
-                <ProtectedRoute
-                  component={MyData}
-                  loggedInUser={this.state.loggedUser}
-                  path="/my-data"
                 />
                 <ProtectedRoute
                   component={MyOrders}
                   loggedInUser={this.state.loggedUser}
                   path="/my-orders/:id"
                 />
+                <ProtectedRoute
+                  component={MyData}
+                  loggedInUser={this.state.loggedUser}
+                  path="/my-data"
+                />
+                <Route
+                  exact
+                  path="/edit-profile/:id"
+                  render={(props) => (
+                    <EditProfile
+                      {...props}
+                      loggedInUser={this.state.loggedUser}
+                    />
+                  )}
+                />
+                <Route exact path="/edit-product/:id" component={EditProduct} />
                 <Route
                   exact
                   path="/products/:id"
                   render={(props) => (
                     <ProductDetails {...props} addItemToCart={this.addToCart} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/signup"
-                  render={(props) => (
-                    <Signup {...props} getUser={this.getTheUser} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/login"
-                  render={(props) => (
-                    <Login {...props} getUser={this.getTheUser} />
                   )}
                 />
                 <Route
@@ -515,7 +302,20 @@ class App extends Component {
                     />
                   )}
                 />
-
+                <Route
+                  exact
+                  path="/login"
+                  render={(props) => (
+                    <Login {...props} getUser={this.getTheUser} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/signup"
+                  render={(props) => (
+                    <Signup {...props} getUser={this.getTheUser} />
+                  )}
+                />
                 <Route
                   exact
                   path="/"
@@ -528,7 +328,6 @@ class App extends Component {
                     />
                   )}
                 />
-
                 <Route
                   exact
                   path="/catalog"
@@ -622,6 +421,14 @@ class App extends Component {
             </Switch>
           </BrowserRouter>
         </StyledPageContainer>
+      );
+    } else if (this.state.isLoading) {
+      return (
+        <ThemeProvider theme={theme}>
+          <StyledPageContainer>
+            <CircularProgress color="primary" />
+          </StyledPageContainer>
+        </ThemeProvider>
       );
     }
   }

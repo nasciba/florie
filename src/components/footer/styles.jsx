@@ -4,7 +4,7 @@ const StyledFooter = styled.div`
 
     margin: 0;
     padding: 0;
-    width: 100%;
+    width: 100vw;
     margin-top: 50px;
     background-color: white;
     bottom: 0;
