@@ -1,342 +1,161 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { useCallback } from "react";
+import { apiRequestProducts } from "./service/serviceRequestProducts";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import AuthService from "./components/auth/auth-service";
-import ProtectedRoute from "./components/auth/protected-route";
-import Signup from "./components/auth/Signup";
-import Login from "./components/auth/Login";
-import Home from "./components/home/Home";
+import ProtectedRoute from "./pages/auth/protected-route";
+import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
+import Home from "./pages/home/HomeView";
 import Navbar from "./components/navbar/Navbar";
-import ProductsList from "./components/products-admin/ProductsListAdmin";
-import ProductDetails from "./components/product-details/ProductDetails";
-import AddProduct from "./components/products-admin/AddProduct";
-import EditProduct from "./components/products-admin/EditProduct";
-import Cart from "./components/cart/Cart";
-import Profile from "./components/profile/Profile";
-import MyData from "./components/profile/MyData";
-import EditProfile from "./components/profile/EditProfile";
-import MyOrders from "./components/profile/MyOrders";
-import Order from "./components/order/Order";
-import OrderDetails from "./components/order/OrderDetails";
-import Products from "./components/products-categories-catalog/Products";
+import ProductsList from "./pages/products-admin/ProductsListAdmin";
+import ProductDetails from "./pages/product-details/ProductDetails";
+import AddProduct from "./pages/products-admin/AddProduct";
+import EditProduct from "./pages/products-admin/EditProduct";
+import Cart from "./pages/cart/Cart";
+import Profile from "./pages/profile/Profile";
+import MyData from "./pages/profile/MyData";
+import EditProfile from "./pages/profile/EditProfile";
+import MyOrders from "./pages/profile/MyOrders";
+import Order from "./pages/order/Order";
+import OrderDetails from "./pages/order/OrderDetails";
+import Products from "./pages/products-categories-catalog/Products";
 import { StyledPageContainer, StyledContentWrap } from "./App-Styled";
-import GlobalStyles from "./components/GlobalStyles";
+import GlobalStyles from "./GlobalStyles";
 import theme from "./Theme";
 import { ThemeProvider } from "@material-ui/styles";
+import { CartProvider } from "./contexts/CartContext";
+import service from "./service/service";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      navbarOpen: false,
-      loggedUser: false,
-      isLoading: false,
-      idsOfHighlitedProducts: [
-        "5e7c9ae793d2160024e66ffa",
-        "5e7ca91293d2160024e6700f",
-        "5e7c95ce93d2160024e66ff2",
-        "5e7cab8793d2160024e67013",
-        "5e7ca7f293d2160024e6700e",
-        "5e7c9d5993d2160024e66ffe",
-      ],
-      listOfProducts: [],
-      cart: [],
-      totalPrice: 0,
-    };
-    this.service = new AuthService();
-  }
+function App() {
+  const [loggedUser, setLoggedUser] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [listOfProducts, setListOfProducts] = React.useState([]);
+console.log(loggedUser)
+  //const service = new AuthService();
 
-  addToCart = (id) => {
-    let cart = [...this.state.cart];
-
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/products/${id}`)
-      .then((responseFromApi) => {
-        let response = responseFromApi.data;
-        let foundItem = cart.find((element) => {
-          return element.id === response._id;
-        });
-        if (foundItem === undefined) {
-          cart.push({
-            id: response._id,
-            quantity: 1,
-            price: response.price,
-            name: response.name,
-            brand: response.brand,
-            image: response.imageUrl,
-          });
-          this.updateCart(cart);
-          return cart;
-        } else {
-          return alert("Você já adicionou este item ao carrinho :)");
-        }
-      })
-
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  updateCart = async (cart) => {
-    const totalPrice = await this.getTotalPrice(cart);
-    const newStateCart = { cart: cart };
-    const newStateTotalPrice = { totalPrice: totalPrice };
-    await this.setState(newStateCart);
-    await this.setState(newStateTotalPrice);
-    sessionStorage.setItem("cart", JSON.stringify(newStateCart));
-    sessionStorage.setItem("totalPrice", JSON.stringify(newStateTotalPrice));
-  };
-
-  removeFromCart = async (productId) => {
-    let cart = [...this.state.cart];
-    let item = cart.findIndex((element) => {
-      return element.id === productId;
-    });
-    cart.splice(item, 1);
-    await this.updateCart(cart);
-  };
-
-  emptyCart = () => {
-    this.setState({ cart: [], totalPrice: 0 });
-  };
-
-  getTotalPrice = (newCart) => {
-    let cart = newCart || [...this.state.cart];
-    let prices = 0;
-    cart.forEach((productInTheCart) => {
-      prices = prices + productInTheCart.price * productInTheCart.quantity;
-    });
-    return prices;
-  };
-
-  addItem = (productId) => {
-    let cart = [...this.state.cart];
-    let item = cart.find((element) => {
-      return element.id === productId;
-    });
-    if (item.quantity < 15) {
-      item.quantity += 1;
-      this.updateCart(cart);
-    }
-    return;
-  };
-
-  removeItem = (productId) => {
-    let cart = [...this.state.cart];
-    let item = cart.find((element) => {
-      return element.id === productId;
-    });
-    if (item.quantity === 1) {
-      return item.quantity;
-    } else {
-      item.quantity -= 1;
-      this.updateCart(cart);
-      return;
-    }
-  };
-
-  handleNavbar = () => {
-    this.setState({ navbarOpen: !this.state.navbarOpen });
-  };
-
-  fetchUser() {
-    if (this.state.loggedUser === null) {
-      this.service
+  const fetchUser = useCallback(() => {
+    if (loggedUser === null) {
+      service
         .loggedin()
         .then((response) => {
-          this.setState({
-            loggedUser: response,
-          });
+          setLoggedUser(response);
         })
-        .catch((err) => {
-          this.setState({
-            loggedUser: false,
-          });
+        .catch(() => {
+          setLoggedUser(false);
         });
     }
-  }
+  }, [loggedUser]);
 
-  getTheUser = async (userObj) => {
-    await this.setState({
-      loggedUser: userObj,
-    });
+  const getTheUser = (userObj) => {
+    setLoggedUser(userObj);
+    console.log(loggedUser);
   };
 
-  getAllProducts = async () => {
+  const getAllProducts = async () => {
     try {
-      this.setState({ isLoading: true });
-      const apiResponse = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/products`
-      );
-      this.setState({
-        listOfProducts: apiResponse.data,
-      });
+      setIsLoading(true);
+      const products = await apiRequestProducts();
+      setListOfProducts(products);
+    } catch (error) {
+      console.error("Erro setando estado:", error);
     } finally {
-      console.log(this.state.listOfProducts)
-      this.setState({ isLoading: false });
+      setIsLoading(false);
     }
   };
+  React.useEffect(() => {
+    getAllProducts();
+  }, []);
 
-  sessionStorageCart = async () => {
-    const stringOfCartInTheStorage = sessionStorage.cart;
-    if (stringOfCartInTheStorage !== undefined && !this.state.cart.length) {
-      await this.setState(JSON.parse(stringOfCartInTheStorage));
-    } else {
-      return null;
-    }
-  };
+  React.useEffect(() => {
+    console.log("entrou fetch user");
+    fetchUser();
+  }, [fetchUser]);
+  //sessionStorageUser();
+  //sessionStorageCart();
+  //sessionStorageTotalPrice();
 
-  sessionStorageTotalPrice = () => {
-    const totalPrice = sessionStorage.totalPrice;
-    if (totalPrice !== undefined && this.state.totalPrice === 0) {
-      this.setState(JSON.parse(totalPrice));
-    } else {
-      return null;
-    }
-  };
-
-  sessionStorageUser = () => {
-    const loggedUserinStorage = sessionStorage.loggedUser;
-    if (loggedUserinStorage !== undefined && this.state.loggedUser === null) {
-      return this.getTheUser(JSON.parse(loggedUserinStorage));
-    } else {
-      return null;
-    }
-  };
-
-  componentDidMount() {
-    this.getAllProducts();
-    this.sessionStorageUser();
-    this.sessionStorageCart();
-    this.sessionStorageTotalPrice();
-  }
-
-  render() {
-    this.fetchUser();
-    if (!this.state.isLoading) {
-      return (
+  if (!isLoading) {
+    return (
+      <CartProvider>
         <StyledPageContainer>
           <BrowserRouter>
-            <Navbar
-              cartCount={this.state.cart}
-              navbarState={this.state.navbarOpen}
-              handleNavbar={this.handleNavbar}
-            />
+            <Navbar />
+
             <GlobalStyles />
             <Switch>
               <StyledContentWrap>
                 <ProtectedRoute
-                  loggedInUser={this.state.loggedUser}
-                  listOfProducts={this.state.listOfProducts}
-                  deleteProduct={this.deleteProduct}
+                  loggedInUser={loggedUser}
+                  listOfProducts={listOfProducts}
+                  //deleteProduct={deleteProduct}
                   path="/list-admin"
                   component={ProductsList}
+                  P
                 />
                 <ProtectedRoute
                   component={Profile}
-                  loggedInUser={this.state.loggedUser}
-                  emptyCart={this.emptyCart}
+                  loggedInUser={loggedUser}
                   path="/profile"
-                  getUser={this.getTheUser}
+                  getUser={getTheUser}
                 />
                 <ProtectedRoute
                   component={AddProduct}
                   path="/add-product"
-                  loggedInUser={this.state.loggedUser}
+                  loggedInUser={loggedUser}
                 />
                 <ProtectedRoute
                   component={Order}
                   path="/order"
-                  loggedInUser={this.state.loggedUser}
-                  cart={this.state.cart}
-                  totalPrice={this.state.totalPrice}
+                  loggedInUser={loggedUser}
                 />
                 <ProtectedRoute
                   component={OrderDetails}
                   path="/order-details"
-                  emptyCart={this.emptyCart}
-                  loggedInUser={this.state.loggedUser}
-                  cart={this.state.cart}
-                  totalPrice={this.state.totalPrice}
+                  loggedInUser={loggedUser}
                 />
                 <ProtectedRoute
                   component={MyOrders}
-                  loggedInUser={this.state.loggedUser}
+                  loggedInUser={loggedUser}
                   path="/my-orders/:id"
                 />
                 <ProtectedRoute
                   component={MyData}
-                  loggedInUser={this.state.loggedUser}
+                  loggedInUser={loggedUser}
                   path="/my-data"
                 />
                 <Route
                   exact
                   path="/edit-profile/:id"
                   render={(props) => (
-                    <EditProfile
-                      {...props}
-                      loggedInUser={this.state.loggedUser}
-                    />
+                    <EditProfile {...props} loggedInUser={loggedUser} />
                   )}
                 />
                 <Route exact path="/edit-product/:id" component={EditProduct} />
-                <Route
-                  exact
-                  path="/products/:id"
-                  render={(props) => (
-                    <ProductDetails {...props} addItemToCart={this.addToCart} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/cart"
-                  render={(props) => (
-                    <Cart
-                      {...props}
-                      itemsInTheCart={this.state.cart}
-                      deleteItem={this.removeFromCart}
-                      removeItem={this.removeItem}
-                      addItem={this.addItem}
-                      totalPrice={this.state.totalPrice}
-                    />
-                  )}
-                />
+                <Route exact path="/products/:id" component={ProductDetails} />
+                <Route exact path="/cart" component={Cart} />
                 <Route
                   exact
                   path="/login"
-                  render={(props) => (
-                    <Login {...props} getUser={this.getTheUser} />
-                  )}
+                  component={Login}
+                  getUser={getTheUser}
                 />
                 <Route
                   exact
                   path="/signup"
-                  render={(props) => (
-                    <Signup {...props} getUser={this.getTheUser} />
-                  )}
+                  render={(props) => <Signup {...props} getUser={getTheUser} />}
                 />
                 <Route
                   exact
                   path="/"
                   render={(props) => (
-                    <Home
-                      {...props}
-                      highlitedProducts={this.state.idsOfHighlitedProducts}
-                      addItemToCart={this.addToCart}
-                      listOfProducts={this.state.listOfProducts}
-                    />
+                    <Home {...props} listOfProducts={listOfProducts} />
                   )}
                 />
                 <Route
                   exact
                   path="/catalog"
                   render={(props) => (
-                    <Products
-                      {...props}
-                      addItemToCart={this.addToCart}
-                      listOfProducts={this.state.listOfProducts}
-                    />
+                    <Products {...props} listOfProducts={listOfProducts} />
                   )}
                 />
                 <Route
@@ -345,8 +164,7 @@ class App extends Component {
                   render={(props) => (
                     <Products
                       {...props}
-                      addItemToCart={this.addToCart}
-                      listOfProducts={this.state.listOfProducts.filter(
+                      listOfProducts={listOfProducts.filter(
                         (product) => product.type === "Higiene"
                       )}
                     />
@@ -358,8 +176,7 @@ class App extends Component {
                   render={(props) => (
                     <Products
                       {...props}
-                      addItemToCart={this.addToCart}
-                      listOfProducts={this.state.listOfProducts.filter(
+                      listOfProducts={listOfProducts.filter(
                         (product) => product.type === "Corpo"
                       )}
                     />
@@ -371,8 +188,7 @@ class App extends Component {
                   render={(props) => (
                     <Products
                       {...props}
-                      addItemToCart={this.addToCart}
-                      listOfProducts={this.state.listOfProducts.filter(
+                      listOfProducts={listOfProducts.filter(
                         (product) => product.type === "Rosto"
                       )}
                     />
@@ -384,8 +200,7 @@ class App extends Component {
                   render={(props) => (
                     <Products
                       {...props}
-                      addItemToCart={this.addToCart}
-                      listOfProducts={this.state.listOfProducts.filter(
+                      listOfProducts={listOfProducts.filter(
                         (product) => product.type === "Perfumes"
                       )}
                     />
@@ -397,8 +212,7 @@ class App extends Component {
                   render={(props) => (
                     <Products
                       {...props}
-                      addItemToCart={this.addToCart}
-                      listOfProducts={this.state.listOfProducts.filter(
+                      listOfProducts={listOfProducts.filter(
                         (product) => product.type === "Maquiagem"
                       )}
                     />
@@ -410,8 +224,7 @@ class App extends Component {
                   render={(props) => (
                     <Products
                       {...props}
-                      addItemToCart={this.addToCart}
-                      listOfProducts={this.state.listOfProducts.filter(
+                      listOfProducts={listOfProducts.filter(
                         (product) => product.type === "Cabelos"
                       )}
                     />
@@ -421,16 +234,16 @@ class App extends Component {
             </Switch>
           </BrowserRouter>
         </StyledPageContainer>
-      );
-    } else if (this.state.isLoading) {
-      return (
-        <ThemeProvider theme={theme}>
-          <StyledPageContainer>
-            <CircularProgress color="primary" />
-          </StyledPageContainer>
-        </ThemeProvider>
-      );
-    }
+      </CartProvider>
+    );
+  } else {
+    return (
+      <ThemeProvider theme={theme}>
+        <StyledPageContainer>
+          <CircularProgress color="primary" />
+        </StyledPageContainer>
+      </ThemeProvider>
+    );
   }
 }
 

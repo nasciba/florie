@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CardProduct from "../products-card/CardProduct";
-import Footer from "../footer/Footer";
+import Footer from "../../components/footer/Footer";
 import { StyledDisplay } from "../../styles-catalog";
 import Box from "@material-ui/core/Box";
 

@@ -56,7 +56,7 @@ const StyledPrice = styled.p`
 `;
 
 const StyledMessage = styled.p`
-  text-size: 5px;
+  font-size: 5px;
   margin-top: 25px;
   color: #cc3a2d;
   font-weight: bold;
