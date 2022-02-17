@@ -1,36 +1,43 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import {
-    StyledCardProduct, 
-    StyledTextTitle, 
-    StyledTextBrand, 
-    StyledPrice, 
-    StyledMessage
-} from './styles';
-import { StyledGreenButton } from '../buttons/styles';
+  StyledCardProduct,
+  StyledTextTitle,
+  StyledTextBrand,
+  StyledPrice,
+  StyledMessage,
+} from "./styles";
+import { StyledGreenButton } from "../buttons/styles";
+import { CartContext } from "../../contexts/CartContext";
 
+const CardProduct = ({ product }) => {
+  const { addToCart } = useContext(CartContext);
 
-class CardProduct extends Component {
-    render() {
-        return (
-            <StyledCardProduct>
-                <Link to={`/products/${this.props.product._id}`}>
-                    <img src={this.props.product.imageUrl} alt={this.props.product.title && this.props.product.brand}></img>
-                </Link>
-                <StyledTextTitle>{this.props.product.name}</StyledTextTitle>
-                <StyledTextBrand>
-                    {this.props.product.brand}
-                </StyledTextBrand>
-                <StyledPrice>
-                    R${parseFloat(this.props.product.price).toFixed(2).replace('.', ',')}
-                </StyledPrice>
-                <StyledGreenButton onClick={() => { this.props.addItemToCart(this.props.product._id) }}>COMPRAR</StyledGreenButton>
-                {this.props.product.stock <= 5 && this.props.product.stock >= 2 ? <StyledMessage> Últimas {this.props.product.stock} unidades   </StyledMessage> : null}
-                {this.props.product.stock === 1 ? <StyledMessage> Última unidade!   </StyledMessage> : null}
-            </ StyledCardProduct>
-        )
-    }
-}
-
+  return (
+    <StyledCardProduct>
+      <Link to={`/products/${product._id}`}>
+        <img src={product.imageUrl} alt={product.title && product.brand}></img>
+      </Link>
+      <StyledTextTitle>{product.name}</StyledTextTitle>
+      <StyledTextBrand>{product.brand}</StyledTextBrand>
+      <StyledPrice>
+        R${parseFloat(product.price).toFixed(2).replace(".", ",")}
+      </StyledPrice>
+      <StyledGreenButton
+        onClick={() => {
+          addToCart(product);
+        }}
+      >
+        COMPRAR
+      </StyledGreenButton>
+      {product.stock <= 5 && product.stock >= 2 ? (
+        <StyledMessage> Últimas {product.stock} unidades </StyledMessage>
+      ) : null}
+      {product.stock === 1 ? (
+        <StyledMessage> Última unidade! </StyledMessage>
+      ) : null}
+    </StyledCardProduct>
+  );
+};
 
 export default CardProduct;
