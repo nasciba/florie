@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import {
@@ -9,29 +8,17 @@ import {
 } from "./styles";
 import { StyledGreenButton } from "../../components/buttons/styles";
 import { CartContext } from "../../contexts/CartContext";
+import getSingleProduct from "../../service/getSingleProduct";
 
 const ProductDetails = () => {
   const { addToCart } = React.useContext(CartContext);
   const [product, setProduct] = React.useState({});
   const { pathname } = useLocation();
 
-  const getSingleProduct = async () => {
-    try {
-      const request = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/${pathname}`,
-        {
-          withCredentials: true,
-        }
-      );
-      const singleProduct = request.data;
-      return singleProduct;
-    } catch (error) {
-      throw error;
-    }
-  };
-  
+ 
+
   const getProduct = async () => {
-    const product = await getSingleProduct();
+    const product = await getSingleProduct(pathname);
     setProduct(product);
   };
 
