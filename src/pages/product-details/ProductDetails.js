@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import {
   StyledDisplay,
@@ -12,30 +13,28 @@ import { CartContext } from "../../contexts/CartContext";
 const ProductDetails = () => {
   const { addToCart } = React.useContext(CartContext);
   const [product, setProduct] = React.useState({});
-  const { params } = this.props.match;
+  const { pathname } = useLocation();
 
-  const getSingleProduct = () => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/products/${params.id}`, {
-        withCredentials: true,
-      })
-      .then((apiResponse) => {
-        const singleProduct = apiResponse.data;
-        return singleProduct;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  const getProduct = () => {
+  const getSingleProduct = async () => {
     try {
-      const product = getSingleProduct();
-      setProduct(product);
+      const request = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/${pathname}`,
+        {
+          withCredentials: true,
+        }
+      );
+      const singleProduct = request.data;
+      return singleProduct;
     } catch (error) {
-      console.error(error);
+      throw error;
     }
   };
   
+  const getProduct = async () => {
+    const product = await getSingleProduct();
+    setProduct(product);
+  };
+
   React.useEffect(() => {
     getProduct();
   });
