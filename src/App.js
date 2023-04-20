@@ -22,7 +22,7 @@ import Products from "./pages/products-categories-catalog/Products";
 import { StyledPageContainer, StyledContentWrap } from "./App-Styled";
 import GlobalStyles from "./GlobalStyles";
 import theme from "./Theme";
-import { ThemeProvider } from "@material-ui/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { CartProvider } from "./contexts/CartContext";
 import service from "./service/service";
 
