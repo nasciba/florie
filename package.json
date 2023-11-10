@@ -10,7 +10,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "^12.1.7",
-    "axios": "^0.21.2",
+    "axios": "^1.6.0",
     "cors": "^2.8.5",
     "dom": "0.0.3",
     "dotenv": "^8.2.0",
